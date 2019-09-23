@@ -1,0 +1,551 @@
+
+{
+  "kind": "customsearch#search",
+  "url": {
+   "type": "application/json",
+   "template": "https://www.googleapis.com/customsearch/v1?q={searchTerms}&num={count?}&start={startIndex?}&lr={language?}&safe={safe?}&cx={cx?}&sort={sort?}&filter={filter?}&gl={gl?}&cr={cr?}&googlehost={googleHost?}&c2coff={disableCnTwTranslation?}&hq={hq?}&hl={hl?}&siteSearch={siteSearch?}&siteSearchFilter={siteSearchFilter?}&exactTerms={exactTerms?}&excludeTerms={excludeTerms?}&linkSite={linkSite?}&orTerms={orTerms?}&relatedSite={relatedSite?}&dateRestrict={dateRestrict?}&lowRange={lowRange?}&highRange={highRange?}&searchType={searchType}&fileType={fileType?}&rights={rights?}&imgSize={imgSize?}&imgType={imgType?}&imgColorType={imgColorType?}&imgDominantColor={imgDominantColor?}&alt=json"
+  },
+  "queries": {
+   "request": [
+    {
+     "title": "Google Custom Search - harry potter",
+     "totalResults": "236000",
+     "searchTerms": "harry potter",
+     "count": 10,
+     "startIndex": 1,
+     "inputEncoding": "utf8",
+     "outputEncoding": "utf8",
+     "safe": "off",
+     "cx": "002704402873488483019:4ujf79s3i2h"
+    }
+   ],
+   "nextPage": [
+    {
+     "title": "Google Custom Search - harry potter",
+     "totalResults": "236000",
+     "searchTerms": "harry potter",
+     "count": 10,
+     "startIndex": 11,
+     "inputEncoding": "utf8",
+     "outputEncoding": "utf8",
+     "safe": "off",
+     "cx": "002704402873488483019:4ujf79s3i2h"
+    }
+   ]
+  },
+  "context": {
+   "title": "MisoSearch"
+  },
+  "searchInformation": {
+   "searchTime": 0.475897,
+   "formattedSearchTime": "0.48",
+   "totalResults": "236000",
+   "formattedTotalResults": "236,000"
+  },
+  "items": [
+   {
+    "kind": "customsearch#result",
+    "title": "Harry Potter and the Sorcerer's Stone (2001) - IMDb",
+    "htmlTitle": "\u003cb\u003eHarry Potter\u003c/b\u003e and the Sorcerer&#39;s Stone (2001) - IMDb",
+    "link": "https://www.imdb.com/title/tt0241527/",
+    "displayLink": "www.imdb.com",
+    "snippet": "An orphaned boy enrolls in a school of wizardry, where he learns the truth about \nhimself, his family and the terrible evil that haunts the magical world.",
+    "htmlSnippet": "An orphaned boy enrolls in a school of wizardry, where he learns the truth about \u003cbr\u003e\nhimself, his family and the terrible evil that haunts the magical world.",
+    "cacheId": "1sUXD6j3F3gJ",
+    "formattedUrl": "https://www.imdb.com/title/tt0241527/",
+    "htmlFormattedUrl": "https://www.imdb.com/title/tt0241527/",
+    "pagemap": {
+     "cse_thumbnail": [
+      {
+       "width": "163",
+       "height": "310",
+       "src": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcS85PdWEa0D-IEmsx539UqB7uVbs-Aws1ZtD6alSDtHVBZDGXuolG4Ho7od"
+      }
+     ],
+     "aggregaterating": [
+      {
+       "ratingvalue": "7.6",
+       "bestrating": "10",
+       "ratingcount": "579,541",
+       "reviewcount": "1,646 user"
+      }
+     ],
+     "metatags": [
+      {
+       "apple-itunes-app": "app-id=342792525, app-argument=imdb:///title/tt0241527?src=mdot",
+       "og:url": "http://www.imdb.com/title/tt0241527/",
+       "theme-color": "#000000",
+       "pageid": "tt0241527",
+       "pagetype": "title",
+       "subpagetype": "main",
+       "og:image": "https://m.media-amazon.com/images/M/MV5BNjQ3NWNlNmQtMTE5ZS00MDdmLTlkZjUtZTBlM2UxMGFiMTU3XkEyXkFqcGdeQXVyNjUwNzk3NDc@._V1_UY1200_CR90,0,630,1200_AL_.jpg",
+       "og:type": "video.movie",
+       "fb:app_id": "115109575169727",
+       "og:title": "Harry Potter and the Sorcerer's Stone (2001) - IMDb",
+       "og:site_name": "IMDb",
+       "title": "Harry Potter and the Sorcerer's Stone (2001) - IMDb",
+       "og:description": "Directed by Chris Columbus.  With Daniel Radcliffe, Rupert Grint, Richard Harris, Maggie Smith. An orphaned boy enrolls in a school of wizardry, where he learns the truth about himself, his family and the terrible evil that haunts the magical world.",
+       "request_id": "B2M7FZHMD0STQGKFHFB6"
+      }
+     ],
+     "cse_image": [
+      {
+       "src": "https://m.media-amazon.com/images/M/MV5BNjQ3NWNlNmQtMTE5ZS00MDdmLTlkZjUtZTBlM2UxMGFiMTU3XkEyXkFqcGdeQXVyNjUwNzk3NDc@._V1_UY1200_CR90,0,630,1200_AL_.jpg"
+      }
+     ]
+    }
+   },
+   {
+    "kind": "customsearch#result",
+    "title": "Harry Potter and the Deathly Hallows: Part 1 (2010) - IMDb",
+    "htmlTitle": "\u003cb\u003eHarry Potter\u003c/b\u003e and the Deathly Hallows: Part 1 (2010) - IMDb",
+    "link": "https://www.imdb.com/title/tt0926084/",
+    "displayLink": "www.imdb.com",
+    "snippet": "Directed by David Yates. With Daniel Radcliffe, Emma Watson, Rupert Grint, Bill \nNighy. As Harry, Ron and Hermione race against time and evil to destroy the ...",
+    "htmlSnippet": "Directed by David Yates. With Daniel Radcliffe, Emma Watson, Rupert Grint, Bill \u003cbr\u003e\nNighy. As \u003cb\u003eHarry\u003c/b\u003e, Ron and Hermione race against time and evil to destroy the&nbsp;...",
+    "cacheId": "Hbp252zKRr0J",
+    "formattedUrl": "https://www.imdb.com/title/tt0926084/",
+    "htmlFormattedUrl": "https://www.imdb.com/title/tt0926084/",
+    "pagemap": {
+     "cse_thumbnail": [
+      {
+       "width": "163",
+       "height": "310",
+       "src": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSwI26UeINU5L1J6rTKtf4YcJRxHaY07BegHo0e0GlS5lutm06FlrcEAMyd"
+      }
+     ],
+     "aggregaterating": [
+      {
+       "ratingvalue": "7.7",
+       "bestrating": "10",
+       "ratingcount": "433,277",
+       "reviewcount": "659 user"
+      }
+     ],
+     "metatags": [
+      {
+       "apple-itunes-app": "app-id=342792525, app-argument=imdb:///title/tt0926084?src=mdot",
+       "og:url": "http://www.imdb.com/title/tt0926084/",
+       "theme-color": "#000000",
+       "pageid": "tt0926084",
+       "pagetype": "title",
+       "subpagetype": "main",
+       "og:image": "https://m.media-amazon.com/images/M/MV5BMTQ2OTE1Mjk0N15BMl5BanBnXkFtZTcwODE3MDAwNA@@._V1_UY1200_CR90,0,630,1200_AL_.jpg",
+       "og:type": "video.movie",
+       "fb:app_id": "115109575169727",
+       "og:title": "Harry Potter and the Deathly Hallows: Part 1 (2010) - IMDb",
+       "og:site_name": "IMDb",
+       "title": "Harry Potter and the Deathly Hallows: Part 1 (2010) - IMDb",
+       "og:description": "Directed by David Yates.  With Daniel Radcliffe, Emma Watson, Rupert Grint, Bill Nighy. As Harry, Ron and Hermione race against time and evil to destroy the Horcruxes, they uncover the existence of the three most powerful objects in the wizarding world: the Deathly Hallows.",
+       "request_id": "8DKPMPJ2WRJC308G32KZ"
+      }
+     ],
+     "cse_image": [
+      {
+       "src": "https://m.media-amazon.com/images/M/MV5BMTQ2OTE1Mjk0N15BMl5BanBnXkFtZTcwODE3MDAwNA@@._V1_UY1200_CR90,0,630,1200_AL_.jpg"
+      }
+     ]
+    }
+   },
+   {
+    "kind": "customsearch#result",
+    "title": "Harry Potter and the Deathly Hallows: Part 2 (2011) - IMDb",
+    "htmlTitle": "\u003cb\u003eHarry Potter\u003c/b\u003e and the Deathly Hallows: Part 2 (2011) - IMDb",
+    "link": "https://www.imdb.com/title/tt1201607/",
+    "displayLink": "www.imdb.com",
+    "snippet": "Harry, Ron, and Hermione search for Voldemort's remaining Horcruxes in their \neffort to destroy the Dark Lord as the final battle rages on at Hogwarts.",
+    "htmlSnippet": "\u003cb\u003eHarry\u003c/b\u003e, Ron, and Hermione search for Voldemort&#39;s remaining Horcruxes in their \u003cbr\u003e\neffort to destroy the Dark Lord as the final battle rages on at Hogwarts.",
+    "cacheId": "NeIQHDLlVHYJ",
+    "formattedUrl": "https://www.imdb.com/title/tt1201607/",
+    "htmlFormattedUrl": "https://www.imdb.com/title/tt1201607/",
+    "pagemap": {
+     "cse_thumbnail": [
+      {
+       "width": "163",
+       "height": "310",
+       "src": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQnTPGwgu1ziG-YP2mN-chqXmsuuF0UqjQOHqJ9EPeW4oJOee6iBtdYSdaE"
+      }
+     ],
+     "aggregaterating": [
+      {
+       "ratingvalue": "8.1",
+       "bestrating": "10",
+       "ratingcount": "702,499",
+       "reviewcount": "898 user"
+      }
+     ],
+     "metatags": [
+      {
+       "apple-itunes-app": "app-id=342792525, app-argument=imdb:///title/tt1201607?src=mdot",
+       "og:url": "http://www.imdb.com/title/tt1201607/",
+       "theme-color": "#000000",
+       "pageid": "tt1201607",
+       "pagetype": "title",
+       "subpagetype": "main",
+       "og:image": "https://m.media-amazon.com/images/M/MV5BMjIyZGU4YzUtNDkzYi00ZDRhLTljYzctYTMxMDQ4M2E0Y2YxXkEyXkFqcGdeQXVyNTIzOTk5ODM@._V1_UY1200_CR85,0,630,1200_AL_.jpg",
+       "og:type": "video.movie",
+       "fb:app_id": "115109575169727",
+       "og:title": "Harry Potter and the Deathly Hallows: Part 2 (2011) - IMDb",
+       "og:site_name": "IMDb",
+       "title": "Harry Potter and the Deathly Hallows: Part 2 (2011) - IMDb",
+       "og:description": "Directed by David Yates.  With Daniel Radcliffe, Emma Watson, Rupert Grint, Michael Gambon. Harry, Ron, and Hermione search for Voldemort's remaining Horcruxes in their effort to destroy the Dark Lord as the final battle rages on at Hogwarts.",
+       "request_id": "VNZTQKYJKMESDNYKW70W"
+      }
+     ],
+     "cse_image": [
+      {
+       "src": "https://m.media-amazon.com/images/M/MV5BMjIyZGU4YzUtNDkzYi00ZDRhLTljYzctYTMxMDQ4M2E0Y2YxXkEyXkFqcGdeQXVyNTIzOTk5ODM@._V1_UY1200_CR85,0,630,1200_AL_.jpg"
+      }
+     ]
+    }
+   },
+   {
+    "kind": "customsearch#result",
+    "title": "Harry Potter and the Half-Blood Prince (2009) - IMDb",
+    "htmlTitle": "\u003cb\u003eHarry Potter\u003c/b\u003e and the Half-Blood Prince (2009) - IMDb",
+    "link": "https://www.imdb.com/title/tt0417741/",
+    "displayLink": "www.imdb.com",
+    "snippet": "As Harry Potter begins his sixth year at Hogwarts, he discovers an old book \nmarked as \"the property of the Half-Blood Prince\" and begins to learn more about\n ...",
+    "htmlSnippet": "As \u003cb\u003eHarry Potter\u003c/b\u003e begins his sixth year at Hogwarts, he discovers an old book \u003cbr\u003e\nmarked as &quot;the property of the Half-Blood Prince&quot; and begins to learn more about\u003cbr\u003e\n&nbsp;...",
+    "cacheId": "f-xewlBTb-sJ",
+    "formattedUrl": "https://www.imdb.com/title/tt0417741/",
+    "htmlFormattedUrl": "https://www.imdb.com/title/tt0417741/",
+    "pagemap": {
+     "cse_thumbnail": [
+      {
+       "width": "163",
+       "height": "310",
+       "src": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcStIkC-FIa1N2QqT7xYeQkea3BcShMZY7ltKN2VcrxmMHVGCPM_r2vMHpU"
+      }
+     ],
+     "aggregaterating": [
+      {
+       "ratingvalue": "7.6",
+       "bestrating": "10",
+       "ratingcount": "426,393",
+       "reviewcount": "1,018 user"
+      }
+     ],
+     "metatags": [
+      {
+       "apple-itunes-app": "app-id=342792525, app-argument=imdb:///title/tt0417741?src=mdot",
+       "og:url": "http://www.imdb.com/title/tt0417741/",
+       "theme-color": "#000000",
+       "pageid": "tt0417741",
+       "pagetype": "title",
+       "subpagetype": "main",
+       "og:image": "https://m.media-amazon.com/images/M/MV5BNzU3NDg4NTAyNV5BMl5BanBnXkFtZTcwOTg2ODg1Mg@@._V1_UY1200_CR74,0,630,1200_AL_.jpg",
+       "og:type": "video.movie",
+       "fb:app_id": "115109575169727",
+       "og:title": "Harry Potter and the Half-Blood Prince (2009) - IMDb",
+       "og:site_name": "IMDb",
+       "title": "Harry Potter and the Half-Blood Prince (2009) - IMDb",
+       "og:description": "Directed by David Yates.  With Daniel Radcliffe, Emma Watson, Rupert Grint, Michael Gambon. As Harry Potter begins his sixth year at Hogwarts, he discovers an old book marked as \"the property of the Half-Blood Prince\" and begins to learn more about Lord Voldemort's dark past.",
+       "request_id": "ZDYG6VHAV6CGXNP262SV"
+      }
+     ],
+     "cse_image": [
+      {
+       "src": "https://m.media-amazon.com/images/M/MV5BNzU3NDg4NTAyNV5BMl5BanBnXkFtZTcwOTg2ODg1Mg@@._V1_UY1200_CR74,0,630,1200_AL_.jpg"
+      }
+     ]
+    }
+   },
+   {
+    "kind": "customsearch#result",
+    "title": "Harry Potter and the Goblet of Fire (2005) - IMDb",
+    "htmlTitle": "\u003cb\u003eHarry Potter\u003c/b\u003e and the Goblet of Fire (2005) - IMDb",
+    "link": "https://www.imdb.com/title/tt0330373/",
+    "displayLink": "www.imdb.com",
+    "snippet": "A young wizard finds himself competing in a hazardous tournament between rival \nschools of magic, but he is distracted by recurring nightmares.",
+    "htmlSnippet": "A young wizard finds himself competing in a hazardous tournament between rival \u003cbr\u003e\nschools of magic, but he is distracted by recurring nightmares.",
+    "cacheId": "7ZSkpFQA4BAJ",
+    "formattedUrl": "https://www.imdb.com/title/tt0330373/",
+    "htmlFormattedUrl": "https://www.imdb.com/title/tt0330373/",
+    "pagemap": {
+     "cse_thumbnail": [
+      {
+       "width": "163",
+       "height": "310",
+       "src": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQJDc5u98PNceD1lyGLGaOXMfowVke1eBoLLDXFB-MBFoE-AtqQjLGeg_el"
+      }
+     ],
+     "aggregaterating": [
+      {
+       "ratingvalue": "7.7",
+       "bestrating": "10",
+       "ratingcount": "497,234",
+       "reviewcount": "1,924 user"
+      }
+     ],
+     "metatags": [
+      {
+       "apple-itunes-app": "app-id=342792525, app-argument=imdb:///title/tt0330373?src=mdot",
+       "og:url": "http://www.imdb.com/title/tt0330373/",
+       "theme-color": "#000000",
+       "pageid": "tt0330373",
+       "pagetype": "title",
+       "subpagetype": "main",
+       "og:image": "https://m.media-amazon.com/images/M/MV5BMTI1NDMyMjExOF5BMl5BanBnXkFtZTcwOTc4MjQzMQ@@._V1_UY1200_CR91,0,630,1200_AL_.jpg",
+       "og:type": "video.movie",
+       "fb:app_id": "115109575169727",
+       "og:title": "Harry Potter and the Goblet of Fire (2005) - IMDb",
+       "og:site_name": "IMDb",
+       "title": "Harry Potter and the Goblet of Fire (2005) - IMDb",
+       "og:description": "Directed by Mike Newell.  With Daniel Radcliffe, Emma Watson, Rupert Grint, Eric Sykes. A young wizard finds himself competing in a hazardous tournament between rival schools of magic, but he is distracted by recurring nightmares.",
+       "request_id": "2JZ4AHWQM6WJ4A7MJ73T"
+      }
+     ],
+     "cse_image": [
+      {
+       "src": "https://m.media-amazon.com/images/M/MV5BMTI1NDMyMjExOF5BMl5BanBnXkFtZTcwOTc4MjQzMQ@@._V1_UY1200_CR91,0,630,1200_AL_.jpg"
+      }
+     ]
+    }
+   },
+   {
+    "kind": "customsearch#result",
+    "title": "Harry Potter and the Order of the Phoenix (2007) - IMDb",
+    "htmlTitle": "\u003cb\u003eHarry Potter\u003c/b\u003e and the Order of the Phoenix (2007) - IMDb",
+    "link": "https://www.imdb.com/title/tt0373889/",
+    "displayLink": "www.imdb.com",
+    "snippet": "With their warning about Lord Voldemort's return scoffed at, Harry and \nDumbledore are targeted by the Wizard authorities as an authoritarian \nbureaucrat slowly ...",
+    "htmlSnippet": "With their warning about Lord Voldemort&#39;s return scoffed at, \u003cb\u003eHarry\u003c/b\u003e and \u003cbr\u003e\nDumbledore are targeted by the Wizard authorities as an authoritarian \u003cbr\u003e\nbureaucrat slowly&nbsp;...",
+    "cacheId": "Im_5_C2YXFwJ",
+    "formattedUrl": "https://www.imdb.com/title/tt0373889/",
+    "htmlFormattedUrl": "https://www.imdb.com/title/tt0373889/",
+    "pagemap": {
+     "cse_thumbnail": [
+      {
+       "width": "163",
+       "height": "310",
+       "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXM9WE8HDUFatjdVDX2lpLhyC6KyXpJN-LdFGijKtoAZagl071RsobKXw"
+      }
+     ],
+     "aggregaterating": [
+      {
+       "ratingvalue": "7.5",
+       "bestrating": "10",
+       "ratingcount": "461,995",
+       "reviewcount": "1,153 user"
+      }
+     ],
+     "metatags": [
+      {
+       "apple-itunes-app": "app-id=342792525, app-argument=imdb:///title/tt0373889?src=mdot",
+       "og:url": "http://www.imdb.com/title/tt0373889/",
+       "theme-color": "#000000",
+       "pageid": "tt0373889",
+       "pagetype": "title",
+       "subpagetype": "main",
+       "og:image": "https://m.media-amazon.com/images/M/MV5BMTM0NTczMTUzOV5BMl5BanBnXkFtZTYwMzIxNTg3._V1_UY1200_CR90,0,630,1200_AL_.jpg",
+       "og:type": "video.movie",
+       "fb:app_id": "115109575169727",
+       "og:title": "Harry Potter and the Order of the Phoenix (2007) - IMDb",
+       "og:site_name": "IMDb",
+       "title": "Harry Potter and the Order of the Phoenix (2007) - IMDb",
+       "og:description": "Directed by David Yates.  With Daniel Radcliffe, Emma Watson, Rupert Grint, Brendan Gleeson. With their warning about Lord Voldemort's return scoffed at, Harry and Dumbledore are targeted by the Wizard authorities as an authoritarian bureaucrat slowly seizes power at Hogwarts.",
+       "request_id": "JHHEBQ2ATMZARNR7M9JZ"
+      }
+     ],
+     "cse_image": [
+      {
+       "src": "https://m.media-amazon.com/images/M/MV5BMTM0NTczMTUzOV5BMl5BanBnXkFtZTYwMzIxNTg3._V1_UY1200_CR90,0,630,1200_AL_.jpg"
+      }
+     ]
+    }
+   },
+   {
+    "kind": "customsearch#result",
+    "title": "Harry Potter and the Prisoner of Azkaban (2004) - IMDb",
+    "htmlTitle": "\u003cb\u003eHarry Potter\u003c/b\u003e and the Prisoner of Azkaban (2004) - IMDb",
+    "link": "https://www.imdb.com/title/tt0304141/",
+    "displayLink": "www.imdb.com",
+    "snippet": "It's Harry's third year at Hogwarts; not only does he have a new \"Defense Against \nthe Dark Arts\" teacher, but there is also trouble brewing. Convicted murderer ...",
+    "htmlSnippet": "It&#39;s \u003cb\u003eHarry&#39;s\u003c/b\u003e third year at Hogwarts; not only does he have a new &quot;Defense Against \u003cbr\u003e\nthe Dark Arts&quot; teacher, but there is also trouble brewing. Convicted murderer&nbsp;...",
+    "cacheId": "EGmmihbAn1UJ",
+    "formattedUrl": "https://www.imdb.com/title/tt0304141/",
+    "htmlFormattedUrl": "https://www.imdb.com/title/tt0304141/",
+    "pagemap": {
+     "cse_thumbnail": [
+      {
+       "width": "163",
+       "height": "310",
+       "src": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcToXeEP3J_krk7BsyaG6hs0WarGBZKQ39FADaJ5UNQV17Aaxyca_aPm5Fw"
+      }
+     ],
+     "aggregaterating": [
+      {
+       "ratingvalue": "7.9",
+       "bestrating": "10",
+       "ratingcount": "498,340",
+       "reviewcount": "1,544 user"
+      }
+     ],
+     "metatags": [
+      {
+       "apple-itunes-app": "app-id=342792525, app-argument=imdb:///title/tt0304141?src=mdot",
+       "og:url": "http://www.imdb.com/title/tt0304141/",
+       "theme-color": "#000000",
+       "pageid": "tt0304141",
+       "pagetype": "title",
+       "subpagetype": "main",
+       "og:image": "https://m.media-amazon.com/images/M/MV5BMTY4NTIwODg0N15BMl5BanBnXkFtZTcwOTc0MjEzMw@@._V1_UY1200_CR91,0,630,1200_AL_.jpg",
+       "og:type": "video.movie",
+       "fb:app_id": "115109575169727",
+       "og:title": "Harry Potter and the Prisoner of Azkaban (2004) - IMDb",
+       "og:site_name": "IMDb",
+       "title": "Harry Potter and the Prisoner of Azkaban (2004) - IMDb",
+       "og:description": "Directed by Alfonso Cuarón.  With Daniel Radcliffe, Emma Watson, Rupert Grint, Richard Griffiths. It's Harry's third year at Hogwarts; not only does he have a new \"Defense Against the Dark Arts\" teacher, but there is also trouble brewing. Convicted murderer Sirius Black has escaped the Wizards' Prison and is coming after Harry.",
+       "request_id": "SH4YMVCPMJDZ3FNKAYJQ"
+      }
+     ],
+     "cse_image": [
+      {
+       "src": "https://m.media-amazon.com/images/M/MV5BMTY4NTIwODg0N15BMl5BanBnXkFtZTcwOTc0MjEzMw@@._V1_UY1200_CR91,0,630,1200_AL_.jpg"
+      }
+     ]
+    }
+   },
+   {
+    "kind": "customsearch#result",
+    "title": "Harry Potter and the Chamber of Secrets (2002) - IMDb",
+    "htmlTitle": "\u003cb\u003eHarry Potter\u003c/b\u003e and the Chamber of Secrets (2002) - IMDb",
+    "link": "https://www.imdb.com/title/tt0295297/",
+    "displayLink": "www.imdb.com",
+    "snippet": "Directed by Chris Columbus. With Daniel Radcliffe, Rupert Grint, Emma Watson, \nRichard Harris. An ancient prophecy seems to be coming true when a ...",
+    "htmlSnippet": "Directed by Chris Columbus. With Daniel Radcliffe, Rupert Grint, Emma Watson, \u003cbr\u003e\nRichard Harris. An ancient prophecy seems to be coming true when a&nbsp;...",
+    "cacheId": "PT-gr9beF68J",
+    "formattedUrl": "https://www.imdb.com/title/tt0295297/",
+    "htmlFormattedUrl": "https://www.imdb.com/title/tt0295297/",
+    "pagemap": {
+     "cse_thumbnail": [
+      {
+       "width": "163",
+       "height": "310",
+       "src": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcREA6GSyHflvsnLTF-kB3bBrv8dK16gh1Wz9IXmIIAYZFuCRnu8dccoOLEM"
+      }
+     ],
+     "aggregaterating": [
+      {
+       "ratingvalue": "7.4",
+       "bestrating": "10",
+       "ratingcount": "501,645",
+       "reviewcount": "889 user"
+      }
+     ],
+     "metatags": [
+      {
+       "apple-itunes-app": "app-id=342792525, app-argument=imdb:///title/tt0295297?src=mdot",
+       "og:url": "http://www.imdb.com/title/tt0295297/",
+       "theme-color": "#000000",
+       "pageid": "tt0295297",
+       "pagetype": "title",
+       "subpagetype": "main",
+       "og:image": "https://m.media-amazon.com/images/M/MV5BMTcxODgwMDkxNV5BMl5BanBnXkFtZTYwMDk2MDg3._V1_UY1200_CR91,0,630,1200_AL_.jpg",
+       "og:type": "video.movie",
+       "fb:app_id": "115109575169727",
+       "og:title": "Harry Potter and the Chamber of Secrets (2002) - IMDb",
+       "og:site_name": "IMDb",
+       "title": "Harry Potter and the Chamber of Secrets (2002) - IMDb",
+       "og:description": "Directed by Chris Columbus.  With Daniel Radcliffe, Rupert Grint, Emma Watson, Richard Harris. An ancient prophecy seems to be coming true when a mysterious presence begins stalking the corridors of a school of magic and leaving its victims paralyzed.",
+       "request_id": "N2W20M2GWWXKQX263HDK"
+      }
+     ],
+     "cse_image": [
+      {
+       "src": "https://m.media-amazon.com/images/M/MV5BMTcxODgwMDkxNV5BMl5BanBnXkFtZTYwMDk2MDg3._V1_UY1200_CR91,0,630,1200_AL_.jpg"
+      }
+     ]
+    }
+   },
+   {
+    "kind": "customsearch#result",
+    "title": "Harry Potter and the Sorcerer's Stone (2001) - Full Cast & Crew - IMDb",
+    "htmlTitle": "\u003cb\u003eHarry Potter\u003c/b\u003e and the Sorcerer&#39;s Stone (2001) - Full Cast &amp; Crew - IMDb",
+    "link": "https://www.imdb.com/title/tt0241527/fullcredits",
+    "displayLink": "www.imdb.com",
+    "snippet": "Harry Potter and the Sorcerer's Stone (2001) cast and crew credits, including \nactors, actresses, directors, writers and more.",
+    "htmlSnippet": "\u003cb\u003eHarry Potter\u003c/b\u003e and the Sorcerer&#39;s Stone (2001) cast and crew credits, including \u003cbr\u003e\nactors, actresses, directors, writers and more.",
+    "cacheId": "V72vSlfx5C4J",
+    "formattedUrl": "https://www.imdb.com/title/tt0241527/fullcredits",
+    "htmlFormattedUrl": "https://www.imdb.com/title/tt0241527/fullcredits",
+    "pagemap": {
+     "cse_thumbnail": [
+      {
+       "width": "163",
+       "height": "310",
+       "src": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcS85PdWEa0D-IEmsx539UqB7uVbs-Aws1ZtD6alSDtHVBZDGXuolG4Ho7od"
+      }
+     ],
+     "metatags": [
+      {
+       "apple-itunes-app": "app-id=342792525, app-argument=imdb:///title/tt0241527?src=mdot",
+       "og:url": "http://www.imdb.com/title/tt0241527/fullcredits",
+       "theme-color": "#000000",
+       "pageid": "tt0241527",
+       "pagetype": "title",
+       "subpagetype": "fullcredits",
+       "og:image": "https://m.media-amazon.com/images/M/MV5BNjQ3NWNlNmQtMTE5ZS00MDdmLTlkZjUtZTBlM2UxMGFiMTU3XkEyXkFqcGdeQXVyNjUwNzk3NDc@._V1_UY1200_CR90,0,630,1200_AL_.jpg",
+       "og:type": "video.movie",
+       "fb:app_id": "115109575169727",
+       "og:title": "Harry Potter and the Sorcerer's Stone (2001) - IMDb",
+       "og:site_name": "IMDb",
+       "title": "Harry Potter and the Sorcerer's Stone (2001) - IMDb",
+       "og:description": "Harry Potter and the Sorcerer's Stone (2001) cast and crew credits, including actors, actresses, directors, writers and more.",
+       "request_id": "4FDX81CRTYZ8PP9FGG2Q"
+      }
+     ],
+     "cse_image": [
+      {
+       "src": "https://m.media-amazon.com/images/M/MV5BNjQ3NWNlNmQtMTE5ZS00MDdmLTlkZjUtZTBlM2UxMGFiMTU3XkEyXkFqcGdeQXVyNjUwNzk3NDc@._V1_UY1200_CR90,0,630,1200_AL_.jpg"
+      }
+     ]
+    }
+   },
+   {
+    "kind": "customsearch#result",
+    "title": "Harry Potter and the Deathly Hallows: Part 2 (2011) - Full Cast ...",
+    "htmlTitle": "\u003cb\u003eHarry Potter\u003c/b\u003e and the Deathly Hallows: Part 2 (2011) - Full Cast ...",
+    "link": "https://www.imdb.com/title/tt1201607/fullcredits",
+    "displayLink": "www.imdb.com",
+    "snippet": "Harry Potter and the Deathly Hallows: Part 2 (2011) cast and crew credits, \nincluding actors, actresses, directors, writers and more.",
+    "htmlSnippet": "\u003cb\u003eHarry Potter\u003c/b\u003e and the Deathly Hallows: Part 2 (2011) cast and crew credits, \u003cbr\u003e\nincluding actors, actresses, directors, writers and more.",
+    "cacheId": "4r2azdJVN-MJ",
+    "formattedUrl": "https://www.imdb.com/title/tt1201607/fullcredits",
+    "htmlFormattedUrl": "https://www.imdb.com/title/tt1201607/fullcredits",
+    "pagemap": {
+     "cse_thumbnail": [
+      {
+       "width": "163",
+       "height": "310",
+       "src": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQnTPGwgu1ziG-YP2mN-chqXmsuuF0UqjQOHqJ9EPeW4oJOee6iBtdYSdaE"
+      }
+     ],
+     "metatags": [
+      {
+       "apple-itunes-app": "app-id=342792525, app-argument=imdb:///title/tt1201607?src=mdot",
+       "og:url": "http://www.imdb.com/title/tt1201607/fullcredits",
+       "theme-color": "#000000",
+       "pageid": "tt1201607",
+       "pagetype": "title",
+       "subpagetype": "fullcredits",
+       "og:image": "https://m.media-amazon.com/images/M/MV5BMjIyZGU4YzUtNDkzYi00ZDRhLTljYzctYTMxMDQ4M2E0Y2YxXkEyXkFqcGdeQXVyNTIzOTk5ODM@._V1_UY1200_CR85,0,630,1200_AL_.jpg",
+       "og:type": "video.movie",
+       "fb:app_id": "115109575169727",
+       "og:title": "Harry Potter and the Deathly Hallows: Part 2 (2011) - IMDb",
+       "og:site_name": "IMDb",
+       "title": "Harry Potter and the Deathly Hallows: Part 2 (2011) - IMDb",
+       "og:description": "Harry Potter and the Deathly Hallows: Part 2 (2011) cast and crew credits, including actors, actresses, directors, writers and more.",
+       "request_id": "V81XYM4E1SPS6SJCRVC8"
+      }
+     ],
+     "cse_image": [
+      {
+       "src": "https://m.media-amazon.com/images/M/MV5BMjIyZGU4YzUtNDkzYi00ZDRhLTljYzctYTMxMDQ4M2E0Y2YxXkEyXkFqcGdeQXVyNTIzOTk5ODM@._V1_UY1200_CR85,0,630,1200_AL_.jpg"
+      }
+     ]
+    }
+   }
+  ]
+ }

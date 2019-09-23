@@ -9,11 +9,12 @@ const bodyParser = require("body-parser");
 const sass       = require("node-sass-middleware");
 const app        = express();
 const morgan     = require('morgan');
-const { searchEngine } = require('./lib/searchEngine');
 // PG database client/connection setup
 const { Pool } = require('pg');
 const dbParams = require('./lib/db.js');
 const db = new Pool(dbParams);
+const { searchEngine } = require('./lib/searchEngine');
+const resultQueries = require('./routes/resultQueries.js');
 db.connect();
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
@@ -54,8 +55,18 @@ app.get("/", (req, res) => {
 //POSTING INFORMATION FROM FORM
 app.post("/", (req, res) => {
   const string = req.body.searchEngine;
-  const templatevars = {results: searchEngine(string)};
-  res.render("index", templatevars);
+  // const templatevars = {results: searchEngine(string)};
+  //find the category using a helper function googlesearch API
+  searchEngine(string, (success)=>{
+    //the thing was added to the db
+    if (success) {
+      const result = resultQueries.getAllThings();
+      const templatevars = {things: result};
+      console.log(templatevars);
+        //   //res.json(templatevars); //AJAX WAY
+      res.render("index", templatevars);
+    }
+  });
 });
 
 //RENDERING REGISTRATION PAGE

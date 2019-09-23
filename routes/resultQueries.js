@@ -9,8 +9,6 @@ const pool = new Pool({
   database: 'midterm'
 });
 
-//to watch
-
 const addToWatch = (query) => {
   return pool.query(`
   INSERT INTO movies_and_series (name, context)

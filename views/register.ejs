@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Miso list</title>
+    <title>Registration</title>
 
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
@@ -12,15 +12,13 @@
   </head>
 
   <body>
-    <h1>Search Engine</h1>
-  <form action="/" method="POST">
-    <input type="text" name="searchEngine" style="width: 200px; margin: 1em">
-    <button type="submit" class="btn btn-success">Search!</button>
-  </form>
-  <% if(results) {%>
-    <% for (const result in results) { %>
-      <p><%= results[result] %></p>
-   <% } %>
-  <% } %>
+    <form ALIGN=CENTER method="POST" action="/register">
+      <label for="email">Email</label><br>
+      <input type="email" id="email" name="email" />
+      <br>
+      <label for="password">Password</label><br>
+      <input type="password" id="password" name="password" /><br><br>
+      <button class="btn btn-info" type="submit">Register Now</button>
+      </form>
   </body>
 </html>

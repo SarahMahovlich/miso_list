@@ -21,3 +21,36 @@ const addToWatch = (query) => {
 };
 
 exports.addToWatch = addToWatch;
+
+const addToRead = (query) => {
+  return pool.query(`
+  INSERT INTO books (name, context)
+  VALUES ($1, $2)
+  RETURNING *;
+  `, [query.items[0]['title'], query.items[0]['snippet']])
+    .then(res => res.rows[0]);
+};
+
+exports.addToRead = addToRead;
+
+const addToEat = (query) => {
+  return pool.query(`
+  INSERT INTO restaurants (name, context)
+  VALUES ($1, $2)
+  RETURNING *;
+  `, [query.items[0]['title'], query.items[0]['snippet']])
+    .then(res => res.rows[0]);
+};
+
+exports.addToEat = addToEat;
+
+const addToBuy = (query) => {
+  return pool.query(`
+  INSERT INTO products (name, context)
+  VALUES ($1, $2)
+  RETURNING *;
+  `, [query.items[0]['title'], query.items[0]['snippet']])
+    .then(res => res.rows[0]);
+};
+
+exports.addToBuy = addToBuy;

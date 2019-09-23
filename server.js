@@ -9,7 +9,7 @@ const bodyParser = require("body-parser");
 const sass       = require("node-sass-middleware");
 const app        = express();
 const morgan     = require('morgan');
-
+const { searchEngine } = require('./lib/searchEngine');
 // PG database client/connection setup
 const { Pool } = require('pg');
 const dbParams = require('./lib/db.js');
@@ -42,12 +42,38 @@ app.use("/api/users", usersRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
 // Note: mount other resources here, using the same pattern above
 
-
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
+
+//RENDERING ROOT PAGE
 app.get("/", (req, res) => {
   res.render("index");
+});
+
+//POSTING INFORMATION FROM FORM
+app.post("/", (req, res) => {
+  const string = req.body.searchEngine;
+  const templatevars = {results: searchEngine(string)};
+  res.render("index", templatevars);
+});
+
+//RENDERING REGISTRATION PAGE
+app.get("/register", (req, res) => {
+  res.render("register");
+});
+
+//POSTING INFORMATION FROM REGISTRATION PAGE
+app.post("/register", (req, res) => {
+  res.redirect("/");
+});
+
+app.get("/login", (req, res) => {
+  res.render("login");
+});
+
+app.get("/:list_item", (req, res) => {
+  res.send("Hello World!");
 });
 
 app.listen(PORT, () => {

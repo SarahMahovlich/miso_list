@@ -60,11 +60,16 @@ app.post("/", (req, res) => {
   searchEngine(string, (success)=>{
     //the thing was added to the db
     if (success) {
-      const result = resultQueries.getAllThings();
-      const templatevars = {things: result};
-      console.log(templatevars);
-        //   //res.json(templatevars); //AJAX WAY
-      res.render("index", templatevars);
+      resultQueries.getAllThings()
+        .then((result) => {
+          console.log(result);
+          const templatevars = {results: result};
+          res.render("index", templatevars);
+        });
+
+
+      // //res.json(templatevars); //AJAX WAY
+
     }
   });
 });

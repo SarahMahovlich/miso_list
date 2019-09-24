@@ -49,7 +49,12 @@ app.use("/api/widgets", widgetsRoutes(db));
 
 //RENDERING ROOT PAGE
 app.get("/", (req, res) => {
-  res.render("index");
+  resultQueries.getAllThings()
+    .then((result) => {
+      console.log(result);
+      const templatevars = {results: result};
+      res.render("index", templatevars);
+    });
 });
 
 //POSTING INFORMATION FROM FORM
@@ -59,18 +64,9 @@ app.post("/", (req, res) => {
   //find the category using a helper function googlesearch API
   searchEngine(string, (success)=>{
     //the thing was added to the db
-    if (success) {
-      resultQueries.getAllThings()
-        .then((result) => {
-          console.log(result);
-          const templatevars = {results: result};
-          res.render("index", templatevars);
-        });
-
-
-      // //res.json(templatevars); //AJAX WAY
-
-    }
+    // if (success) {
+    // //res.json(templatevars); //AJAX WAY
+    // }
   });
 });
 

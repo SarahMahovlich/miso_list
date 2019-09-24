@@ -17,6 +17,17 @@
     <input type="text" name="searchEngine" style="width: 200px; margin: 1em">
     <button type="submit" class="btn btn-success">Search!</button>
   </form>
-  <%= results['products'][0]['name'] %>
+  <% if (results) { %>
+  <% let products = results['products']; %>
+  <% for (let product of products) { %>
+    <p><%= product['name'] %> </p>
+  <% } %>
+
+
+
+
+
+  <%= results['products'][1]['name'] %>
+  <% } %>
   </body>
 </html>

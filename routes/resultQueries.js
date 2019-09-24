@@ -57,45 +57,53 @@ const getAllThings = () => {
 
 
 
-const addToWatch = (body) => {
+const addToWatch = (body, query) => {
   return pool.query(`
   INSERT INTO movies_and_series (name, context)
     VALUES ($1, $2)
     RETURNING *;
-  `, [body.spelling.correctedQuery, body.items[0]['snippet']])
+  `, [query, body.items[0]['snippet']])
     .then(res => res.rows[0]);
 };
 
 
-const addToRead = (body) => {
-  console.log(body.spelling.correctedQuery);
+const addToRead = (body, query) => {
+  if (body.spelling) {
+    query = body.spelling.correctedQuery;
+  }
   return pool.query(`
   INSERT INTO books (name, context)
   VALUES ($1, $2)
   RETURNING *;
-  `, [body.spelling.correctedQuery, body.items[0]['snippet']])
+  `, [query, body.items[0]['snippet']])
     .then(res => res.rows[0]);
 };
 
 
 
-const addToEat = (body) => {
+const addToEat = (body, query) => {
+  if (body.spelling) {
+    query = body.spelling.correctedQuery;
+  }
   return pool.query(`
   INSERT INTO restaurants (name, context)
   VALUES ($1, $2)
   RETURNING *;
-  `, [body.spelling.correctedQuery, body.items[0]['snippet']])
+  `, [query, body.items[0]['snippet']])
     .then(res => res.rows[0]);
 };
 
 
 
-const addToBuy = (body) => {
+const addToBuy = (body, query) => {
+  if (body.spelling) {
+    query = body.spelling.correctedQuery;
+  }
   return pool.query(`
   INSERT INTO products (name, context)
   VALUES ($1, $2)
   RETURNING *;
-  `, [body.spelling.correctedQuery, body.items[0]['snippet']])
+  `, [query, body.items[0]['snippet']])
     .then(res => res.rows[0]);
 };
 

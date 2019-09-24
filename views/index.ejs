@@ -5,47 +5,50 @@
 
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+    <!--Layout CSS-->
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
     <!--Nav CSS-->
     <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
+    <!--Header CSS-->
+    <link rel="stylesheet" href="/styles/header.css" type="text/css" />
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
     <!--Font Awesome-->
     <script src="https://kit.fontawesome.com/f07023f341.js"></script>
     <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0' />
+    <!--Fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Pacifico|Roboto&display=swap" rel="stylesheet">
   </head>
 
   <body>
     <nav class="gridLayered">
-
-
-      <div class="">
-        <div class="left2">
-            <!-- <span class='left'>Miso List</span> -->
-            <img class="left" class="img" src ="https://www.sccpre.cat/mypng/detail/172-1728754_japanese-akita-icon-wrapping-paper-shiba-inu.png" >
-            <a class="iconLinks left" href="#bookList">
-              <i class="fas fa-book fa-2x"></i>
-            </a>
-            <a class="iconLinks left" href="#movieList">
-              <i class="fas fa-tv fa-2x"></i>
-            </a>
-            <a class="iconLinks left" href="#restList">
-              <i class="fas fa-utensils fa-2x"></i>
-            </a>
-            <a class="iconLinks left" href="#productList">
-              <i class="fas fa-shopping-cart fa-2x"></i>
-            </a>
-            <a class="iconLinks left" href="#miscList">
-              <i class="fas fa-clipboard-list fa-2x"></i>
-            </a>
+        <div class="leftContainer">
+          <a class="leftItem" href="#header">
+            <img class="img" src ="https://www.sccpre.cat/mypng/detail/172-1728754_japanese-akita-icon-wrapping-paper-shiba-inu.png" >
+          </a>
+          <a class="iconLinks leftItem" href="#bookList">
+            <i class="fas fa-book fa-2x"></i>
+          </a>
+          <a class="iconLinks leftItem" href="#movieList">
+            <i class="fas fa-tv fa-2x"></i>
+          </a>
+          <a class="iconLinks leftItem" href="#restList">
+            <i class="fas fa-utensils fa-2x"></i>
+          </a>
+          <a class="iconLinks leftItem" href="#productList">
+            <i class="fas fa-shopping-cart fa-2x"></i>
+          </a>
+          <a class="iconLinks leftItem" href="#miscList">
+            <i class="fas fa-clipboard-list fa-2x"></i>
+          </a>
         </div>
-      </div>
     </nav>
 
-    <header class="header">
+    <header id="header">
       <div class="centerHeader">
-          <h1 class="headerItem">Miso, search!</h1>
+          <h1 id="headerTitle">Miso, fetch!</h1>
           <form action="/" method="POST" class="headerItem">
             <input type="text" name="searchEngine" style="width: 200px; margin: 1em">
             <button type="submit" class="btn btn-success">Add to List!</button>
@@ -53,35 +56,47 @@
       </div>
     </header>
     <main>
-
-
-  <% if (results) { %>
-    <div id="productList">----------------------Products----------------------</div>
-    <% let products = results['products']; %>
-    <% for (let product of products) { %>
-      <a href='/<%= product['name']%>'><%= product['name'] %></a><br>
-    <% } %>
-    <div id="bookList">----------------------Books----------------------</div>
-    <% let books = results['books']; %>
-    <% for (let book of books) { %>
-      <p><%= book['name'] %> </p>
-    <% } %>
-    <div id="restList">----------------------Restaurants----------------------</div>
-    <% let restaurants = results['restaurants']; %>
-    <% for (let restaurant of restaurants) { %>
-      <p><%= restaurant['name'] %> </p>
-    <% } %>
-    <div id="movieList">----------------------Movies----------------------</div>
-    <% let movies = results['movies_and_series']; %>
-    <% for (let movie of movies) { %>
-      <p><%= movie['name'] %> </p>
-    <% } %>
-    <div id="miscList">----------------------Misc----------------------</div>
-    <% let misc = results['misc']; %>
-    <% for (let mis of misc) { %>
-      <p><%= mis['name'] %> </p>
-    <% } %>
-
+      <% if (results) { %>
+        <!-- BOOKS -->
+        <div id="bookList">
+          <h2 class="listTitle" style="background-color: #D4B08D;">Books</h2>
+          <% let books = results['books']; %>
+          <% for (let book of books) { %>
+          <p><%= book['name'] %> </p>
+      <% } %>
+        </div>
+        <!-- MOVIES AND SERIES -->
+        <div id="movieList">
+          <h2 class="listTitle" style="background-color: #D4B08D;">Movies & TV Series</h2>
+          <% let movies = results['movies_and_series']; %>
+          <% for (let movie of movies) { %>
+          <p><%= movie['name'] %> </p>
+      <% } %>
+        </div>
+        <!-- RESTAURANTS -->
+        <div id="restList">
+          <h2 style="background-color: #D4B08D;">Restaurants</h2>
+          <% let restaurants = results['restaurants']; %>
+          <% for (let restaurant of restaurants) { %>
+          <p><%= restaurant['name'] %> </p>
+      <% } %>
+        </div>
+        <!-- PRODUCTS -->
+        <div id="productList">
+          <h2 style="background-color: #D4B08D;">Products</h2>
+          <% let products = results['products']; %>
+          <% for (let product of products) { %>
+          <a href='/<%= product['name']%>'><%= product['name'] %></a><br>
+      <% } %>
+        </div>
+        <!-- MISC -->
+        <div id="miscList">
+          <h2 style="background-color: #D4B08D;">Miscellaneous</h2>
+          <% let misc = results['misc']; %>
+          <% for (let mis of misc) { %>
+          <p><%= mis['name'] %> </p>
+      <% } %>
+        </div>
   <% } %>
   </main>
   </body>

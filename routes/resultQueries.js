@@ -85,7 +85,7 @@ const addToEat = (body, query) => {
   RETURNING *;
   `, [query, body.items[0]['snippet']])
     .then(res => res.rows[0]);
-};x
+};
 
 
 

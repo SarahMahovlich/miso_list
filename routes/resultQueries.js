@@ -107,6 +107,14 @@ const addToBuy = (body, query) => {
     .then(res => res.rows[0]);
 };
 
+const addToMisc = (query) => {
+  return pool.query(`
+  INSERT INTO misc (name, context)
+  VALUES ($1, $2)
+  RETURNING *;
+  `, [query, ''])
+    .then(res => res.rows[0]);
+};
 
 const editBooks = (formInput, listItem) => {
   console.log('formInput =', formInput);
@@ -117,5 +125,5 @@ const editBooks = (formInput, listItem) => {
   `, [formInput, listItem])
     .then(res => res.rows[0]);
 };
-module.exports = { getAllThings, addToWatch, addToRead, addToEat, addToBuy, editBooks };
+module.exports = { getAllThings, addToWatch, addToRead, addToEat, addToBuy, addToMisc, editBooks };
 

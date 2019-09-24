@@ -55,16 +55,20 @@ app.get("/", (req, res) => {
 //POSTING INFORMATION FROM FORM
 app.post("/", (req, res) => {
   const string = req.body.searchEngine;
-  // const templatevars = {results: searchEngine(string)};
   //find the category using a helper function googlesearch API
-  searchEngine(string, (success)=>{
+  searchEngine(string, (success) => {
     //the thing was added to the db
     if (success) {
-      const result = resultQueries.getAllThings();
-      const templatevars = {things: result};
-      console.log(templatevars);
+      resultQueries.getAllThings()
+      .then((result) => {
+        console.log(result);
+      })
+      // .then((result) => {
+
+        // const templatevars = {things: result};
+        // res.render("index", templatevars);
         //   //res.json(templatevars); //AJAX WAY
-      res.render("index", templatevars);
+      // });
     }
   });
 });

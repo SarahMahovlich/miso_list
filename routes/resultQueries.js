@@ -15,47 +15,48 @@ const getAllThings = () => {
   SELECT *
   FROM products;
   `;
-  pool.query(queryString)
-    .then((data) => {
-      console.log(data.rows);
-      returnObj.products = data.rows;
-      let queryString = `
-      SELECT *
-      FROM books;
-      `;
-      pool.query(queryString)
-        .then((data) => {
-          console.log(data.rows);
-          returnObj.books = data.rows;
-          let queryString = `
-          SELECT *
-          FROM movies_and_series;
-          `;
-          pool.query(queryString)
-            .then((data) => {
-              console.log(data.rows);
-              returnObj.movies_and_series = data.rows;
-              let queryString = `
-              SELECT *
-              FROM restaurants;
-              `;
-              pool.query(queryString)
-                .then((data) => {
-                  console.log(data.rows);
-                  returnObj.restaurants = data.rows;
-                  let queryString = `
-                  SELECT *
-                  FROM misc;
-                  `;
-                  pool.query(queryString)
-                    .then((data) => {
-                      console.log(data.rows);
-                      returnObj.misc = data.rows;
-                      return returnObj;
-                    });
-                });
-            });
-        });
+    return pool.query(queryString)
+      .then((data) => {
+      // console.log(data.rows);
+        returnObj.products = data.rows;
+        return returnObj;
+      // let queryString = `
+      // SELECT *
+      // FROM books;
+      // `;
+      // return pool.query(queryString)
+      //   .then((data) => {
+      //     console.log(data.rows);
+      //     returnObj.books = data.rows;
+      //     let queryString = `
+      //     SELECT *
+      //     FROM movies_and_series;
+      //     `;
+      //     return pool.query(queryString)
+      //       .then((data) => {
+      //         console.log(data.rows);
+      //         returnObj.movies_and_series = data.rows;
+      //         let queryString = `
+      //         SELECT *
+      //         FROM restaurants;
+      //         `;
+      //         return pool.query(queryString)
+      //           .then((data) => {
+      //             console.log(data.rows);
+      //             returnObj.restaurants = data.rows;
+      //             let queryString = `
+      //             SELECT *
+      //             FROM misc;
+      //             `;
+      //             return pool.query(queryString)
+      //               .then((data) => {
+      //                 console.log(data.rows);
+      //                 returnObj.misc = data.rows;
+      //                 return returnObj;
+      //               });
+      //           });
+      //       });
+      //   });
     });
 };
 

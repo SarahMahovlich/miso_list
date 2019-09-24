@@ -1,0 +1,69 @@
+nav {
+  background-color: #8DB0D4;
+  color: white;
+  height: 110px;
+  position: fixed;
+  padding: 1.5em;
+  width: 100%
+}
+
+/* not sure if below is needed yet */
+/* .gridLayered {
+  display: flex;
+  flex-direction: row;
+} */
+
+/* Items on left of Nav bar */
+.leftContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.leftItem {
+  align-self: flex-start;
+}
+
+/* Items on right of Nav bar */
+.rightContainer {
+  display: flex;
+  flex-direction: row;
+  margin-left: auto;
+}
+
+.rightItem {
+  margin-left: auto;
+}
+
+/* Individual items left of Nav bar */
+img {
+  width: 95px;
+  border-radius: 35%;
+}
+
+.fas {
+  align-self: center;
+  margin: 5px;
+  display: none;
+}
+
+.iconLinks {
+  color: white;
+  align-self: center;
+  margin: 10px;
+}
+
+@keyframes bounce {
+  from{
+    transform: translateY(0px);
+  }
+  to{
+    transform: translateY(15px);
+  }
+}
+
+.fas:hover {
+  animation: bounce 0.75s;
+}
+
+/* Individual items right of Nav bar */

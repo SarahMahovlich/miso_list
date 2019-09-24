@@ -63,10 +63,12 @@ app.post("/", (req, res) => {
   // const templatevars = {results: searchEngine(string)};
   //find the category using a helper function googlesearch API
   searchEngine(string, (success)=>{
-    //the thing was added to the db
-    // if (success) {
-    // //res.json(templatevars); //AJAX WAY
-    // }
+    if (success) {
+      resultQueries.getAllThings()
+        .then((result) => {
+          res.redirect('/');
+        });
+    }
   });
 });
 

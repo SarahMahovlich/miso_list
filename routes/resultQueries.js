@@ -85,7 +85,7 @@ const addToEat = (body, query) => {
   RETURNING *;
   `, [query, body.items[0]['snippet']])
     .then(res => res.rows[0]);
-};
+};x
 
 
 
@@ -103,11 +103,12 @@ const editBooks = (query) => {
   console.log('asdf',query);
   return pool.query(`
   UPDATE books
-  SET NAME = '$1'
+  SET name = $1
   WHERE name = 'Dank Potter'
   RETURNING *;
   `, [query])
     .then(res => res.rows[0]);
 };
+
 module.exports = { getAllThings, addToWatch, addToRead, addToEat, addToBuy, editBooks };
 

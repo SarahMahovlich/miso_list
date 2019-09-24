@@ -18,38 +18,32 @@
     <button type="submit" class="btn btn-success">Search!</button>
   </form>
   <% if (results) { %>
-
-  <% let products = results['products']; %>
-  <% for (let product of products) { %>
-    <p><%= product['name'] %> </p>
-    <p><%= product['context'] %> </p>
-  <% } %>
-
+    <div>----------------------Products----------------------</div>
+    <% let products = results['products']; %>
+    <% for (let product of products) { %>
+      <a href='/<%= product['name']%>'><%= product['name'] %></a><br>
+    <% } %>
+    <div>----------------------Books----------------------</div>
     <% let books = results['books']; %>
     <% for (let book of books) { %>
       <p><%= book['name'] %> </p>
-      <p><%= book['context'] %> </p>
     <% } %>
-
+    <div>----------------------Restaurants----------------------</div>
     <% let restaurants = results['restaurants']; %>
     <% for (let restaurant of restaurants) { %>
       <p><%= restaurant['name'] %> </p>
-      <p><%= restaurant['context'] %> </p>
     <% } %>
-
+    <div>----------------------Movies----------------------</div>
     <% let movies = results['movies_and_series']; %>
     <% for (let movie of movies) { %>
       <p><%= movie['name'] %> </p>
-      <p><%= movie['context'] %> </p>
     <% } %>
-
-
+    <div>----------------------Misc----------------------</div>
     <% let misc = results['misc']; %>
     <% for (let mis of misc) { %>
       <p><%= mis['name'] %> </p>
-      <p><%= mis['context'] %> </p>
     <% } %>
 
-    <% } %>
+  <% } %>
   </body>
 </html>

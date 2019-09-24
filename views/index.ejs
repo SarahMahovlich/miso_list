@@ -18,16 +18,38 @@
     <button type="submit" class="btn btn-success">Search!</button>
   </form>
   <% if (results) { %>
+
   <% let products = results['products']; %>
   <% for (let product of products) { %>
     <p><%= product['name'] %> </p>
+    <p><%= product['context'] %> </p>
   <% } %>
 
+    <% let books = results['books']; %>
+    <% for (let book of books) { %>
+      <p><%= book['name'] %> </p>
+      <p><%= book['context'] %> </p>
+    <% } %>
+
+    <% let restaurants = results['restaurants']; %>
+    <% for (let restaurant of restaurants) { %>
+      <p><%= restaurant['name'] %> </p>
+      <p><%= restaurant['context'] %> </p>
+    <% } %>
+
+    <% let movies = results['movies_and_series']; %>
+    <% for (let movie of movies) { %>
+      <p><%= movie['name'] %> </p>
+      <p><%= movie['context'] %> </p>
+    <% } %>
 
 
+    <% let misc = results['misc']; %>
+    <% for (let mis of misc) { %>
+      <p><%= mis['name'] %> </p>
+      <p><%= mis['context'] %> </p>
+    <% } %>
 
-
-  <%= results['products'][1]['name'] %>
-  <% } %>
+    <% } %>
   </body>
 </html>

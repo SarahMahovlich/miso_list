@@ -1,4 +1,5 @@
-/* .listTitle {
+.listTitle {
   background-color: #D4B08D;
-  color: white;
-} */
+  /* color: white; */
+  padding-left: 15px;
+}

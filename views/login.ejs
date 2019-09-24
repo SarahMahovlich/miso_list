@@ -4,18 +4,30 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <title>LOGIN</title>
+    <!--Nav CSS-->
+    <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
+    <!--Login CSS-->
+    <link rel="stylesheet" href="/styles/login_and_register.css" type="text/css" />
+    <!--Fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Pacifico|Roboto&display=swap" rel="stylesheet">
+    <title>Login</title>
 </head>
 <body>
-    <div ALIGN=CENTER>
+    <nav class="gridLayered">
+        <div class="leftContainer">
+            <img class="img leftItem" src ="https://www.sccpre.cat/mypng/detail/172-1728754_japanese-akita-icon-wrapping-paper-shiba-inu.png" >
+            <h1 id="navTitle" class="leftItem">Miso</h1>
+        </div>
+    </nav>
+    <div ALIGN="center" class="loginForm">
         <form class="form-signin" action='/login' method='post'>
-          <h2 class="form-signin-heading">Please login</h2>
+          <h2 class="form-signin-heading">Login to Miso</h2>
           <input style="width: 300px" type="text" class="form-control" name="email" placeholder="Email Address" required="" autofocus="" /> <br>
           <input style="width: 300px" type="password" class="form-control" name="password" placeholder="Password" required=""/>
           <br/>
-          <button class="btn btn-lg btn-info" type="submit">Login</button>
-          <a href="/register" class="btn btn-lg btn-info"">Click here to Register</a>
+          <button class="btn btn-outline-dark" type="submit">Login</button>
+          <a href="/register" class="btn btn-outline-dark">Register</a>
         </form>
-     </div>
+    </div>
 </body>
 </html>

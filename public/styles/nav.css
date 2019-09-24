@@ -1,10 +1,11 @@
 nav {
   background-color: #8DB0D4;
   color: white;
-  height: 110px;
+  height: 100px;
   position: fixed;
-  padding: 1.5em;
-  width: 100%
+  padding: 1em;
+  width: 100%;
+  font-family: 'Pacifico', serif;
 }
 
 /* not sure if below is needed yet */
@@ -17,6 +18,7 @@ nav {
 .leftContainer {
   display: flex;
   flex-direction: row;
+  align-content: center;
   justify-content: flex-start;
 }
 
@@ -64,6 +66,12 @@ img {
 
 .fas:hover {
   animation: bounce 0.75s;
+}
+
+#navTitle {
+  padding-top: 10px;
+  padding-left: 20px;
+  color: white;
 }
 
 /* Individual items right of Nav bar */

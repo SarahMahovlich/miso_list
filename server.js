@@ -97,9 +97,12 @@ app.post("/:list_item", (req, res) => {
   let listItem = req.headers.referer;
   listItem = listItem.replace('http://localhost:8080/', '');
   listItem = decodeURI(listItem);
-  console.log(listItem);
   const string = req.body.nameEdit;
   resultQueries.editBooks(string, listItem);
+  resultQueries.editProducts(string, listItem);
+  resultQueries.editMovies(string, listItem);
+  resultQueries.editRestaurants(string, listItem);
+  resultQueries.editMisc(string, listItem);
   res.redirect('/');
 });
 

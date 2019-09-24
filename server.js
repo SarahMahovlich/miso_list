@@ -51,7 +51,6 @@ app.use("/api/widgets", widgetsRoutes(db));
 app.get("/", (req, res) => {
   resultQueries.getAllThings()
     .then((result) => {
-      console.log(result);
       const templatevars = {results: result};
       res.render("index", templatevars);
     });
@@ -89,9 +88,16 @@ app.get("/login", (req, res) => {
 
 //RENDERING SELECTED ITEM PAGE
 app.get("/:list_item", (req, res) => {
-  console.log(req);
   const templateVars = { list_item: req.params.list_item};
   res.render("showItem", templateVars);
+});
+
+//EDITING THE URL
+app.post("/:list_item", (req, res) => {
+  console.log(req.url);
+  const string = req.body.nameEdit;
+  resultQueries.editBooks(string);
+  res.send(string);
 });
 
 app.listen(PORT, () => {

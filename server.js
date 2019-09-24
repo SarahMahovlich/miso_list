@@ -49,26 +49,25 @@ app.use("/api/widgets", widgetsRoutes(db));
 
 //RENDERING ROOT PAGE
 app.get("/", (req, res) => {
-  res.render("index");
+  resultQueries.getAllThings()
+    .then((result) => {
+      console.log(result);
+      const templatevars = {results: result};
+      res.render("index", templatevars);
+    });
 });
 
 //POSTING INFORMATION FROM FORM
 app.post("/", (req, res) => {
   const string = req.body.searchEngine;
   //find the category using a helper function googlesearch API
-  searchEngine(string, (success) => {
-    //the thing was added to the db
+
+  searchEngine(string, (success)=>{
     if (success) {
       resultQueries.getAllThings()
-      .then((result) => {
-        console.log(result);
-      })
-      // .then((result) => {
-
-        // const templatevars = {things: result};
-        // res.render("index", templatevars);
-        //   //res.json(templatevars); //AJAX WAY
-      // });
+        .then((result) => {
+          res.redirect('/');
+        });
     }
   });
 });
@@ -83,12 +82,16 @@ app.post("/register", (req, res) => {
   res.redirect("/");
 });
 
+//RENDERING LOGIN PAGE
 app.get("/login", (req, res) => {
   res.render("login");
 });
 
+//RENDERING SELECTED ITEM PAGE
 app.get("/:list_item", (req, res) => {
-  res.send("Hello World!");
+  console.log(req);
+  const templateVars = { list_item: req.params.list_item};
+  res.render("showItem", templateVars);
 });
 
 app.listen(PORT, () => {

@@ -161,4 +161,4 @@ const editMisc = (formInput, listItem) => {
     .then(res => res.rows[0]);
 };
 
-module.exports = { getAllThings, addToWatch, addToRead, addToEat, addToBuy, editBooks, editProducts, editMovies, editRestaurants, editMisc };
+module.exports = { getAllThings, addToWatch, addToRead, addToEat, addToBuy, addToMisc, editBooks, editProducts, editMovies, editRestaurants, editMisc };

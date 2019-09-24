@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
     <!--Header CSS-->
     <link rel="stylesheet" href="/styles/header.css" type="text/css" />
+    <!--Main CSS-->
+    <link rel="stylesheet" href="/styles/main.css" type="text/css" />
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
@@ -49,7 +51,7 @@
           <h1 id="headerTitle">Miso, fetch!</h1>
           <form action="/" method="POST" class="headerItem">
             <input type="text" name="searchEngine" style="width: 200px; margin: 1em">
-            <button type="submit" class="btn btn-success">Add to List!</button>
+            <button type="submit" class="btn btn-outline-dark">Add to List</button>
           </form>
       </div>
     </header>
@@ -57,7 +59,7 @@
       <% if (results) { %>
         <!-- BOOKS -->
         <div id="bookList">
-          <h2 class="listTitle" style="background-color: #D4B08D;">Books</h2>
+          <h2 class="listTitle">Books</h2>
           <% let books = results['books']; %>
           <% for (let book of books) { %>
           <a href='/<%= book['name']%>'><%= book['name'] %></a><br>
@@ -65,7 +67,7 @@
         </div>
         <!-- MOVIES AND SERIES -->
         <div id="movieList">
-          <h2 class="listTitle" style="background-color: #D4B08D;">Movies & TV Series</h2>
+          <h2 class="listTitle">Movies & TV Series</h2>
           <% let movies = results['movies_and_series']; %>
           <% for (let movie of movies) { %>
           <a href='/<%= movie['name']%>'><%= movie['name'] %></a><br>
@@ -73,7 +75,7 @@
         </div>
         <!-- RESTAURANTS -->
         <div id="restList">
-          <h2 style="background-color: #D4B08D;">Restaurants</h2>
+          <h2 class="listTitle">Restaurants</h2>
           <% let restaurants = results['restaurants']; %>
           <% for (let restaurant of restaurants) { %>
           <a href='/<%= restaurant['name']%>'><%= restaurant['name'] %></a><br>
@@ -81,7 +83,7 @@
         </div>
         <!-- PRODUCTS -->
         <div id="productList">
-          <h2 style="background-color: #D4B08D;">Products</h2>
+          <h2 class="listTitle">Products</h2>
           <% let products = results['products']; %>
           <% for (let product of products) { %>
           <a href='/<%= product['name']%>'><%= product['name'] %></a><br>
@@ -89,7 +91,7 @@
         </div>
         <!-- MISC -->
         <div id="miscList">
-          <h2 style="background-color: #D4B08D;">Miscellaneous</h2>
+          <h2 class="listTitle">Miscellaneous</h2>
           <% let misc = results['misc']; %>
           <% for (let mis of misc) { %>
           <a href='/<%= mis['name']%>'><%= mis['name'] %></a><br>

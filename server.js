@@ -59,8 +59,8 @@ app.get("/", (req, res) => {
 //POSTING INFORMATION FROM FORM
 app.post("/", (req, res) => {
   const string = req.body.searchEngine;
-  // const templatevars = {results: searchEngine(string)};
   //find the category using a helper function googlesearch API
+
   searchEngine(string, (success)=>{
     if (success) {
       resultQueries.getAllThings()
@@ -94,10 +94,13 @@ app.get("/:list_item", (req, res) => {
 
 //EDITING THE URL
 app.post("/:list_item", (req, res) => {
-  console.log(req.url);
+  let listItem = req.headers.referer;
+  listItem = listItem.replace('http://localhost:8080/', '');
+  listItem = decodeURI(listItem);
+  console.log(listItem);
   const string = req.body.nameEdit;
-  resultQueries.editBooks(string);
-  res.send(string);
+  resultQueries.editBooks(string, listItem);
+  res.redirect('/');
 });
 
 app.listen(PORT, () => {

@@ -99,14 +99,13 @@ const addToBuy = (body, query) => {
 };
 
 
-const editBooks = (query) => {
-  console.log('asdf',query);
+const editBooks = (formInput, listItem) => {
+  console.log('formInput =', formInput);
   return pool.query(`
   UPDATE books
-  SET NAME = '$1'
-  WHERE name = 'Dank Potter'
-  RETURNING *;
-  `, [query])
+  SET name = $1
+  WHERE name = $2;
+  `, [formInput, listItem])
     .then(res => res.rows[0]);
 };
 module.exports = { getAllThings, addToWatch, addToRead, addToEat, addToBuy, editBooks };

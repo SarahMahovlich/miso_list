@@ -51,7 +51,6 @@ app.use("/api/widgets", widgetsRoutes(db));
 app.get("/", (req, res) => {
   resultQueries.getAllThings()
     .then((result) => {
-      console.log(result);
       const templatevars = {results: result};
       res.render("index", templatevars);
     });
@@ -89,9 +88,19 @@ app.get("/login", (req, res) => {
 
 //RENDERING SELECTED ITEM PAGE
 app.get("/:list_item", (req, res) => {
-  console.log(req);
   const templateVars = { list_item: req.params.list_item};
   res.render("showItem", templateVars);
+});
+
+//EDITING THE URL
+app.post("/:list_item", (req, res) => {
+  let listItem = req.headers.referer;
+  listItem = listItem.replace('http://localhost:8080/', '');
+  listItem = decodeURI(listItem);
+  console.log(listItem);
+  const string = req.body.nameEdit;
+  resultQueries.editBooks(string, listItem);
+  res.redirect('/');
 });
 
 app.listen(PORT, () => {

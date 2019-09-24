@@ -57,46 +57,56 @@ const getAllThings = () => {
 
 
 
-const addToWatch = (query) => {
+const addToWatch = (body, query) => {
   return pool.query(`
   INSERT INTO movies_and_series (name, context)
     VALUES ($1, $2)
     RETURNING *;
-  `, [query.items[0]['title'], query.items[0]['snippet']])
+  `, [query, body.items[0]['snippet']])
     .then(res => res.rows[0]);
 };
 
 
-const addToRead = (query) => {
+const addToRead = (body, query) => {
   return pool.query(`
   INSERT INTO books (name, context)
   VALUES ($1, $2)
   RETURNING *;
-  `, [query.items[0]['title'], query.items[0]['snippet']])
+  `, [query, body.items[0]['snippet']])
     .then(res => res.rows[0]);
 };
 
 
 
-const addToEat = (query) => {
+const addToEat = (body, query) => {
   return pool.query(`
   INSERT INTO restaurants (name, context)
   VALUES ($1, $2)
   RETURNING *;
-  `, [query.items[0]['title'], query.items[0]['snippet']])
+  `, [query, body.items[0]['snippet']])
     .then(res => res.rows[0]);
 };
 
 
 
-const addToBuy = (query) => {
+const addToBuy = (body, query) => {
   return pool.query(`
   INSERT INTO products (name, context)
   VALUES ($1, $2)
   RETURNING *;
-  `, [query.items[0]['title'], query.items[0]['snippet']])
+  `, [query, body.items[0]['snippet']])
     .then(res => res.rows[0]);
 };
 
-module.exports = { getAllThings, addToWatch, addToRead, addToEat, addToBuy };
+
+const editBooks = (formInput, listItem) => {
+  console.log('formInput =', formInput);
+  return pool.query(`
+  UPDATE books
+  SET name = $1
+  WHERE name = $2;
+  `, [formInput, listItem])
+    .then(res => res.rows[0]);
+};
+module.exports = { getAllThings, addToWatch, addToRead, addToEat, addToBuy, editBooks };
 

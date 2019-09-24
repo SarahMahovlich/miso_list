@@ -59,45 +59,62 @@ const getAllThings = () => {
 
 const addToWatch = (body, query) => {
   return pool.query(`
-  INSERT INTO movies_and_series (name, context)
-    VALUES ($1, $2)
+  INSERT INTO movies_and_series (name, context, link)
+    VALUES ($1, $2, $3)
     RETURNING *;
-  `, [query, body.items[0]['snippet']])
+  `, [query, body.items[0]['snippet'], body.items[0]['link']])
     .then(res => res.rows[0]);
 };
 
 
 const addToRead = (body, query) => {
+  if (body.spelling) {
+    query = body.spelling.correctedQuery;
+  }
   return pool.query(`
-  INSERT INTO books (name, context)
-  VALUES ($1, $2)
+  INSERT INTO books (name, context, link)
+  VALUES ($1, $2, $3)
   RETURNING *;
-  `, [query, body.items[0]['snippet']])
+  `, [query, body.items[0]['snippet'], body.items[0]['link']])
     .then(res => res.rows[0]);
 };
 
 
 
 const addToEat = (body, query) => {
+  if (body.spelling) {
+    query = body.spelling.correctedQuery;
+  }
   return pool.query(`
-  INSERT INTO restaurants (name, context)
-  VALUES ($1, $2)
+  INSERT INTO restaurants (name, context, link)
+  VALUES ($1, $2, $3)
   RETURNING *;
-  `, [query, body.items[0]['snippet']])
+  `, [query, body.items[0]['snippet'], body.items[0]['link']])
     .then(res => res.rows[0]);
 };
 
 
 
 const addToBuy = (body, query) => {
+  if (body.spelling) {
+    query = body.spelling.correctedQuery;
+  }
   return pool.query(`
-  INSERT INTO products (name, context)
-  VALUES ($1, $2)
+  INSERT INTO products (name, context, link)
+  VALUES ($1, $2, $3)
   RETURNING *;
-  `, [query, body.items[0]['snippet']])
+  `, [query, body.items[0]['snippet'], body.items[0]['link']])
     .then(res => res.rows[0]);
 };
 
+const addToMisc = (query) => {
+  return pool.query(`
+  INSERT INTO misc (name, context)
+  VALUES ($1, $2)
+  RETURNING *;
+  `, [query, ''])
+    .then(res => res.rows[0]);
+};
 
 const editBooks = (formInput, listItem) => {
   return pool.query(`
@@ -145,4 +162,3 @@ const editMisc = (formInput, listItem) => {
 };
 
 module.exports = { getAllThings, addToWatch, addToRead, addToEat, addToBuy, editBooks, editProducts, editMovies, editRestaurants, editMisc };
-

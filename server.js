@@ -59,8 +59,8 @@ app.get("/", (req, res) => {
 //POSTING INFORMATION FROM FORM
 app.post("/", (req, res) => {
   const string = req.body.searchEngine;
+  // const templatevars = {results: searchEngine(string)};
   //find the category using a helper function googlesearch API
-
   searchEngine(string, (success)=>{
     if (success) {
       resultQueries.getAllThings()

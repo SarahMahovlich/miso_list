@@ -60,7 +60,7 @@
           <h2 class="listTitle" style="background-color: #D4B08D;">Books</h2>
           <% let books = results['books']; %>
           <% for (let book of books) { %>
-          <p><%= book['name'] %> </p>
+          <a href='/<%= book['name']%>'><%= book['name'] %></a><br>
       <% } %>
         </div>
         <!-- MOVIES AND SERIES -->
@@ -68,7 +68,7 @@
           <h2 class="listTitle" style="background-color: #D4B08D;">Movies & TV Series</h2>
           <% let movies = results['movies_and_series']; %>
           <% for (let movie of movies) { %>
-          <p><%= movie['name'] %> </p>
+          <a href='/<%= movie['name']%>'><%= movie['name'] %></a><br>
       <% } %>
         </div>
         <!-- RESTAURANTS -->
@@ -76,7 +76,7 @@
           <h2 style="background-color: #D4B08D;">Restaurants</h2>
           <% let restaurants = results['restaurants']; %>
           <% for (let restaurant of restaurants) { %>
-          <p><%= restaurant['name'] %> </p>
+          <a href='/<%= restaurant['name']%>'><%= restaurant['name'] %></a><br>
       <% } %>
         </div>
         <!-- PRODUCTS -->
@@ -92,7 +92,7 @@
           <h2 style="background-color: #D4B08D;">Miscellaneous</h2>
           <% let misc = results['misc']; %>
           <% for (let mis of misc) { %>
-          <p><%= mis['name'] %> </p>
+          <a href='/<%= mis['name']%>'><%= mis['name'] %></a><br>
       <% } %>
         </div>
   <% } %>

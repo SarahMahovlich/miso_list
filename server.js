@@ -82,12 +82,16 @@ app.post("/register", (req, res) => {
   res.redirect("/");
 });
 
+//RENDERING LOGIN PAGE
 app.get("/login", (req, res) => {
   res.render("login");
 });
 
+//RENDERING SELECTED ITEM PAGE
 app.get("/:list_item", (req, res) => {
-  res.send("Hello World!");
+  console.log(req);
+  const templateVars = { list_item: req.params.list_item};
+  res.render("showItem", templateVars);
 });
 
 app.listen(PORT, () => {

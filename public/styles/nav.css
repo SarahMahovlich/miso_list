@@ -38,7 +38,7 @@ nav {
 }
 
 /* Individual items left of Nav bar */
-img {
+.navimg {
   width: 95px;
   border-radius: 35%;
 }

@@ -6,13 +6,20 @@
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+     <!--Nav CSS-->
+     <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
     <link rel="stylesheet" href="/styles/showItem.css" type="text/css" />
+    <!--Font Awesome-->
+    <script src="https://kit.fontawesome.com/f07023f341.js"></script>
+    <!--Fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Pacifico|Roboto&display=swap" rel="stylesheet">
   </head>
 
   <body>
+
     <h1 class="title">
       <%= list_item %>
     </h1>
@@ -23,5 +30,26 @@
   <form class="form-delete" action="/:list_item/delete" method="POST">
   <button type="submit" name='delete' class="btn btn-danger">Delete</button>
   </form>
+
+    <nav class="gridLayered">
+        <div class="leftContainer">
+          <a class="leftItem" href="/">
+            <img class="navimg" src ="https://www.sccpre.cat/mypng/detail/172-1728754_japanese-akita-icon-wrapping-paper-shiba-inu.png" >
+          </a>
+          <a class="iconLinks leftItem" href="/">
+              <i class="fas fa-home fa-2x"></i>
+          </a>
+        </div>
+    </nav>
+    <div ALIGN="center" class="listItemForm">
+        <h1 class="title">
+            <%= list_item %>
+          </h1>
+          <form class="form-edit" action="/:list_item" method="POST">
+          <input class="name-edit" type="text" name="nameEdit" value="<%= list_item %>" style="width: 400px; margin: 1em">
+          <button type="submit" class="btn btn-outline-dark">Edit</button>
+        </form>
+    </div>
+
   </body>
 </html>

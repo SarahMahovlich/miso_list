@@ -1,0 +1,49 @@
+#bookList {
+  display: flex;
+  /* flex-direction: row; */
+  background-color: #f7f0db;
+  border: 5px solid #D4B08D;
+  padding: 10px;
+  overflow: auto;
+}
+
+.itemHeader {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: flex-start;
+}
+
+/* Items on left of Nav bar */
+.leftContainer {
+  display: flex;
+  flex-direction: row;
+  /* align-content: center; */
+  justify-content: flex-start;
+}
+
+.leftItem {
+  align-self: flex-start;
+}
+
+/* Items on right of Nav bar */
+.rightContainer {
+  display: flex;
+  flex-direction: row;
+  margin-left: auto;
+}
+
+.rightItem {
+  margin-left: auto;
+}
+
+.itemExtLink {
+  border-radius: 15%;
+  height: 48px;
+}
+
+.itemTitleHeader {
+  font-size: 24px;
+  color:  #244751;
+
+}

@@ -38,6 +38,21 @@
           <button type="submit" class="btn btn-outline-dark">Edit</button>
         </form>
       </form>
+      <div class="form-group">
+        <form class="form-update" action="/:list_item/update" method="POST">
+            <label for="FormSelect">Category</label>
+            <select name='Category' class="form-control" id="FormSelect">
+              <option>Misc</option>
+              <option>Books</option>
+              <option>Movies and series</option>
+              <option>Restaurants</option>
+              <option>Products</option>
+            </select>
+          <button type="submit" class="btn btn-outline-dark">Submit</button>
+        </form>
+
+      </div>
+      <div class="form-group">
       <form class="form-delete" action="/:list_item/delete" method="POST">
       <button type="submit" name='delete' class="btn btn-danger">Delete</button>
       </form>

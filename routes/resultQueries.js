@@ -214,4 +214,49 @@ const deleteMisc = (listItem) => {
     .then(res => res.rows[0]);
 };
 
-module.exports = { getAllThings, addToWatch, addToRead, addToEat, addToBuy, addToMisc, editBooks, editProducts, editMovies, editRestaurants, editMisc, deleteBooks, deleteProducts, deleteMovies, deleteRestaurants, deleteMisc };
+const recatergorizeIntoMovies = (name) => {
+  return pool.query(`
+  INSERT INTO movies_and_series (name)
+    VALUES ($1)
+    RETURNING *;
+  `, [name])
+    .then(res => res.rows[0]);
+};
+
+
+const recatergorizeIntoBooks = (name) => {
+  return pool.query(`
+  INSERT INTO books (name)
+    VALUES ($1)
+    RETURNING *;
+  `, [name])
+    .then(res => res.rows[0]);
+};
+
+const recatergorizeIntoProducts = (name) => {
+  return pool.query(`
+  INSERT INTO products (name)
+    VALUES ($1)
+    RETURNING *;
+  `, [name])
+    .then(res => res.rows[0]);
+};
+
+const recatergorizeIntoRestaurants = (name) => {
+  return pool.query(`
+  INSERT INTO restaurants (name)
+    VALUES ($1)
+    RETURNING *;
+  `, [name])
+    .then(res => res.rows[0]);
+};
+
+const recatergorizeIntoMisc = (name) => {
+  return pool.query(`
+  INSERT INTO misc (name)
+    VALUES ($1)
+    RETURNING *;
+  `, [name])
+    .then(res => res.rows[0]);
+};
+module.exports = { getAllThings, addToWatch, addToRead, addToEat, addToBuy, addToMisc, editBooks, editProducts, editMovies, editRestaurants, editMisc, deleteBooks, deleteProducts, deleteMovies, deleteRestaurants, deleteMisc, recatergorizeIntoMovies, recatergorizeIntoBooks, recatergorizeIntoProducts, recatergorizeIntoMisc, recatergorizeIntoRestaurants  };

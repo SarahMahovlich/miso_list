@@ -122,6 +122,41 @@ app.post("/:list_item/delete", (req, res) => {
   res.redirect('/');
 });
 
+// UPDATING THE URL
+app.post("/:list_item/update", (req, res) => {
+  console.log(req.body.Category);
+  let listItem = req.headers.referer;
+  listItem = listItem.replace('http://localhost:8080/', '');
+  listItem = decodeURI(listItem);
+  console.log(listItem);
+
+  if (req.body.Category) {
+    resultQueries.deleteBooks(listItem);
+    resultQueries.deleteProducts(listItem);
+    resultQueries.deleteMovies(listItem);
+    resultQueries.deleteRestaurants(listItem);
+    resultQueries.deleteMisc(listItem);
+  }
+
+  if (req.body.Category === 'Books') {
+    resultQueries.recatergorizeIntoBooks(listItem);
+  }
+  if (req.body.Category === 'Products') {
+    resultQueries.recatergorizeIntoProducts(listItem);
+  }
+  if (req.body.Category === 'Movies and series') {
+    resultQueries.recatergorizeIntoMovies(listItem);
+  }
+  if (req.body.Category === 'Restaurants') {
+    resultQueries.recatergorizeIntoRestaurants(listItem);
+  }
+  if (req.body.Category === 'Misc') {
+    resultQueries.recatergorizeIntoMisc(listItem);
+  }
+  res.redirect('/');
+
+});
+
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });

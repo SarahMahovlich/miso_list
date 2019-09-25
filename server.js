@@ -92,22 +92,42 @@ app.get("/login", (req, res) => {
 
 //MARKING THE ITEM AS COMPLETED
 app.post("/:table/:id/complete", (req, res) => {
-const itemTable = res.req.params.table;
-const itemId = res.req.params.id;
-const status = req.route.methods.post;
+  const itemTable = res.req.params.table;
+  const itemId = res.req.params.id;
+  const status = req.route.methods.post;
   if (status === true) {
     resultQueries.markCompleteItem(itemTable, itemId)
-    .then((result) => {
-      res.redirect('/');
-    });
+      .then((result) => {
+        res.redirect('/');
+      });
   }
 });
 
 //RENDERING SELECTED ITEM PAGE
-app.get("/:list_item", (req, res) => {
-  // eslint-disable-next-line camelcase
-  const templateVars = { list_item: req.params.list_item};
-  res.render("showItem", templateVars);
+app.get("/:table/:id", (req, res) => {
+  const itemTable = res.req.params.table;
+  const itemId = res.req.params.id;
+  const status = req.route.methods.get;
+
+
+
+  if (status === true) {
+    resultQueries.getAllThings()
+      .then((result) => {
+        const table = result[itemTable];
+        let arrayIndex = 0;
+        for (let i = 0; i < table.length; i++) {
+          if (table[i]['id'] == itemId) {
+            arrayIndex = i;
+            break;
+          }
+        }
+        console.log(table[0]['name']);
+        const templateVars = { list_item: req.params.list_item, itemId, itemTable, name: table[arrayIndex]['name'], context: table[arrayIndex]['context']};
+        res.render("showItem", templateVars);
+      });
+  }
+
 });
 
 //EDITING THE URL

@@ -258,4 +258,71 @@ const deleteMisc = (listItem) => {
     .then(res => res.rows[0]);
 };
 
-module.exports = { getAllThings, getArchivedThings, addToWatch, addToRead, addToEat, addToBuy, addToMisc, editBooks, editProducts, editMovies, editRestaurants, editMisc, deleteBooks, deleteProducts, deleteMovies, deleteRestaurants, deleteMisc };
+const recatergorizeIntoMovies = (name, context) => {
+  return pool.query(`
+  INSERT INTO movies_and_series (name, context)
+    VALUES ($1, $2)
+    RETURNING *;
+  `, [name, context])
+    .then(res => res.rows[0]);
+};
+
+
+const recatergorizeIntoBooks = (name, context) => {
+  return pool.query(`
+  INSERT INTO books (name, context)
+    VALUES ($1, $2)
+    RETURNING *;
+  `, [name, context])
+    .then(res => res.rows[0]);
+};
+
+const recatergorizeIntoProducts = (name, context) => {
+  return pool.query(`
+  INSERT INTO products (name, context)
+    VALUES ($1, $2)
+    RETURNING *;
+  `, [name, context])
+    .then(res => res.rows[0]);
+};
+
+const recatergorizeIntoRestaurants = (name, context) => {
+  return pool.query(`
+  INSERT INTO restaurants (name, context)
+    VALUES ($1, $2)
+    RETURNING *;
+  `, [name, context])
+    .then(res => res.rows[0]);
+};
+
+const recatergorizeIntoMisc = (name, context) => {
+  return pool.query(`
+  INSERT INTO misc (name, context)
+    VALUES ($1, $2)
+    RETURNING *;
+  `, [name, context])
+    .then(res => res.rows[0]);
+};
+
+module.exports = {
+  getAllThings,
+  addToWatch,
+  addToRead,
+  addToEat,
+  addToBuy,
+  addToMisc,
+  editBooks,
+  editProducts,
+  editMovies,
+  editRestaurants,
+  editMisc,
+  deleteBooks,
+  deleteProducts,
+  deleteMovies,
+  deleteRestaurants,
+  deleteMisc,
+  recatergorizeIntoMovies,
+  recatergorizeIntoBooks,
+  recatergorizeIntoProducts,
+  recatergorizeIntoMisc,
+  recatergorizeIntoRestaurants };

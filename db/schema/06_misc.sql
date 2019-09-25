@@ -5,5 +5,6 @@ CREATE TABLE misc (
   id SERIAL PRIMARY KEY NOT NULL,
   user_id INTEGER REFERENCES users(id),
   name VARCHAR(255) NOT NULL,
-  context TEXT
+  context TEXT,
+  is_active BOOLEAN DEFAULT TRUE
 );

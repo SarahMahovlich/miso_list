@@ -9,6 +9,7 @@ const pool = new Pool({
   database: 'midterm'
 });
 
+// look at how to chain promises!
 const getAllThings = () => {
   let returnObj = {};
   let queryString = `
@@ -262,7 +263,6 @@ const markCompleteBooks = (listItem) => {
   return pool.query(`
   UPDATE books
   SET is_active = false
-  WHERE name = $1
   `, [listItem])
     .then(res => res.rows[0]);
 };

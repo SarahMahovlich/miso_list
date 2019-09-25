@@ -51,12 +51,12 @@ app.use("/api/widgets", widgetsRoutes(db));
 app.get("/", (req, res) => {
   resultQueries.getAllThings()
     .then((result) => {
-      const templatevars = {results: result}
+      const templatevars = {results: result};
       resultQueries.getArchivedThings()
         .then((archive) => {
           templatevars.archives = archive;
           res.render("index", templatevars);
-        })
+        });
     });
 });
 
@@ -91,12 +91,7 @@ app.get("/login", (req, res) => {
 });
 
 //MARKING THE ITEM AS COMPLETED
-app.post("/:id/complete", (req, res) => {
-  console.log(req);
-  // listItem = listItem.replace('http://localhost:8080/', '');
-  // listItem = listItem.replace('/complete', '');
-  // listItem = decodeURI(listItem);
-
+app.post("/:table/:id/complete", (req, res) => {
   const status = req.route.methods.post;
   if (status === true) {
     resultQueries.markCompleteBooks();
@@ -142,12 +137,9 @@ app.post("/:list_item/delete", (req, res) => {
 
 // UPDATING THE URL
 app.post("/:list_item/update", (req, res) => {
-  console.log(req.body);
   let listItem = req.headers.referer;
   listItem = listItem.replace('http://localhost:8080/', '');
   listItem = decodeURI(listItem);
-  console.log(listItem);
-
   if (req.body.Category) {
     resultQueries.deleteBooks(listItem);
     resultQueries.deleteProducts(listItem);

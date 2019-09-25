@@ -67,11 +67,12 @@
         <h2 class="listTitle">Books</h2>
         <% let books = results['books']; %>
         <% for (let book of books) { %>
+
           <div class="toDoList">
             <div class="itemHeader">
                 <a href='/<%= book['name'] %>' class="leftItem itemTitleHeader"><h4><%= book['name'] %></h4></a><br>
                 <a href="<%= book['link'] %>" class="rightItem"><button class="btn btn-outline-dark">goodreads</button></a>
-                <form class="completedbtn" action="/<%= book['name'] %>/complete" method="POST">
+                <form class="completedbtn" action="/books/<%= book.id %>/complete" method="POST">
                   <button type="submit" class="btn btn-outline-success">Complete</button>
                 </form>
             </div>
@@ -112,6 +113,8 @@
               </form>
             </div>
             <p><%= restaurant['context'] %></p>
+            <h1><%= restaurant.id %></h1>
+
           </div>
         <% } %>
         <br>

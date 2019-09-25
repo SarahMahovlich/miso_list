@@ -60,28 +60,68 @@
     <main>
       <% if (results) { %>
         <!-- BOOKS -->
-        <h2 class="listTitle">Books</h2>
+        <h2 class="listTitle" id="bookList">Books</h2>
         <% let books = results['books']; %>
         <% for (let book of books) { %>
-
-          <div id="bookList">
+          <div class="toDoList">
             <div class="itemHeader">
                 <a href='/<%= book['name'] %>' class="leftItem itemTitleHeader"><h4><%= book['name'] %></h4></a><br>
+                <a href="<%= book['link'] %>" class="rightItem"><button class="btn btn-outline-dark">goodreads</button></a>
             </div>
-            <a href="<%= book['link'] %>" class="rightItem"><button class="btn btn-outline-dark">goodreads</button></a>
-
-
-          <!-- <div class="itemContext"> -->
-            <div class="leftContainer">
-                <p class="leftItem"><%= book['context'] %></p>
-            </div>
-          <!-- </div> -->
-
+            <p><%= book['context'] %></p>
         </div>
       <% } %>
 
+        <!-- MOVIES AND SERIES -->
+        <h2 class="listTitle" id="movieList">Movies & TV Series</h2>
+        <% let movies = results['movies_and_series']; %>
+        <% for (let movie of movies) { %>
+          <div class="toDoList">
+            <div class="itemHeader">
+              <a href='/<%= movie['name']%>' class="leftItem itemTitleHeader"><h4><%= movie['name'] %></h4></a><br>
+              <a href="<%= movie['link'] %>" class="rightItem"><button class="btn btn-outline-dark">IMDB</button></a>
+            </div>
+            <p><%= movie['context'] %></p>
+          </div>
+        <% } %>
 
+        <!-- RESTAURANTS -->
+        <h2 class="listTitle" id="restList">Restaurants</h2>
+        <% let restaurants = results['restaurants']; %>
+        <% for (let restaurant of restaurants) { %>
+          <div class="toDoList">
+            <div class="itemHeader">
+              <a href='/<%= restaurant['name']%>' class="leftItem itemTitleHeader"><h4><%= restaurant['name'] %></h4></a><br>
+              <a href="<%= restaurant['link'] %>" class="rightItem"><button class="btn btn-outline-dark">Zomato</button></a>
+            </div>
+            <p><%= restaurant['context'] %></p>
+          </div>
+        <% } %>
 
+        <!-- PRODUCTS -->
+          <h2 class="listTitle" id="productList">Products</h2>
+          <% let products = results['products']; %>
+          <% for (let product of products) { %>
+            <div class="toDoList">
+              <div class="itemHeader">
+                <a href='/<%= product['name']%>' class="leftItem itemTitleHeader"><h4><%= product['name'] %></h4></a><br>
+                <a href="<%= product['link'] %>" class="rightItem"><button class="btn btn-outline-dark">Amazon</button></a>
+              </div>
+              <p><%= product['context'] %></p>
+            </div>
+        <% } %>
+
+        <!-- MISC -->
+          <h2 class="listTitle" id="miscList">Miscellaneous</h2>
+          <% let misc = results['misc']; %>
+          <% for (let mis of misc) { %>
+            <div class="toDoList">
+              <div class="itemHeader">
+                <a href='/<%= mis['name']%>' class="leftItem itemTitleHeader"><h4><%= mis['name'] %></h4></a><br>
+              </div>
+              <p><%= mis['context'] %></p>
+            </div>
+        <% } %>
   <% } %>
   </main>
   </body>

@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="/styles/header.css" type="text/css" />
     <!--Main CSS-->
     <link rel="stylesheet" href="/styles/main.css" type="text/css" />
+    <!--ListItems CSS-->
+    <link rel="stylesheet" href="/styles/listItem.css" type="text/css" />
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
@@ -27,7 +29,7 @@
     <nav class="gridLayered">
         <div class="leftContainer">
           <a class="leftItem" href="#header">
-            <img class="img" src ="https://www.sccpre.cat/mypng/detail/172-1728754_japanese-akita-icon-wrapping-paper-shiba-inu.png" >
+            <img class="navimg" src ="https://www.sccpre.cat/mypng/detail/172-1728754_japanese-akita-icon-wrapping-paper-shiba-inu.png" >
           </a>
           <a class="iconLinks leftItem" href="#bookList">
             <i class="fas fa-book fa-2x"></i>
@@ -58,50 +60,28 @@
     <main>
       <% if (results) { %>
         <!-- BOOKS -->
-        <div id="bookList">
-          <h2 class="listTitle">Books</h2>
-          <% let books = results['books']; %>
-          <% for (let book of books) { %>
-          <a href='/<%= book['name']%>'><%= book['name'] %></a><br>
-          <p><%= book['context'] %></p>
-      <% } %>
+        <h2 class="listTitle">Books</h2>
+        <% let books = results['books']; %>
+        <% for (let book of books) { %>
+
+          <div id="bookList">
+            <div class="itemHeader">
+                <a href='/<%= book['name'] %>' class="leftItem itemTitleHeader"><h4><%= book['name'] %></h4></a><br>
+            </div>
+            <a href="<%= book['link'] %>" class="rightItem"><button class="btn btn-outline-dark">goodreads</button></a>
+
+
+          <!-- <div class="itemContext"> -->
+            <div class="leftContainer">
+                <p class="leftItem"><%= book['context'] %></p>
+            </div>
+          <!-- </div> -->
+
         </div>
-        <!-- MOVIES AND SERIES -->
-        <div id="movieList">
-          <h2 class="listTitle">Movies & TV Series</h2>
-          <% let movies = results['movies_and_series']; %>
-          <% for (let movie of movies) { %>
-          <a href='/<%= movie['name']%>'><%= movie['name'] %></a><br>
-          <p><%= movie['context'] %></p>
       <% } %>
-        </div>
-        <!-- RESTAURANTS -->
-        <div id="restList">
-          <h2 class="listTitle">Restaurants</h2>
-          <% let restaurants = results['restaurants']; %>
-          <% for (let restaurant of restaurants) { %>
-          <a href='/<%= restaurant['name']%>'><%= restaurant['name'] %></a><br>
-          <p><%= restaurant['context'] %></p>
-      <% } %>
-        </div>
-        <!-- PRODUCTS -->
-        <div id="productList">
-          <h2 class="listTitle">Products</h2>
-          <% let products = results['products']; %>
-          <% for (let product of products) { %>
-          <a href='/<%= product['name']%>'><%= product['name'] %></a><br>
-          <p><%= product['context'] %></p>
-      <% } %>
-        </div>
-        <!-- MISC -->
-        <div id="miscList">
-          <h2 class="listTitle">Miscellaneous</h2>
-          <% let misc = results['misc']; %>
-          <% for (let mis of misc) { %>
-          <a href='/<%= mis['name']%>'><%= mis['name'] %></a><br>
-          <p><%= mis['context'] %></p>
-      <% } %>
-        </div>
+
+
+
   <% } %>
   </main>
   </body>

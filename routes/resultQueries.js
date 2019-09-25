@@ -59,8 +59,55 @@ const getAllThings = () => {
     });
 };
 
-
-
+const getArchivedThings = () => {
+  let returnObj = {};
+  let queryString = `
+  SELECT *
+  FROM products
+  WHERE is_active = false;
+  `;
+  return pool.query(queryString)
+    .then((data) => {
+      returnObj['products'] = data.rows;
+      let queryString = `
+      SELECT *
+      FROM books
+      WHERE is_active = false;
+      `;
+      return pool.query(queryString)
+        .then((data) => {
+          returnObj['books'] = data.rows;
+          let queryString = `
+          SELECT *
+          FROM movies_and_series
+          WHERE is_active = false;
+          `;
+          return pool.query(queryString)
+            .then((data) => {
+              returnObj['movies_and_series'] = data.rows;
+              let queryString = `
+              SELECT *
+              FROM restaurants
+              WHERE is_active = false;
+              `;
+              return pool.query(queryString)
+                .then((data) => {
+                  returnObj['restaurants'] = data.rows;
+                  let queryString = `
+                  SELECT *
+                  FROM misc
+                  WHERE is_active = false;
+                  `;
+                  return pool.query(queryString)
+                    .then((data) => {
+                      returnObj['misc'] = data.rows;
+                      return returnObj;
+                    });
+                });
+            });
+        });
+    });
+};
 
 const addToWatch = (body, query) => {
   return pool.query(`
@@ -165,9 +212,6 @@ const editMisc = (formInput, listItem) => {
   `, [formInput, listItem])
     .then(res => res.rows[0]);
 };
-
-
-
 
 const deleteBooks = (listItem) => {
   return pool.query(`

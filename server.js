@@ -51,8 +51,12 @@ app.use("/api/widgets", widgetsRoutes(db));
 app.get("/", (req, res) => {
   resultQueries.getAllThings()
     .then((result) => {
-      const templatevars = {results: result};
-      res.render("index", templatevars);
+      const templatevars = {results: result}
+      resultQueries.getArchivedThings()
+        .then((archive) => {
+          templatevars.archives = archive;
+          res.render("index", templatevars);
+        })
     });
 });
 

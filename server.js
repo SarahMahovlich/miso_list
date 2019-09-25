@@ -91,16 +91,15 @@ app.get("/login", (req, res) => {
 });
 
 //MARKING THE ITEM AS COMPLETED
-app.post("/:id/complete", (req, res) => {
-  console.log(req);
-  // listItem = listItem.replace('http://localhost:8080/', '');
-  // listItem = listItem.replace('/complete', '');
-  // listItem = decodeURI(listItem);
-
-  const status = req.route.methods.post;
+app.post("/:table/:id/complete", (req, res) => {
+const itemTable = res.req.params.table;
+const itemId = res.req.params.id;
+const status = req.route.methods.post;
   if (status === true) {
-    resultQueries.markCompleteBooks();
-    res.redirect('/');
+    resultQueries.markCompleteItem(itemTable, itemId)
+    .then((result) => {
+      res.redirect('/');
+    });
   }
 });
 

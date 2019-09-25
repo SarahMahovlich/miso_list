@@ -13,35 +13,40 @@ const getAllThings = () => {
   let returnObj = {};
   let queryString = `
   SELECT *
-  FROM products;
+  FROM products
+  WHERE is_active = true;
   `;
   return pool.query(queryString)
     .then((data) => {
       returnObj['products'] = data.rows;
       let queryString = `
       SELECT *
-      FROM books;
+      FROM books
+      WHERE is_active = true;
       `;
       return pool.query(queryString)
         .then((data) => {
           returnObj['books'] = data.rows;
           let queryString = `
           SELECT *
-          FROM movies_and_series;
+          FROM movies_and_series
+          WHERE is_active = true;
           `;
           return pool.query(queryString)
             .then((data) => {
               returnObj['movies_and_series'] = data.rows;
               let queryString = `
               SELECT *
-              FROM restaurants;
+              FROM restaurants
+              WHERE is_active = true;
               `;
               return pool.query(queryString)
                 .then((data) => {
                   returnObj['restaurants'] = data.rows;
                   let queryString = `
                   SELECT *
-                  FROM misc;
+                  FROM misc
+                  WHERE is_active = true;
                   `;
                   return pool.query(queryString)
                     .then((data) => {
@@ -120,7 +125,7 @@ const editBooks = (formInput, listItem) => {
   return pool.query(`
   UPDATE books
   SET name = $1
-  WHERE name = $2;
+  WHERE name = $2 AND is_active = true;
   `, [formInput, listItem])
     .then(res => res.rows[0]);
 };
@@ -129,7 +134,7 @@ const editProducts = (formInput, listItem) => {
   return pool.query(`
   UPDATE products
   SET name = $1
-  WHERE name = $2;
+  WHERE name = $2 AND is_active = true;
   `, [formInput, listItem])
     .then(res => res.rows[0]);
 };
@@ -138,7 +143,7 @@ const editMovies = (formInput, listItem) => {
   return pool.query(`
   UPDATE movies_and_series
   SET name = $1
-  WHERE name = $2;
+  WHERE name = $2 AND is_active = true;
   `, [formInput, listItem])
     .then(res => res.rows[0]);
 };
@@ -147,7 +152,7 @@ const editRestaurants = (formInput, listItem) => {
   return pool.query(`
   UPDATE restaurants
   SET name = $1
-  WHERE name = $2;
+  WHERE name = $2 AND is_active = true;
   `, [formInput, listItem])
     .then(res => res.rows[0]);
 };
@@ -156,9 +161,57 @@ const editMisc = (formInput, listItem) => {
   return pool.query(`
   UPDATE misc
   SET name = $1
-  WHERE name = $2;
+  WHERE name = $2 AND is_active = true;
   `, [formInput, listItem])
     .then(res => res.rows[0]);
 };
 
-module.exports = { getAllThings, addToWatch, addToRead, addToEat, addToBuy, addToMisc, editBooks, editProducts, editMovies, editRestaurants, editMisc };
+
+
+
+const deleteBooks = (listItem) => {
+  return pool.query(`
+  DELETE
+  FROM books
+  WHERE name = $1 AND is_active = true;
+  `, [listItem])
+    .then(res => res.rows[0]);
+};
+
+const deleteProducts = (listItem) => {
+  return pool.query(`
+  DELETE
+  FROM products
+  WHERE name = $1 AND is_active = true;
+  `, [listItem])
+    .then(res => res.rows[0]);
+};
+
+const deleteMovies = (listItem) => {
+  return pool.query(`
+  DELETE
+  FROM movies_and_series
+  WHERE name = $1 AND is_active = true;
+  `, [listItem])
+    .then(res => res.rows[0]);
+};
+
+const deleteRestaurants = (listItem) => {
+  return pool.query(`
+  DELETE
+  FROM restaurants
+  WHERE name = $1 AND is_active = true;
+  `, [listItem])
+    .then(res => res.rows[0]);
+};
+
+const deleteMisc = (listItem) => {
+  return pool.query(`
+  DELETE
+  FROM misc
+  WHERE name = $1 AND is_active = true;
+  `, [listItem])
+    .then(res => res.rows[0]);
+};
+
+module.exports = { getAllThings, addToWatch, addToRead, addToEat, addToBuy, addToMisc, editBooks, editProducts, editMovies, editRestaurants, editMisc, deleteBooks, deleteProducts, deleteMovies, deleteRestaurants, deleteMisc };

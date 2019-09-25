@@ -106,6 +106,22 @@ app.post("/:list_item", (req, res) => {
   res.redirect('/');
 });
 
+//DELETING THE URL
+app.post("/:list_item/delete", (req, res) => {
+  let listItem = req.headers.referer;
+  listItem = listItem.replace('http://localhost:8080/', '');
+  listItem = listItem.replace('/delete', '');
+  listItem = decodeURI(listItem);
+  console.log('item name', listItem);
+
+  resultQueries.deleteBooks(listItem);
+  resultQueries.deleteProducts(listItem);
+  resultQueries.deleteMovies(listItem);
+  resultQueries.deleteRestaurants(listItem);
+  resultQueries.deleteMisc(listItem);
+  res.redirect('/');
+});
+
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });

@@ -89,7 +89,7 @@ app.get("/login", (req, res) => {
 //RENDERING SELECTED ITEM PAGE
 app.get("/:list_item", (req, res) => {
   // eslint-disable-next-line camelcase
-  const templateVars = { list_item: req.params.list_item, item_context: ''};
+  const templateVars = { list_item: req.params.list_item};
   res.render("showItem", templateVars);
 });
 

@@ -46,6 +46,9 @@
           <a class="iconLinks leftItem" href="#miscList">
             <i class="fas fa-clipboard-list fa-2x"></i>
           </a>
+          <a class="iconLinks leftItem" href="#archiveList">
+            <i class="fas fa-check-square fa-2x"></i>
+          </a>
         </div>
     </nav>
     <header id="header">
@@ -127,6 +130,22 @@
               <p><%= mis['context'] %></p>
             </div>
         <% } %>
+
+        <% if (results) { %>
+        <!-- Archived -->
+        <div id="archiveList" aria-hidden="true"/>
+          <h2 class="listTitle">Archived</h2>
+          <% let archivedBooks = archives['books']; %>
+          <% let archivedMovies = archives['movies_and_series']; %>
+          <% let archivedRest = archives['restaurants']; %>
+          <% let archivedProducts = archives['products']; %>
+          <% let archivedMisc = archives['misc']; %>
+          <% for (let archive of archivedBooks) { %>
+            <p>hello</p>
+          <% } %>
+
+      <% } %>
+
   <% } %>
   </main>
   </body>

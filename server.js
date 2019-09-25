@@ -86,6 +86,20 @@ app.get("/login", (req, res) => {
   res.render("login");
 });
 
+//MARKING THE ITEM AS COMPLETED
+app.post("/:id/complete", (req, res) => {
+  console.log(req);
+  // listItem = listItem.replace('http://localhost:8080/', '');
+  // listItem = listItem.replace('/complete', '');
+  // listItem = decodeURI(listItem);
+
+  const status = req.route.methods.post;
+  if (status === true) {
+    resultQueries.markCompleteBooks();
+    res.redirect('/');
+  }
+});
+
 //RENDERING SELECTED ITEM PAGE
 app.get("/:list_item", (req, res) => {
   const templateVars = { list_item: req.params.list_item};
@@ -112,7 +126,6 @@ app.post("/:list_item/delete", (req, res) => {
   listItem = listItem.replace('http://localhost:8080/', '');
   listItem = listItem.replace('/delete', '');
   listItem = decodeURI(listItem);
-  console.log('item name', listItem);
 
   resultQueries.deleteBooks(listItem);
   resultQueries.deleteProducts(listItem);

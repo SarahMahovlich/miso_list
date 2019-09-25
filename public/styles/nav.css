@@ -47,6 +47,13 @@ nav {
   align-self: center;
   margin: 5px;
   display: none;
+  position: relative;
+}
+
+.fas:hover {
+  animation-name: move-down;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
 }
 
 .iconLinks {
@@ -55,19 +62,10 @@ nav {
   margin: 10px;
 }
 
-@keyframes bounce {
-  from{
-    transform: translateY(0px);
-  }
-  to{
-    transform: translateY(15px);
-  }
-}
-
-.fas:hover {
-  -webkit-transform: scale(1.3);
-  -ms-transform: scale(1.3);
-  transform: scale(1.3);
+@keyframes move-down {
+  0% {bottom: 0px}
+  50% {bottom: 5px}
+  100% {bottom: 0px}
 }
 
 #navTitle {

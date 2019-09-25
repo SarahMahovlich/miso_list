@@ -211,4 +211,37 @@ const deleteMisc = (listItem) => {
     .then(res => res.rows[0]);
 };
 
-module.exports = { getAllThings, addToWatch, addToRead, addToEat, addToBuy, addToMisc, editBooks, editProducts, editMovies, editRestaurants, editMisc, deleteBooks, deleteProducts, deleteMovies, deleteRestaurants, deleteMisc };
+const markCompleteBooks = (listItem) => {
+  return pool.query(`
+  UPDATE books
+  SET is_active = false
+  WHERE name = $1
+  `, [listItem])
+    .then(res => res.rows[0]);
+};
+
+// const markCompleteMovies = () => {
+//   return pool.query(`
+//   UPDATE movies_and_series
+//   SET is_active = false;
+//   `)
+//     .then(res => res.rows[0]);
+// };
+
+// const markCompleteRestaurants = () => {
+//   return pool.query(`
+//   UPDATE restaurants
+//   SET is_active = false;
+//   `)
+//     .then(res => res.rows[0]);
+// };
+
+// const markCompleteProducts = () => {
+//   return pool.query(`
+//   UPDATE products
+//   SET is_active = false;
+//   `)
+//     .then(res => res.rows[0]);
+// };
+
+module.exports = { getAllThings, addToWatch, addToRead, addToEat, addToBuy, addToMisc, editBooks, editProducts, editMovies, editRestaurants, editMisc, deleteBooks, deleteProducts, deleteMovies, deleteRestaurants, deleteMisc, markCompleteBooks };

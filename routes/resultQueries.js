@@ -259,11 +259,12 @@ const deleteMisc = (listItem) => {
     .then(res => res.rows[0]);
 };
 
-const markCompleteBooks = (listItem) => {
+const markCompleteItem = (table, id) => {
   return pool.query(`
-  UPDATE books
+  UPDATE ${table}
   SET is_active = false
-  `, [listItem])
+  WHERE id = $1;
+  `, [id])
     .then(res => res.rows[0]);
 };
 
@@ -360,4 +361,4 @@ module.exports = {
   recatergorizeIntoProducts,
   recatergorizeIntoMisc,
   recatergorizeIntoRestaurants,
-  markCompleteBooks };
+  markCompleteItem };

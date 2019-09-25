@@ -92,10 +92,18 @@ app.get("/login", (req, res) => {
 
 //MARKING THE ITEM AS COMPLETED
 app.post("/:table/:id/complete", (req, res) => {
+<<<<<<< HEAD
   const status = req.route.methods.post;
+=======
+const itemTable = res.req.params.table;
+const itemId = res.req.params.id;
+const status = req.route.methods.post;
+>>>>>>> 34162435611da8e09062323e4b3afd5f70ffdcbe
   if (status === true) {
-    resultQueries.markCompleteBooks();
-    res.redirect('/');
+    resultQueries.markCompleteItem(itemTable, itemId)
+    .then((result) => {
+      res.redirect('/');
+    });
   }
 });
 

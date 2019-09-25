@@ -46,6 +46,9 @@
           <a class="iconLinks leftItem" href="#miscList">
             <i class="fas fa-clipboard-list fa-2x"></i>
           </a>
+          <a class="iconLinks leftItem" href="#archiveList">
+            <i class="fas fa-check-square fa-2x"></i>
+          </a>
         </div>
     </nav>
     <header id="header">
@@ -60,7 +63,8 @@
     <main>
       <% if (results) { %>
         <!-- BOOKS -->
-        <h2 class="listTitle" id="bookList">Books</h2>
+        <div id="bookList" aria-hidden="true"/>
+        <h2 class="listTitle">Books</h2>
         <% let books = results['books']; %>
         <% for (let book of books) { %>
           <div class="toDoList">
@@ -77,7 +81,8 @@
         <br>
 
         <!-- MOVIES AND SERIES -->
-        <h2 class="listTitle" id="movieList">Movies & TV Series</h2>
+        <div id="movieList" aria-hidden="true"/>
+        <h2 class="listTitle">Movies & TV Series</h2>
         <% let movies = results['movies_and_series']; %>
         <% for (let movie of movies) { %>
           <div class="toDoList">
@@ -94,7 +99,8 @@
           <br>
 
         <!-- RESTAURANTS -->
-        <h2 class="listTitle" id="restList">Restaurants</h2>
+        <div id="restList" aria-hidden="true"/>
+        <h2 class="listTitle">Restaurants</h2>
         <% let restaurants = results['restaurants']; %>
         <% for (let restaurant of restaurants) { %>
           <div class="toDoList">
@@ -111,7 +117,8 @@
         <br>
 
         <!-- PRODUCTS -->
-          <h2 class="listTitle" id="productList">Products</h2>
+        <div id="productList" aria-hidden="true"/>
+          <h2 class="listTitle">Products</h2>
           <% let products = results['products']; %>
           <% for (let product of products) { %>
             <div class="toDoList">
@@ -128,7 +135,8 @@
         <br>
 
         <!-- MISC -->
-          <h2 class="listTitle" id="miscList">Miscellaneous</h2>
+        <div id="miscList" aria-hidden="true"/>
+          <h2 class="listTitle">Miscellaneous</h2>
           <% let misc = results['misc']; %>
           <% for (let mis of misc) { %>
             <div class="toDoList">
@@ -142,6 +150,86 @@
             </div>
         <% } %>
   <% } %>
+
+        <% if (results) { %>
+        <!-- Archived -->
+        <div id="archiveList" aria-hidden="true"/>
+          <h2 class="listTitle">Archived</h2>
+          <% let archivedBooks = archives['books']; %>
+          <% let archivedMovies = archives['movies_and_series']; %>
+          <% let archivedRest = archives['restaurants']; %>
+          <% let archivedProducts = archives['products']; %>
+          <% let archivedMisc = archives['misc']; %>
+          <div class="toDoList">
+          <% for (let archive of archivedBooks) { %>
+              <div class="itemHeader">
+                <a href='/<%= archive['name']%>' class="leftItem itemTitleHeader"><h4><%= archive['name'] %></h4></a><br>
+                <div class="rightContainer">
+                  <a href="<%= archive['link'] %>" class="rightItem"><button class="btn btn-outline-dark">goodreads</button></a>
+                  <!-- <form class="form-delete" action="/:list_item/delete" method="POST"> -->
+                    <button type="submit" name='unarchive' class="btn btn-danger rightItem">Unarchive</button>
+                  <!-- </form> -->
+                </div>
+              </div>
+              <p><%= archive['context'] %></p>
+            </div>
+          <% } %>
+          <div class="toDoList">
+          <% for (let archive of archivedMovies) { %>
+            <div class="itemHeader">
+              <a href='/<%= archive['name']%>' class="leftItem itemTitleHeader"><h4><%= archive['name'] %></h4></a><br>
+              <div class="rightContainer">
+                  <a href="<%= archive['link'] %>" class="rightItem"><button class="btn btn-outline-dark">IMDB</button></a>
+                  <!-- <form class="form-delete" action="/:list_item/delete" method="POST"> -->
+                    <button type="submit" name='unarchive' class="btn btn-danger rightItem">Unarchive</button>
+                  <!-- </form> -->
+                </div>
+            </div>
+            <p><%= archive['context'] %></p>
+          </div>
+          <% } %>
+          <div class="toDoList">
+          <% for (let archive of archivedRest) { %>
+            <div class="itemHeader">
+              <a href='/<%= archive['name']%>' class="leftItem itemTitleHeader"><h4><%= archive['name'] %></h4></a><br>
+              <div class="rightContainer">
+                  <a href="<%= archive['link'] %>" class="rightItem"><button class="btn btn-outline-dark">Zomato</button></a>
+                  <!-- <form class="form-delete" action="/:list_item/delete" method="POST"> -->
+                    <button type="submit" name='unarchive' class="btn btn-danger rightItem">Unarchive</button>
+                  <!-- </form> -->
+                </div>
+            </div>
+            <p><%= archive['context'] %></p>
+          </div>
+          <% } %>
+          <div class="toDoList">
+          <% for (let archive of archivedProducts) { %>
+            <div class="itemHeader">
+              <a href='/<%= archive['name']%>' class="leftItem itemTitleHeader"><h4><%= archive['name'] %></h4></a><br>
+              <div class="rightContainer">
+                  <a href="<%= archive['link'] %>" class="rightItem"><button class="btn btn-outline-dark">Amazon</button></a>
+                  <!-- <form class="form-delete" action="/:list_item/delete" method="POST"> -->
+                    <button type="submit" name='unarchive' class="btn btn-danger rightItem">Unarchive</button>
+                  <!-- </form> -->
+                </div>
+            </div>
+            <p><%= archive['context'] %></p>
+          </div>
+          <% } %>
+          <div class="toDoList">
+          <% for (let archive of archivedMisc) { %>
+            <div class="itemHeader">
+              <a href='/<%= archive['name']%>' class="leftItem itemTitleHeader"><h4><%= archive['name'] %></h4></a><br>
+              <div class="rightContainer">
+                  <!-- <form class="form-delete" action="/:list_item/delete" method="POST"> -->
+                    <button type="submit" name='unarchive' class="btn btn-danger rightItem">Unarchive</button>
+                  <!-- </form> -->
+                </div>
+            </div>
+            <p><%= archive['context'] %></p>
+          </div>
+          <% } %>
+      <% } %>
   </main>
   </body>
 </html>

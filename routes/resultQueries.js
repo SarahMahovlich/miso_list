@@ -59,8 +59,55 @@ const getAllThings = () => {
     });
 };
 
-
-
+const getArchivedThings = () => {
+  let returnObj = {};
+  let queryString = `
+  SELECT *
+  FROM products
+  WHERE is_active = false;
+  `;
+  return pool.query(queryString)
+    .then((data) => {
+      returnObj['products'] = data.rows;
+      let queryString = `
+      SELECT *
+      FROM books
+      WHERE is_active = false;
+      `;
+      return pool.query(queryString)
+        .then((data) => {
+          returnObj['books'] = data.rows;
+          let queryString = `
+          SELECT *
+          FROM movies_and_series
+          WHERE is_active = false;
+          `;
+          return pool.query(queryString)
+            .then((data) => {
+              returnObj['movies_and_series'] = data.rows;
+              let queryString = `
+              SELECT *
+              FROM restaurants
+              WHERE is_active = false;
+              `;
+              return pool.query(queryString)
+                .then((data) => {
+                  returnObj['restaurants'] = data.rows;
+                  let queryString = `
+                  SELECT *
+                  FROM misc
+                  WHERE is_active = false;
+                  `;
+                  return pool.query(queryString)
+                    .then((data) => {
+                      returnObj['misc'] = data.rows;
+                      return returnObj;
+                    });
+                });
+            });
+        });
+    });
+};
 
 const addToWatch = (body, query) => {
   return pool.query(`
@@ -244,4 +291,73 @@ const markCompleteBooks = (listItem) => {
 //     .then(res => res.rows[0]);
 // };
 
-module.exports = { getAllThings, addToWatch, addToRead, addToEat, addToBuy, addToMisc, editBooks, editProducts, editMovies, editRestaurants, editMisc, deleteBooks, deleteProducts, deleteMovies, deleteRestaurants, deleteMisc, markCompleteBooks };
+const recatergorizeIntoMovies = (name, context) => {
+  return pool.query(`
+  INSERT INTO movies_and_series (name, context)
+    VALUES ($1, $2)
+    RETURNING *;
+  `, [name, context])
+    .then(res => res.rows[0]);
+};
+
+
+const recatergorizeIntoBooks = (name, context) => {
+  return pool.query(`
+  INSERT INTO books (name, context)
+    VALUES ($1, $2)
+    RETURNING *;
+  `, [name, context])
+    .then(res => res.rows[0]);
+};
+
+const recatergorizeIntoProducts = (name, context) => {
+  return pool.query(`
+  INSERT INTO products (name, context)
+    VALUES ($1, $2)
+    RETURNING *;
+  `, [name, context])
+    .then(res => res.rows[0]);
+};
+
+const recatergorizeIntoRestaurants = (name, context) => {
+  return pool.query(`
+  INSERT INTO restaurants (name, context)
+    VALUES ($1, $2)
+    RETURNING *;
+  `, [name, context])
+    .then(res => res.rows[0]);
+};
+
+const recatergorizeIntoMisc = (name, context) => {
+  return pool.query(`
+  INSERT INTO misc (name, context)
+    VALUES ($1, $2)
+    RETURNING *;
+  `, [name, context])
+    .then(res => res.rows[0]);
+};
+
+module.exports = {
+  getAllThings,
+  getArchivedThings,
+  addToWatch,
+  addToRead,
+  addToEat,
+  addToBuy,
+  addToMisc,
+  editBooks,
+  editProducts,
+  editMovies,
+  editRestaurants,
+  editMisc,
+  deleteBooks,
+  deleteProducts,
+  deleteMovies,
+  deleteRestaurants,
+  deleteMisc,
+  recatergorizeIntoMovies,
+  recatergorizeIntoBooks,
+  recatergorizeIntoProducts,
+  recatergorizeIntoMisc,
+  recatergorizeIntoRestaurants,
+  markCompleteBooks };

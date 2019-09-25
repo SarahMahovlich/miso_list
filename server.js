@@ -51,8 +51,12 @@ app.use("/api/widgets", widgetsRoutes(db));
 app.get("/", (req, res) => {
   resultQueries.getAllThings()
     .then((result) => {
-      const templatevars = {results: result};
-      res.render("index", templatevars);
+      const templatevars = {results: result}
+      resultQueries.getArchivedThings()
+        .then((archive) => {
+          templatevars.archives = archive;
+          res.render("index", templatevars);
+        })
     });
 });
 
@@ -102,6 +106,7 @@ app.post("/:id/complete", (req, res) => {
 
 //RENDERING SELECTED ITEM PAGE
 app.get("/:list_item", (req, res) => {
+  // eslint-disable-next-line camelcase
   const templateVars = { list_item: req.params.list_item};
   res.render("showItem", templateVars);
 });
@@ -133,6 +138,41 @@ app.post("/:list_item/delete", (req, res) => {
   resultQueries.deleteRestaurants(listItem);
   resultQueries.deleteMisc(listItem);
   res.redirect('/');
+});
+
+// UPDATING THE URL
+app.post("/:list_item/update", (req, res) => {
+  console.log(req.body);
+  let listItem = req.headers.referer;
+  listItem = listItem.replace('http://localhost:8080/', '');
+  listItem = decodeURI(listItem);
+  console.log(listItem);
+
+  if (req.body.Category) {
+    resultQueries.deleteBooks(listItem);
+    resultQueries.deleteProducts(listItem);
+    resultQueries.deleteMovies(listItem);
+    resultQueries.deleteRestaurants(listItem);
+    resultQueries.deleteMisc(listItem);
+  }
+
+  if (req.body.Category === 'Books') {
+    resultQueries.recatergorizeIntoBooks(listItem, req.body.contextEdit);
+  }
+  if (req.body.Category === 'Products') {
+    resultQueries.recatergorizeIntoProducts(listItem, req.body.contextEdit);
+  }
+  if (req.body.Category === 'Movies and series') {
+    resultQueries.recatergorizeIntoMovies(listItem, req.body.contextEdit);
+  }
+  if (req.body.Category === 'Restaurants') {
+    resultQueries.recatergorizeIntoRestaurants(listItem, req.body.contextEdit);
+  }
+  if (req.body.Category === 'Misc') {
+    resultQueries.recatergorizeIntoMisc(listItem, req.body.contextEdit);
+  }
+  res.redirect('/');
+
 });
 
 app.listen(PORT, () => {

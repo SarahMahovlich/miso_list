@@ -103,6 +103,18 @@ const status = req.route.methods.post;
   }
 });
 
+app.post("/:table/:id/unarchive", (req, res) => {
+  const itemTable = res.req.params.table;
+  const itemId = res.req.params.id;
+  const status = req.route.methods.post;
+    if (status === true) {
+      resultQueries.markUnCompleteItem(itemTable, itemId)
+      .then((result) => {
+        res.redirect('/');
+      });
+    }
+  });
+
 //RENDERING SELECTED ITEM PAGE
 app.get("/:list_item", (req, res) => {
   // eslint-disable-next-line camelcase

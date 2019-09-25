@@ -214,49 +214,71 @@ const deleteMisc = (listItem) => {
     .then(res => res.rows[0]);
 };
 
-const recatergorizeIntoMovies = (name) => {
+const recatergorizeIntoMovies = (name, context) => {
   return pool.query(`
-  INSERT INTO movies_and_series (name)
-    VALUES ($1)
+  INSERT INTO movies_and_series (name, context)
+    VALUES ($1, $2)
     RETURNING *;
-  `, [name])
+  `, [name, context])
     .then(res => res.rows[0]);
 };
 
 
-const recatergorizeIntoBooks = (name) => {
+const recatergorizeIntoBooks = (name, context) => {
   return pool.query(`
-  INSERT INTO books (name)
-    VALUES ($1)
+  INSERT INTO books (name, context)
+    VALUES ($1, $2)
     RETURNING *;
-  `, [name])
+  `, [name, context])
     .then(res => res.rows[0]);
 };
 
-const recatergorizeIntoProducts = (name) => {
+const recatergorizeIntoProducts = (name, context) => {
   return pool.query(`
-  INSERT INTO products (name)
-    VALUES ($1)
+  INSERT INTO products (name, context)
+    VALUES ($1, $2)
     RETURNING *;
-  `, [name])
+  `, [name, context])
     .then(res => res.rows[0]);
 };
 
-const recatergorizeIntoRestaurants = (name) => {
+const recatergorizeIntoRestaurants = (name, context) => {
   return pool.query(`
-  INSERT INTO restaurants (name)
-    VALUES ($1)
+  INSERT INTO restaurants (name, context)
+    VALUES ($1, $2)
     RETURNING *;
-  `, [name])
+  `, [name, context])
     .then(res => res.rows[0]);
 };
 
-const recatergorizeIntoMisc = (name) => {
+const recatergorizeIntoMisc = (name, context) => {
   return pool.query(`
-  INSERT INTO misc (name)
-    VALUES ($1)
+  INSERT INTO misc (name, context)
+    VALUES ($1, $2)
     RETURNING *;
-  `, [name])
+  `, [name, context])
     .then(res => res.rows[0]);
 };
-module.exports = { getAllThings, addToWatch, addToRead, addToEat, addToBuy, addToMisc, editBooks, editProducts, editMovies, editRestaurants, editMisc, deleteBooks, deleteProducts, deleteMovies, deleteRestaurants, deleteMisc, recatergorizeIntoMovies, recatergorizeIntoBooks, recatergorizeIntoProducts, recatergorizeIntoMisc, recatergorizeIntoRestaurants  };
+
+module.exports = {
+  getAllThings,
+  addToWatch,
+  addToRead,
+  addToEat,
+  addToBuy,
+  addToMisc,
+  editBooks,
+  editProducts,
+  editMovies,
+  editRestaurants,
+  editMisc,
+  deleteBooks,
+  deleteProducts,
+  deleteMovies,
+  deleteRestaurants,
+  deleteMisc,
+  recatergorizeIntoMovies,
+  recatergorizeIntoBooks,
+  recatergorizeIntoProducts,
+  recatergorizeIntoMisc,
+  recatergorizeIntoRestaurants };

@@ -88,7 +88,8 @@ app.get("/login", (req, res) => {
 
 //RENDERING SELECTED ITEM PAGE
 app.get("/:list_item", (req, res) => {
-  const templateVars = { list_item: req.params.list_item};
+  // eslint-disable-next-line camelcase
+  const templateVars = { list_item: req.params.list_item, item_context: ''};
   res.render("showItem", templateVars);
 });
 
@@ -124,7 +125,7 @@ app.post("/:list_item/delete", (req, res) => {
 
 // UPDATING THE URL
 app.post("/:list_item/update", (req, res) => {
-  console.log(req.body.Category);
+  console.log(req.body);
   let listItem = req.headers.referer;
   listItem = listItem.replace('http://localhost:8080/', '');
   listItem = decodeURI(listItem);
@@ -139,19 +140,19 @@ app.post("/:list_item/update", (req, res) => {
   }
 
   if (req.body.Category === 'Books') {
-    resultQueries.recatergorizeIntoBooks(listItem);
+    resultQueries.recatergorizeIntoBooks(listItem, req.body.contextEdit);
   }
   if (req.body.Category === 'Products') {
-    resultQueries.recatergorizeIntoProducts(listItem);
+    resultQueries.recatergorizeIntoProducts(listItem, req.body.contextEdit);
   }
   if (req.body.Category === 'Movies and series') {
-    resultQueries.recatergorizeIntoMovies(listItem);
+    resultQueries.recatergorizeIntoMovies(listItem, req.body.contextEdit);
   }
   if (req.body.Category === 'Restaurants') {
-    resultQueries.recatergorizeIntoRestaurants(listItem);
+    resultQueries.recatergorizeIntoRestaurants(listItem, req.body.contextEdit);
   }
   if (req.body.Category === 'Misc') {
-    resultQueries.recatergorizeIntoMisc(listItem);
+    resultQueries.recatergorizeIntoMisc(listItem, req.body.contextEdit);
   }
   res.redirect('/');
 

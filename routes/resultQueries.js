@@ -306,6 +306,7 @@ const recatergorizeIntoMisc = (name, context) => {
 
 module.exports = {
   getAllThings,
+  getArchivedThings,
   addToWatch,
   addToRead,
   addToEat,

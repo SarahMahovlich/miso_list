@@ -117,7 +117,6 @@ const addToMisc = (query) => {
 };
 
 const editBooks = (formInput, listItem) => {
-  console.log('formInput =', formInput);
   return pool.query(`
   UPDATE books
   SET name = $1
@@ -125,5 +124,41 @@ const editBooks = (formInput, listItem) => {
   `, [formInput, listItem])
     .then(res => res.rows[0]);
 };
-module.exports = { getAllThings, addToWatch, addToRead, addToEat, addToBuy, addToMisc, editBooks };
 
+const editProducts = (formInput, listItem) => {
+  return pool.query(`
+  UPDATE products
+  SET name = $1
+  WHERE name = $2;
+  `, [formInput, listItem])
+    .then(res => res.rows[0]);
+};
+
+const editMovies = (formInput, listItem) => {
+  return pool.query(`
+  UPDATE movies_and_series
+  SET name = $1
+  WHERE name = $2;
+  `, [formInput, listItem])
+    .then(res => res.rows[0]);
+};
+
+const editRestaurants = (formInput, listItem) => {
+  return pool.query(`
+  UPDATE restaurants
+  SET name = $1
+  WHERE name = $2;
+  `, [formInput, listItem])
+    .then(res => res.rows[0]);
+};
+
+const editMisc = (formInput, listItem) => {
+  return pool.query(`
+  UPDATE misc
+  SET name = $1
+  WHERE name = $2;
+  `, [formInput, listItem])
+    .then(res => res.rows[0]);
+};
+
+module.exports = { getAllThings, addToWatch, addToRead, addToEat, addToBuy, addToMisc, editBooks, editProducts, editMovies, editRestaurants, editMisc };

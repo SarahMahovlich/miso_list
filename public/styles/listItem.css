@@ -1,6 +1,4 @@
-#bookList {
-  display: flex;
-  /* flex-direction: row; */
+.toDoList {
   background-color: #f7f0db;
   border: 5px solid #D4B08D;
   padding: 10px;
@@ -18,7 +16,6 @@
 .leftContainer {
   display: flex;
   flex-direction: row;
-  /* align-content: center; */
   justify-content: flex-start;
 }
 
@@ -47,3 +44,4 @@
   color:  #244751;
 
 }
+

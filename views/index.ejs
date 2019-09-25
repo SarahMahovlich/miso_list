@@ -145,7 +145,12 @@
           <% for (let archive of archivedBooks) { %>
               <div class="itemHeader">
                 <a href='/<%= archive['name']%>' class="leftItem itemTitleHeader"><h4><%= archive['name'] %></h4></a><br>
-                <a href="<%= archive['link'] %>" class="rightItem"><button class="btn btn-outline-dark">goodreads</button></a>
+                <div class="rightContainer">
+                  <a href="<%= archive['link'] %>" class="rightItem"><button class="btn btn-outline-dark">goodreads</button></a>
+                  <!-- <form class="form-delete" action="/:list_item/delete" method="POST"> -->
+                    <button type="submit" name='unarchive' class="btn btn-danger rightItem">Unarchive</button>
+                  <!-- </form> -->
+                </div>
               </div>
               <p><%= archive['context'] %></p>
             </div>
@@ -154,7 +159,12 @@
           <% for (let archive of archivedMovies) { %>
             <div class="itemHeader">
               <a href='/<%= archive['name']%>' class="leftItem itemTitleHeader"><h4><%= archive['name'] %></h4></a><br>
-              <a href="<%= archive['link'] %>" class="rightItem"><button class="btn btn-outline-dark">IMDB</button></a>
+              <div class="rightContainer">
+                  <a href="<%= archive['link'] %>" class="rightItem"><button class="btn btn-outline-dark">IMDB</button></a>
+                  <!-- <form class="form-delete" action="/:list_item/delete" method="POST"> -->
+                    <button type="submit" name='unarchive' class="btn btn-danger rightItem">Unarchive</button>
+                  <!-- </form> -->
+                </div>
             </div>
             <p><%= archive['context'] %></p>
           </div>
@@ -163,7 +173,12 @@
           <% for (let archive of archivedRest) { %>
             <div class="itemHeader">
               <a href='/<%= archive['name']%>' class="leftItem itemTitleHeader"><h4><%= archive['name'] %></h4></a><br>
-              <a href="<%= archive['link'] %>" class="rightItem"><button class="btn btn-outline-dark">Zomato</button></a>
+              <div class="rightContainer">
+                  <a href="<%= archive['link'] %>" class="rightItem"><button class="btn btn-outline-dark">Zomato</button></a>
+                  <!-- <form class="form-delete" action="/:list_item/delete" method="POST"> -->
+                    <button type="submit" name='unarchive' class="btn btn-danger rightItem">Unarchive</button>
+                  <!-- </form> -->
+                </div>
             </div>
             <p><%= archive['context'] %></p>
           </div>
@@ -172,7 +187,12 @@
           <% for (let archive of archivedProducts) { %>
             <div class="itemHeader">
               <a href='/<%= archive['name']%>' class="leftItem itemTitleHeader"><h4><%= archive['name'] %></h4></a><br>
-              <a href="<%= archive['link'] %>" class="rightItem"><button class="btn btn-outline-dark">Amazon</button></a>
+              <div class="rightContainer">
+                  <a href="<%= archive['link'] %>" class="rightItem"><button class="btn btn-outline-dark">Amazon</button></a>
+                  <!-- <form class="form-delete" action="/:list_item/delete" method="POST"> -->
+                    <button type="submit" name='unarchive' class="btn btn-danger rightItem">Unarchive</button>
+                  <!-- </form> -->
+                </div>
             </div>
             <p><%= archive['context'] %></p>
           </div>
@@ -181,11 +201,15 @@
           <% for (let archive of archivedMisc) { %>
             <div class="itemHeader">
               <a href='/<%= archive['name']%>' class="leftItem itemTitleHeader"><h4><%= archive['name'] %></h4></a><br>
+              <div class="rightContainer">
+                  <!-- <form class="form-delete" action="/:list_item/delete" method="POST"> -->
+                    <button type="submit" name='unarchive' class="btn btn-danger rightItem">Unarchive</button>
+                  <!-- </form> -->
+                </div>
             </div>
             <p><%= archive['context'] %></p>
           </div>
           <% } %>
-
       <% } %>
   </main>
   </body>

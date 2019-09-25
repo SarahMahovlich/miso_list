@@ -71,6 +71,7 @@
             <p><%= book['context'] %></p>
         </div>
       <% } %>
+        <br>
 
         <!-- MOVIES AND SERIES -->
         <h2 class="listTitle" id="movieList">Movies & TV Series</h2>
@@ -84,7 +85,8 @@
             <p><%= movie['context'] %></p>
           </div>
         <% } %>
-
+          <br>
+          
         <!-- RESTAURANTS -->
         <h2 class="listTitle" id="restList">Restaurants</h2>
         <% let restaurants = results['restaurants']; %>
@@ -97,6 +99,7 @@
             <p><%= restaurant['context'] %></p>
           </div>
         <% } %>
+        <br>
 
         <!-- PRODUCTS -->
           <h2 class="listTitle" id="productList">Products</h2>
@@ -110,6 +113,7 @@
               <p><%= product['context'] %></p>
             </div>
         <% } %>
+        <br>
 
         <!-- MISC -->
           <h2 class="listTitle" id="miscList">Miscellaneous</h2>

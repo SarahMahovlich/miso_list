@@ -1,7 +1,7 @@
 nav {
   background-color: #8DB0D4;
   color: white;
-  height: 100px;
+  height: 90px;
   position: fixed;
   padding: 1em;
   width: 100%;
@@ -39,8 +39,9 @@ nav {
 
 /* Individual items left of Nav bar */
 .navimg {
-  width: 95px;
+  width: 100px;
   border-radius: 35%;
+  border-bottom: 20px;
 }
 
 .fas {
@@ -65,7 +66,7 @@ nav {
 }
 
 .fas:hover {
-  animation: bounce 0.75s;
+
 }
 
 #navTitle {

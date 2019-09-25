@@ -258,6 +258,7 @@ const deleteMisc = (listItem) => {
     .then(res => res.rows[0]);
 };
 
+//Archive and Unarchive
 const markCompleteItem = (table, id) => {
   return pool.query(`
   UPDATE ${table}
@@ -267,29 +268,14 @@ const markCompleteItem = (table, id) => {
     .then(res => res.rows[0]);
 };
 
-// const markCompleteMovies = () => {
-//   return pool.query(`
-//   UPDATE movies_and_series
-//   SET is_active = false;
-//   `)
-//     .then(res => res.rows[0]);
-// };
-
-// const markCompleteRestaurants = () => {
-//   return pool.query(`
-//   UPDATE restaurants
-//   SET is_active = false;
-//   `)
-//     .then(res => res.rows[0]);
-// };
-
-// const markCompleteProducts = () => {
-//   return pool.query(`
-//   UPDATE products
-//   SET is_active = false;
-//   `)
-//     .then(res => res.rows[0]);
-// };
+const markUnCompleteItem = (table, id) => {
+  return pool.query(`
+  UPDATE ${table}
+  SET is_active = true
+  WHERE id = $1;
+  `, [id])
+    .then(res => res.rows[0]);
+};
 
 const recatergorizeIntoMovies = (name, context) => {
   return pool.query(`
@@ -299,7 +285,6 @@ const recatergorizeIntoMovies = (name, context) => {
   `, [name, context])
     .then(res => res.rows[0]);
 };
-
 
 const recatergorizeIntoBooks = (name, context) => {
   return pool.query(`
@@ -360,4 +345,6 @@ module.exports = {
   recatergorizeIntoProducts,
   recatergorizeIntoMisc,
   recatergorizeIntoRestaurants,
-  markCompleteItem };
+  markCompleteItem,
+  markUnCompleteItem
+};

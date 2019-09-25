@@ -71,10 +71,14 @@
             <div class="itemHeader">
                 <a href='/<%= book['name'] %>' class="leftItem itemTitleHeader"><h4><%= book['name'] %></h4></a><br>
                 <a href="<%= book['link'] %>" class="rightItem"><button class="btn btn-outline-dark">goodreads</button></a>
+                <form class="completedbtn" action="/<%= book['name'] %>/complete" method="POST">
+                  <button type="submit" class="btn btn-outline-success">Complete</button>
+                </form>
             </div>
             <p><%= book['context'] %></p>
         </div>
       <% } %>
+        <br>
 
         <!-- MOVIES AND SERIES -->
         <div id="movieList" aria-hidden="true"/>
@@ -85,10 +89,14 @@
             <div class="itemHeader">
               <a href='/<%= movie['name']%>' class="leftItem itemTitleHeader"><h4><%= movie['name'] %></h4></a><br>
               <a href="<%= movie['link'] %>" class="rightItem"><button class="btn btn-outline-dark">IMDB</button></a>
+              <form class="completedbtn" action="/complete" method="POST">
+                <button class="btn btn-outline-success">Complete</button>
+              </form>
             </div>
             <p><%= movie['context'] %></p>
           </div>
         <% } %>
+          <br>
 
         <!-- RESTAURANTS -->
         <div id="restList" aria-hidden="true"/>
@@ -99,10 +107,14 @@
             <div class="itemHeader">
               <a href='/<%= restaurant['name']%>' class="leftItem itemTitleHeader"><h4><%= restaurant['name'] %></h4></a><br>
               <a href="<%= restaurant['link'] %>" class="rightItem"><button class="btn btn-outline-dark">Zomato</button></a>
+              <form class="completedbtn" action="/complete" method="POST">
+                <button class="btn btn-outline-success">Complete</button>
+              </form>
             </div>
             <p><%= restaurant['context'] %></p>
           </div>
         <% } %>
+        <br>
 
         <!-- PRODUCTS -->
         <div id="productList" aria-hidden="true"/>
@@ -113,10 +125,14 @@
               <div class="itemHeader">
                 <a href='/<%= product['name']%>' class="leftItem itemTitleHeader"><h4><%= product['name'] %></h4></a><br>
                 <a href="<%= product['link'] %>" class="rightItem"><button class="btn btn-outline-dark">Amazon</button></a>
+                <form class="completedbtn" action="/complete" method="POST">
+                  <button class="btn btn-outline-success">Complete</button>
+                </form>
               </div>
               <p><%= product['context'] %></p>
             </div>
         <% } %>
+        <br>
 
         <!-- MISC -->
         <div id="miscList" aria-hidden="true"/>
@@ -126,6 +142,9 @@
             <div class="toDoList">
               <div class="itemHeader">
                 <a href='/<%= mis['name']%>' class="leftItem itemTitleHeader"><h4><%= mis['name'] %></h4></a><br>
+                <form class="completedbtn" action="/complete" method="POST">
+                  <button class="btn btn-outline-success">Complete</button>
+                </form>
               </div>
               <p><%= mis['context'] %></p>
             </div>

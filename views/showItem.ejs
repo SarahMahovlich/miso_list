@@ -19,18 +19,6 @@
   </head>
 
   <body>
-
-    <h1 class="title">
-      <%= list_item %>
-    </h1>
-    <form class="form-edit" action="/:list_item" method="POST">
-    <input class="name-edit" type="text" name="nameEdit" placeholder="<%= list_item %>"" style="width: 400px; margin: 1em">
-    <button type="submit" class="btn btn-success">Edit</button>
-  </form>
-  <form class="form-delete" action="/:list_item/delete" method="POST">
-  <button type="submit" name='delete' class="btn btn-danger">Delete</button>
-  </form>
-
     <nav class="gridLayered">
         <div class="leftContainer">
           <a class="leftItem" href="/">
@@ -49,6 +37,10 @@
           <input class="name-edit" type="text" name="nameEdit" value="<%= list_item %>" style="width: 400px; margin: 1em">
           <button type="submit" class="btn btn-outline-dark">Edit</button>
         </form>
+      </form>
+      <form class="form-delete" action="/:list_item/delete" method="POST">
+      <button type="submit" name='delete' class="btn btn-danger">Delete</button>
+      </form>
     </div>
 
   </body>

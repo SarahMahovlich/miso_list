@@ -166,9 +166,6 @@ const editMisc = (formInput, listItem) => {
     .then(res => res.rows[0]);
 };
 
-
-
-
 const deleteBooks = (listItem) => {
   return pool.query(`
   DELETE

@@ -217,7 +217,7 @@ const deleteBooks = (listItem) => {
   return pool.query(`
   DELETE
   FROM books
-  WHERE name = $1 AND is_active = true;
+  WHERE id = $1 AND is_active = true;
   `, [listItem])
     .then(res => res.rows[0]);
 };
@@ -226,7 +226,7 @@ const deleteProducts = (listItem) => {
   return pool.query(`
   DELETE
   FROM products
-  WHERE name = $1 AND is_active = true;
+  WHERE id = $1 AND is_active = true;
   `, [listItem])
     .then(res => res.rows[0]);
 };
@@ -235,7 +235,7 @@ const deleteMovies = (listItem) => {
   return pool.query(`
   DELETE
   FROM movies_and_series
-  WHERE name = $1 AND is_active = true;
+  WHERE id = $1 AND is_active = true;
   `, [listItem])
     .then(res => res.rows[0]);
 };
@@ -244,7 +244,7 @@ const deleteRestaurants = (listItem) => {
   return pool.query(`
   DELETE
   FROM restaurants
-  WHERE name = $1 AND is_active = true;
+  WHERE id = $1 AND is_active = true;
   `, [listItem])
     .then(res => res.rows[0]);
 };
@@ -253,7 +253,7 @@ const deleteMisc = (listItem) => {
   return pool.query(`
   DELETE
   FROM misc
-  WHERE name = $1 AND is_active = true;
+  WHERE id = $1 AND is_active = true;
   `, [listItem])
     .then(res => res.rows[0]);
 };

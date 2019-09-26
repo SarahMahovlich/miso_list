@@ -146,7 +146,7 @@ app.get("/:table/:id", (req, res) => {
 
 });
 
-//EDITING THE URL
+//EDITING THE NAME
 app.post("/:table/:id", (req, res) => {
   let listItem = req.headers.referer;
   listItem = listItem.replace('http://localhost:8080/', '');
@@ -156,9 +156,9 @@ app.post("/:table/:id", (req, res) => {
   listItem = listItem.replace('misc/', '');
   listItem = listItem.replace('restaurants/', '');
   listItem = decodeURI(listItem);
-  console.log(listItem);
+
   const string = req.body.nameEdit;
-  console.log(string);
+
   if (req.headers.referer.includes('books')) {
     resultQueries.editBooks(string, listItem);
   }
@@ -181,17 +181,34 @@ app.post("/:table/:id", (req, res) => {
 });
 
 //DELETING THE URL
-app.post("/:list_item/delete", (req, res) => {
+app.post("/:table/:id/delete", (req, res) => {
   let listItem = req.headers.referer;
   listItem = listItem.replace('http://localhost:8080/', '');
   listItem = listItem.replace('/delete', '');
+  listItem = listItem.replace('books/', '');
+  listItem = listItem.replace('movies/', '');
+  listItem = listItem.replace('products/', '');
+  listItem = listItem.replace('misc/', '');
+  listItem = listItem.replace('restaurants/', '');
   listItem = decodeURI(listItem);
 
-  resultQueries.deleteBooks(listItem);
-  resultQueries.deleteProducts(listItem);
-  resultQueries.deleteMovies(listItem);
-  resultQueries.deleteRestaurants(listItem);
-  resultQueries.deleteMisc(listItem);
+
+  if (req.headers.referer.includes('books')) {
+    resultQueries.deleteBooks(listItem);
+  }
+  if (req.headers.referer.includes('movies')) {
+    resultQueries.deleteMovies(listItem);
+  }
+  if (req.headers.referer.includes('products')) {
+    resultQueries.deleteProducts(listItem);
+  }
+  if (req.headers.referer.includes('misc')) {
+    resultQueries.deleteMisc(listItem);
+  }
+  if (req.headers.referer.includes('restaurants')) {
+    resultQueries.deleteRestaurants(listItem);
+  }
+
   res.redirect('/');
 });
 
@@ -201,7 +218,6 @@ app.post("/:list_item/update", (req, res) => {
   let listItem = req.headers.referer;
   listItem = listItem.replace('http://localhost:8080/', '');
   listItem = decodeURI(listItem);
-  console.log(listItem);
 
   if (req.body.Category) {
     resultQueries.deleteBooks(listItem);

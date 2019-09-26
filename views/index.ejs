@@ -178,8 +178,9 @@
           <% let archivedRest = archives['restaurants']; %>
           <% let archivedProducts = archives['products']; %>
           <% let archivedMisc = archives['misc']; %>
-          <div class="toDoList">
+
           <% for (let archive of archivedBooks) { %>
+            <div class="toDoList">
               <div class="itemHeader">
                 <a href='/<%= archive['name']%>' class="leftItem itemTitleHeader"><h4><%= archive['name'] %></h4></a><br>
                 <div class="rightContainer">
@@ -192,8 +193,9 @@
               <p class="itemContext"><%= archive['context'] %></p>
             </div>
           <% } %>
-          <div class="toDoList">
+
           <% for (let archive of archivedMovies) { %>
+            <div class="toDoList">
             <div class="itemHeader">
               <a href='/<%= archive['name']%>' class="leftItem itemTitleHeader"><h4><%= archive['name'] %></h4></a><br>
               <div class="rightContainer">
@@ -206,8 +208,9 @@
             <p class="itemContext"><%= archive['context'] %></p>
           </div>
           <% } %>
-          <div class="toDoList">
+
           <% for (let archive of archivedRest) { %>
+            <div class="toDoList">
             <div class="itemHeader">
               <a href='/<%= archive['name']%>' class="leftItem itemTitleHeader"><h4><%= archive['name'] %></h4></a><br>
               <div class="rightContainer">
@@ -220,8 +223,9 @@
             <p class="itemContext"><%= archive['context'] %></p>
           </div>
           <% } %>
-          <div class="toDoList">
+
           <% for (let archive of archivedProducts) { %>
+            <div class="toDoList">
             <div class="itemHeader">
               <a href='/<%= archive['name']%>' class="leftItem itemTitleHeader"><h4><%= archive['name'] %></h4></a><br>
               <div class="rightContainer">
@@ -234,8 +238,9 @@
             <p class="itemContext"><%= archive['context'] %></p>
           </div>
           <% } %>
-          <div class="toDoList">
+
           <% for (let archive of archivedMisc) { %>
+            <div class="toDoList">
             <div class="itemHeader">
               <a href='/<%= archive['name']%>' class="leftItem itemTitleHeader"><h4><%= archive['name'] %></h4></a><br>
               <div class="rightContainer">

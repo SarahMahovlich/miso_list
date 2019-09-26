@@ -66,17 +66,17 @@
       </div>
     </header>
     <main>
+<div class="bookDiv">
       <% if (results) { %>
         <!-- BOOKS -->
         <div id="bookList" aria-hidden="true"/>
         <div class="leftContainer bookSlide">
-          <h2 class="listTitle">Books</h2>
-          <i class="fas fa-sort-down fa-2x"></i>
+          <h2 class="listTitle leftItem ">Books</h2>
+          <i class="fas fa-sort-down fa-2x leftItem"></i>
         </div>
         <div class="bookSection">
         <% let books = results['books']; %>
         <% for (let book of books) { %>
-
           <div class="toDoList">
             <div class="itemHeader">
                 <a name='book['name']' href='/books/<%= book['id'] %>' class="leftItem itemTitleHeader"><h4><%= book['name'] %></h4></a><br>
@@ -89,10 +89,15 @@
         </div>
       <% } %>
     </div>
+</div>
 
+<div class="movieDiv">
         <!-- MOVIES AND SERIES -->
         <div id="movieList" aria-hidden="true"/>
-        <h2 class="listTitle movieSlide">Movies & TV Series</h2>
+        <div class="leftContainer movieSlide">
+          <h2 class="listTitle leftItem">Movies & TV Series</h2>
+          <i class="fas fa-sort-down fa-2x leftItem"></i>
+        </div>
         <div class="movieSection">
         <% let movies = results['movies_and_series']; %>
         <% for (let movie of movies) { %>
@@ -108,10 +113,15 @@
           </div>
         <% } %>
       </div>
+</div>
 
+<div class="restDiv">
         <!-- RESTAURANTS -->
         <div id="restList" aria-hidden="true"/>
-        <h2 class="listTitle restSlide">Restaurants</h2>
+        <div class="leftContainer restSlide">
+          <h2 class="listTitle leftItem">Restaurants</h2>
+          <i class="fas fa-sort-down fa-2x leftItem"></i>
+        </div>
         <div class="restSection">
         <% let restaurants = results['restaurants']; %>
         <% for (let restaurant of restaurants) { %>
@@ -127,10 +137,15 @@
           </div>
         <% } %>
       </div>
+</div>
 
+<div class="prodDiv">
         <!-- PRODUCTS -->
         <div id="productList" aria-hidden="true"/>
-          <h2 class="listTitle prodSlide">Products</h2>
+        <div class="leftContainer prodSlide">
+          <h2 class="listTitle leftItem">Products</h2>
+          <i class="fas fa-sort-down fa-2x leftItem"></i>
+        </div>
           <div class="prodSection">
           <% let products = results['products']; %>
           <% for (let product of products) { %>
@@ -146,39 +161,47 @@
             </div>
         <% } %>
       </div>
+</div>
 
-        <!-- MISC -->
-        <div id="miscList" aria-hidden="true"/>
-          <h2 class="listTitle miscSlide">Miscellaneous</h2>
-          <div class="miscSection">
-          <% let misc = results['misc']; %>
-          <% for (let mis of misc) { %>
-            <div class="toDoList">
-              <div class="itemHeader">
-                <a href='/misc/<%= mis['id']%>' class="leftItem itemTitleHeader"><h4><%= mis['name'] %></h4></a><br>
-                <div class="rightContainer">
+<div class="miscDiv">
+      <!-- MISC -->
+      <div id="miscList" aria-hidden="true"/>
+      <div class="leftContainer miscSlide">
+        <h2 class="listTitle leftItem">Miscellaneous</h2>
+        <i class="fas fa-sort-down fa-2x leftItem"></i>
+      </div>
+        <div class="miscSection">
+        <% let misc = results['misc']; %>
+        <% for (let mis of misc) { %>
+          <div class="toDoList">
+            <div class="itemHeader">
+              <a href='/misc/<%= mis['id']%>' class="leftItem itemTitleHeader"><h4><%= mis['name'] %></h4></a><br>
+              <div class="rightContainer">
                 <form class="completedbtn" action="/misc/<%= mis['id'] %>/complete" method="POST">
                   <button class="btn btn-outline-success rightItem">Complete</button>
                 </form>
-                </div>
               </div>
-              <p class="itemContext"><%= mis['context'] %></p>
             </div>
+            <p class="itemContext"><%= mis['context'] %></p>
+          </div>
         <% } %>
       </div>
-  <% } %>
+    <% } %>
+</div>
 
         <% if (results) { %>
         <!-- Archived -->
         <div id="archiveList" aria-hidden="true"/>
+        <div class="leftContainer archiveSlide">
           <h2 class="listTitle archiveSlide">Archived</h2>
+          <i class="fas fa-sort-down fa-2x leftItem"></i>
+        </div>
           <div class="archiveSection">
           <% let archivedBooks = archives['books']; %>
           <% let archivedMovies = archives['movies_and_series']; %>
           <% let archivedRest = archives['restaurants']; %>
           <% let archivedProducts = archives['products']; %>
           <% let archivedMisc = archives['misc']; %>
-
           <% for (let archive of archivedBooks) { %>
             <div class="toDoList">
               <div class="itemHeader">
@@ -193,7 +216,6 @@
               <p class="itemContext"><%= archive['context'] %></p>
             </div>
           <% } %>
-
           <% for (let archive of archivedMovies) { %>
             <div class="toDoList">
             <div class="itemHeader">
@@ -208,7 +230,6 @@
             <p class="itemContext"><%= archive['context'] %></p>
           </div>
           <% } %>
-
           <% for (let archive of archivedRest) { %>
             <div class="toDoList">
             <div class="itemHeader">
@@ -223,7 +244,6 @@
             <p class="itemContext"><%= archive['context'] %></p>
           </div>
           <% } %>
-
           <% for (let archive of archivedProducts) { %>
             <div class="toDoList">
             <div class="itemHeader">
@@ -238,7 +258,6 @@
             <p class="itemContext"><%= archive['context'] %></p>
           </div>
           <% } %>
-
           <% for (let archive of archivedMisc) { %>
             <div class="toDoList">
             <div class="itemHeader">

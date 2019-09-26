@@ -89,7 +89,7 @@
             <div class="itemHeader">
               <a href='/movies/<%= movie['id']%>' class="leftItem itemTitleHeader"><h4><%= movie['name'] %></h4></a><br>
               <a href="<%= movie['link'] %>" class="rightItem"><button class="btn btn-outline-dark">IMDB</button></a>
-              <form class="completedbtn" action="/movies/<%= movie['id'] %>/complete" method="POST">
+              <form class="completedbtn" action="/movies_and_series/<%= movie['id'] %>/complete" method="POST">
                 <button class="btn btn-outline-success">Complete</button>
               </form>
             </div>
@@ -141,7 +141,7 @@
           <% for (let mis of misc) { %>
             <div class="toDoList">
               <div class="itemHeader">
-                <a href='/misc/<%= mis['id']%>' class="leftItem itemTitleHeader"><h4><%= mis['name'] %></h4></a><br>
+                  <a href='/misc/<%= mis['id']%>' class="leftItem itemTitleHeader"><h4><%= mis['name'] %></h4></a><br>
                 <form class="completedbtn" action="/misc/<%= mis['id'] %>/complete" method="POST">
                   <button class="btn btn-outline-success">Complete</button>
                 </form>

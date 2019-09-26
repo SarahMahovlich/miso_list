@@ -56,7 +56,7 @@ app.get("/", (req, res) => {
         .then((archive) => {
           templatevars.archives = archive;
           res.render("index", templatevars);
-        })
+        });
     });
 });
 
@@ -107,13 +107,13 @@ app.post("/:table/:id/unarchive", (req, res) => {
   const itemTable = res.req.params.table;
   const itemId = res.req.params.id;
   const status = req.route.methods.post;
-    if (status === true) {
-      resultQueries.markUnCompleteItem(itemTable, itemId)
+  if (status === true) {
+    resultQueries.markUnCompleteItem(itemTable, itemId)
       .then((result) => {
         res.redirect('/');
       });
-    }
-  });
+  }
+});
 
 //RENDERING SELECTED ITEM PAGE
 app.get("/:table/:id", (req, res) => {
@@ -202,7 +202,7 @@ app.post("/:table/:id/delete", (req, res) => {
   listItem = listItem.replace('products/', '');
   listItem = listItem.replace('misc/', '');
   listItem = listItem.replace('restaurants/', '');
-  listItem = decodeURI(listItem);
+  listItem = decodeURI(listItem);// listitem is the id
 
 
   if (req.headers.referer.includes('books')) {
@@ -224,21 +224,20 @@ app.post("/:table/:id/delete", (req, res) => {
   res.redirect('/');
 });
 
-// UPDATING THE URL
-app.post("/:list_item/update", (req, res) => {
-  console.log(req.body);
+// UPDATING THE CATEGORY IMPLEMENTING
+app.post("/:table/:id/update", (req, res) => {
   let listItem = req.headers.referer;
   listItem = listItem.replace('http://localhost:8080/', '');
+  listItem = listItem.replace('/update', '');
+  listItem = listItem.replace('books/', '');
+  listItem = listItem.replace('movies/', '');
+  listItem = listItem.replace('products/', '');
+  listItem = listItem.replace('misc/', '');
+  listItem = listItem.replace('restaurants/', '');
   listItem = decodeURI(listItem);
+  console.log('resultQ', req.headers);
 
-  if (req.body.Category) {
-    resultQueries.deleteBooks(listItem);
-    resultQueries.deleteProducts(listItem);
-    resultQueries.deleteMovies(listItem);
-    resultQueries.deleteRestaurants(listItem);
-    resultQueries.deleteMisc(listItem);
-  }
-
+  //extract name
   if (req.body.Category === 'Books') {
     resultQueries.recatergorizeIntoBooks(listItem, req.body.contextEdit);
   }
@@ -254,6 +253,23 @@ app.post("/:list_item/update", (req, res) => {
   if (req.body.Category === 'Misc') {
     resultQueries.recatergorizeIntoMisc(listItem, req.body.contextEdit);
   }
+
+  if (req.headers.referer.includes('books')) {
+    resultQueries.deleteBooks(listItem);
+  }
+  if (req.headers.referer.includes('movies')) {
+    resultQueries.deleteMovies(listItem);
+  }
+  if (req.headers.referer.includes('products')) {
+    resultQueries.deleteProducts(listItem);
+  }
+  if (req.headers.referer.includes('misc')) {
+    resultQueries.deleteMisc(listItem);
+  }
+  if (req.headers.referer.includes('restaurants')) {
+    resultQueries.deleteRestaurants(listItem);
+  }
+
   res.redirect('/');
 
 });

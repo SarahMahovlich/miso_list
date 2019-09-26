@@ -27,30 +27,33 @@
     <!--Fonts-->
     <link href="https://fonts.googleapis.com/css?family=Pacifico|Roboto&display=swap" rel="stylesheet">
   </head>
-  <body>
+  <body style="background-color: #f7f0db;">
     <nav class="gridLayered">
         <div class="leftContainer">
           <a class="leftItem" href="#header">
             <img class="navimg" src ="https://www.sccpre.cat/mypng/detail/172-1728754_japanese-akita-icon-wrapping-paper-shiba-inu.png" >
           </a>
           <a class="iconLinks leftItem" href="#bookList">
-            <i class="fas fa-book fa-2x"></i>
+            <i class="fas fa-book fa-2x navi"></i>
           </a>
           <a class="iconLinks leftItem" href="#movieList">
-            <i class="fas fa-tv fa-2x"></i>
+            <i class="fas fa-tv fa-2x navi"></i>
           </a>
           <a class="iconLinks leftItem" href="#restList">
-            <i class="fas fa-utensils fa-2x"></i>
+            <i class="fas fa-utensils fa-2x navi"></i>
           </a>
           <a class="iconLinks leftItem" href="#productList">
-            <i class="fas fa-shopping-cart fa-2x"></i>
+            <i class="fas fa-shopping-cart fa-2x navi"></i>
           </a>
           <a class="iconLinks leftItem" href="#miscList">
-            <i class="fas fa-clipboard-list fa-2x"></i>
+            <i class="fas fa-clipboard-list fa-2x navi"></i>
           </a>
           <a class="iconLinks leftItem" href="#archiveList">
-            <i class="fas fa-check-square fa-2x"></i>
+            <i class="fas fa-check-square fa-2x navi"></i>
           </a>
+        </div>
+        <div class="rightContainer">
+        <h2 class="rightItem logout">Logout</h2>
         </div>
     </nav>
     <header id="header">
@@ -66,7 +69,11 @@
       <% if (results) { %>
         <!-- BOOKS -->
         <div id="bookList" aria-hidden="true"/>
-        <h2 class="listTitle">Books</h2>
+        <div class="leftContainer bookSlide">
+          <h2 class="listTitle">Books</h2>
+          <i class="fas fa-sort-down fa-2x"></i>
+        </div>
+        <div class="bookSection">
         <% let books = results['books']; %>
         <% for (let book of books) { %>
           <div class="toDoList">
@@ -80,11 +87,12 @@
             <p class="itemContext"><%= book['context'] %></p>
         </div>
       <% } %>
-
+    </div>
 
         <!-- MOVIES AND SERIES -->
         <div id="movieList" aria-hidden="true"/>
-        <h2 class="listTitle">Movies & TV Series</h2>
+        <h2 class="listTitle movieSlide">Movies & TV Series</h2>
+        <div class="movieSection">
         <% let movies = results['movies_and_series']; %>
         <% for (let movie of movies) { %>
           <div class="toDoList">
@@ -98,11 +106,12 @@
             <p class="itemContext"><%= movie['context'] %></p>
           </div>
         <% } %>
-
+      </div>
 
         <!-- RESTAURANTS -->
         <div id="restList" aria-hidden="true"/>
-        <h2 class="listTitle">Restaurants</h2>
+        <h2 class="listTitle restSlide">Restaurants</h2>
+        <div class="restSection">
         <% let restaurants = results['restaurants']; %>
         <% for (let restaurant of restaurants) { %>
           <div class="toDoList">
@@ -116,11 +125,12 @@
             <p class="itemContext"><%= restaurant['context'] %></p>
           </div>
         <% } %>
-
+      </div>
 
         <!-- PRODUCTS -->
         <div id="productList" aria-hidden="true"/>
-          <h2 class="listTitle">Products</h2>
+          <h2 class="listTitle prodSlide">Products</h2>
+          <div class="prodSection">
           <% let products = results['products']; %>
           <% for (let product of products) { %>
             <div class="toDoList">
@@ -134,32 +144,34 @@
               <p class="itemContext"><%= product['context'] %></p>
             </div>
         <% } %>
-
+      </div>
 
         <!-- MISC -->
         <div id="miscList" aria-hidden="true"/>
-          <h2 class="listTitle">Miscellaneous</h2>
+          <h2 class="listTitle miscSlide">Miscellaneous</h2>
+          <div class="miscSection">
           <% let misc = results['misc']; %>
           <% for (let mis of misc) { %>
             <div class="toDoList">
               <div class="itemHeader">
                 <a href='/<%= mis['name']%>' class="leftItem itemTitleHeader"><h4><%= mis['name'] %></h4></a><br>
-                <div class="rightContainer"></div>
+                <div class="rightContainer">
                 <form class="completedbtn" action="/misc/<%= mis['id'] %>/complete" method="POST">
                   <button class="btn btn-outline-success rightItem">Complete</button>
                 </form>
+                </div>
               </div>
               <p class="itemContext"><%= mis['context'] %></p>
             </div>
-              </div>
-
         <% } %>
+      </div>
   <% } %>
 
         <% if (results) { %>
         <!-- Archived -->
         <div id="archiveList" aria-hidden="true"/>
-          <h2 class="listTitle">Archived</h2>
+          <h2 class="listTitle archiveSlide">Archived</h2>
+          <div class="archiveSection">
           <% let archivedBooks = archives['books']; %>
           <% let archivedMovies = archives['movies_and_series']; %>
           <% let archivedRest = archives['restaurants']; %>
@@ -234,12 +246,13 @@
             <p class="itemContext"><%= archive['context'] %></p>
           </div>
           <% } %>
+          </div>
       <% } %>
   </main>
 
-  <footer class="indexFooter">
+  <!-- <footer class="indexFooter">
 
   <p> this is a footer</p>
-  </footer>
+  </footer> -->
   </body>
 </html>

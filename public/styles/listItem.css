@@ -1,3 +1,27 @@
+.bookSection {
+  display: none;
+}
+
+.movieSection {
+  display: none;
+}
+
+.restSection {
+  display: none;
+}
+
+.prodSection {
+  display: none;
+}
+
+.miscSection {
+  display: none;
+}
+
+.archiveSection {
+  display: none;
+}
+
 .toDoList {
   background-color: f8dc88;
   border-top: 3px solid #244751;

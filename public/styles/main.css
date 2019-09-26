@@ -1,5 +1,6 @@
 main {
-  /* background-color:  #f7f0db; */
   background-color: #f7f0db;
   color: #244751;
+  position: inherit;
 }
+

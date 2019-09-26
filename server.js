@@ -51,7 +51,7 @@ app.use("/api/widgets", widgetsRoutes(db));
 
 //RENDERING ROOT PAGE
 app.get("/", (req, res) => {
-  console.log(req.headers);
+  // console.log(req.headers);
   resultQueries.getAllThings()
     .then((result) => {
       const templatevars = {results: result};

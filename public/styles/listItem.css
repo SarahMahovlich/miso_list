@@ -88,6 +88,14 @@
   padding-left: 60px;
 }
 
+.listTitle:hover {
+  color: #8DB0D4;
+}
+
+.fa-sort-down:hover {
+  color: #8DB0D4;
+}
+
 .itemContext {
   padding-left: 60px;
 }

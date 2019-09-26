@@ -51,20 +51,26 @@ app.use("/api/widgets", widgetsRoutes(db));
 
 //RENDERING ROOT PAGE
 app.get("/", (req, res) => {
-  resultQueries.getAllThings()
-    .then((result) => {
-      const templatevars = {results: result};
-      resultQueries.getArchivedThings()
-        .then((archive) => {
-          templatevars.archives = archive;
-          const userCookie = req.cookies.email;
-          resultQueries.getUser(userCookie)
-            .then((users) => {
-              templatevars.users = users;
-              res.render("index", templatevars);
-            });
-        });
-    });
+  const email = req.cookies.email;
+  console.log(email);
+  if (email) {
+    resultQueries.getAllThings()
+      .then((result) => {
+        const templatevars = {results: result};
+        resultQueries.getArchivedThings()
+          .then((archive) => {
+            templatevars.archives = archive;
+            const userCookie = req.cookies.email;
+            resultQueries.getUser(userCookie)
+              .then((users) => {
+                templatevars.users = users;
+                res.render("index", templatevars);
+              });
+          });
+      });
+  } else {
+    res.redirect("/login");
+  }
 });
 
 //POSTING INFORMATION FROM FORM
@@ -89,10 +95,12 @@ app.get("/register", (req, res) => {
 
 //POSTING INFORMATION FROM REGISTRATION PAGE // REGISTERING NEW USER
 app.post("/register", (req, res) => {
+  const email = req.body.email;
   let newUsername = req.body.username;
   let newEmail = req.body.email;
   let newPassword = req.body.password;
   resultQueries.newUserDB(newUsername, newEmail, newPassword);
+  res.cookie("email", email);
   res.redirect("/");
 });
 

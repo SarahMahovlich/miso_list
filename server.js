@@ -125,7 +125,7 @@ app.post("/:table/:id/complete", (req, res) => {
   if (status === true) {
     resultQueries.markCompleteItem(itemTable, itemId)
       .then((result) => {
-        res.redirect('/');
+        // res.redirect('/');
       });
   }
 });

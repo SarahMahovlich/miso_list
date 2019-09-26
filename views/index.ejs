@@ -67,6 +67,7 @@
         <h2 class="listTitle">Books</h2>
         <% let books = results['books']; %>
         <% for (let book of books) { %>
+
           <div class="toDoList">
             <div class="itemHeader">
                 <a name='book['name']' href='/books/<%= book['id'] %>' class="leftItem itemTitleHeader"><h4><%= book['name'] %></h4></a><br>
@@ -112,6 +113,8 @@
               </form>
             </div>
             <p><%= restaurant['context'] %></p>
+            <h1><%= restaurant.id %></h1>
+
           </div>
         <% } %>
         <br>

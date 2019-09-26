@@ -15,6 +15,8 @@ const dbParams = require('./lib/db.js');
 const db = new Pool(dbParams);
 const { searchEngine } = require('./lib/searchEngine');
 const resultQueries = require('./routes/resultQueries.js');
+const cookieParser = require('cookie-parser');
+app.use(cookieParser());
 db.connect();
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
@@ -49,9 +51,10 @@ app.use("/api/widgets", widgetsRoutes(db));
 
 //RENDERING ROOT PAGE
 app.get("/", (req, res) => {
+  console.log(req.headers);
   resultQueries.getAllThings()
     .then((result) => {
-      const templatevars = {results: result}
+      const templatevars = {results: result};
       resultQueries.getArchivedThings()
         .then((archive) => {
           templatevars.archives = archive;
@@ -80,14 +83,38 @@ app.get("/register", (req, res) => {
   res.render("register");
 });
 
-//POSTING INFORMATION FROM REGISTRATION PAGE
+//POSTING INFORMATION FROM REGISTRATION PAGE // REGISTERING NEW USER
 app.post("/register", (req, res) => {
+  let newUsername = req.body.username;
+  let newEmail = req.body.email;
+  let newPassword = req.body.password;
+  resultQueries.newUserDB(newUsername, newEmail, newPassword);
   res.redirect("/");
 });
 
 //RENDERING LOGIN PAGE
 app.get("/login", (req, res) => {
   res.render("login");
+});
+
+//LOGGING INTO THE USER ACCOUNT
+app.post("/login", (req, res) => {
+  const email = req.body.email; // RENDERS EMAIL
+  if (email) {
+    resultQueries.PasswordEmail(email).then(result => {
+      if (email === result.email) {
+        res.redirect('/');
+      } else {
+        res.send("FAIL");
+      }
+    });
+    // req.cookies.email = email;
+  } else {
+    console.log("failure");
+    res.status(404);
+  }
+  //if user is found
+  //set cookie for user (login in the user)
 });
 
 //MARKING THE ITEM AS COMPLETED
@@ -222,6 +249,10 @@ app.post("/:table/:id/delete", (req, res) => {
   res.redirect('/');
 });
 
+
+// UPDATING THE URL
+app.post("/:list_item/update", (req, res) => {
+
 // UPDATING THE CATEGORY IMPLEMENTING
 app.post("/:table/:id/:name/update", (req, res) => {
   //extracts name from the url
@@ -233,6 +264,7 @@ app.post("/:table/:id/:name/update", (req, res) => {
   name = name[2];
   name = decodeURI(name);
   //extracts item id from the url
+
   let listItem = req.headers.referer;
   listItem = listItem.replace('http://localhost:8080/', '');
   listItem = listItem.replace('/update', '');
@@ -242,6 +274,13 @@ app.post("/:table/:id/:name/update", (req, res) => {
   listItem = listItem.replace('misc/', '');
   listItem = listItem.replace('restaurants/', '');
   listItem = decodeURI(listItem);
+  if (req.body.Category) {
+    resultQueries.deleteBooks(listItem);
+    resultQueries.deleteProducts(listItem);
+    resultQueries.deleteMovies(listItem);
+    resultQueries.deleteRestaurants(listItem);
+    resultQueries.deleteMisc(listItem);
+  }
 
   // console.log('resultQ', req.headers);
   //extract name

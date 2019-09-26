@@ -108,7 +108,6 @@ app.post("/login", (req, res) => {
         res.send("FAIL");
       }
     });
-    // req.cookies.email = email;
   } else {
     console.log("failure");
     res.status(404);
@@ -211,9 +210,6 @@ app.post("/:table/:id", (req, res) => {
   if (req.headers.referer.includes('restaurants')) {
     resultQueries.editRestaurants(string, listItem);
   }
-
-
-
   res.redirect('/');
 });
 
@@ -228,7 +224,6 @@ app.post("/:table/:id/delete", (req, res) => {
   listItem = listItem.replace('misc/', '');
   listItem = listItem.replace('restaurants/', '');
   listItem = decodeURI(listItem);// listitem is the id
-
 
   if (req.headers.referer.includes('books')) {
     resultQueries.deleteBooks(listItem);
@@ -248,10 +243,6 @@ app.post("/:table/:id/delete", (req, res) => {
 
   res.redirect('/');
 });
-
-
-// UPDATING THE URL
-app.post("/:list_item/update", (req, res) => {
 
 // UPDATING THE CATEGORY IMPLEMENTING
 app.post("/:table/:id/:name/update", (req, res) => {

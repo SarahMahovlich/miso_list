@@ -52,9 +52,12 @@
             <i class="fas fa-check-square fa-2x navi"></i>
           </a>
         </div>
-        <div class="rightContainer">
-        <h2 class="rightItem logout">Logout</h2>
-        </div>
+        <form method="POST" action="/logout">
+          <div class="rightContainer">
+              <button class="rightItem logout" type="submit">Logout</button>
+              <%= users.email %>
+          </div>
+      </form>
     </nav>
     <header id="header">
       <div class="centerHeader">

@@ -60,6 +60,16 @@ const getAllThings = () => {
     });
 };
 
+const getUser = (email) => {
+  let queryString = `
+  SELECT *
+  FROM users
+  WHERE email = $1;
+  `;
+  return pool.query(queryString, [email])
+    .then(res => res.rows[0]);
+};
+
 const getArchivedThings = () => {
   let returnObj = {};
   let queryString = `
@@ -367,5 +377,6 @@ module.exports = {
   markCompleteItem,
   newUserDB,
   PasswordEmail,
-  markUnCompleteItem
+  markUnCompleteItem,
+  getUser
 };

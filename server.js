@@ -51,14 +51,18 @@ app.use("/api/widgets", widgetsRoutes(db));
 
 //RENDERING ROOT PAGE
 app.get("/", (req, res) => {
-  console.log(req.headers);
   resultQueries.getAllThings()
     .then((result) => {
       const templatevars = {results: result};
       resultQueries.getArchivedThings()
         .then((archive) => {
           templatevars.archives = archive;
-          res.render("index", templatevars);
+          const userCookie = req.cookies.email;
+          resultQueries.getUser(userCookie)
+            .then((users) => {
+              templatevars.users = users;
+              res.render("index", templatevars);
+            });
         });
     });
 });
@@ -103,17 +107,22 @@ app.post("/login", (req, res) => {
   if (email) {
     resultQueries.PasswordEmail(email).then(result => {
       if (email === result.email) {
+        res.cookie("email", email);
         res.redirect('/');
       } else {
         res.send("FAIL");
+        console.log("Failed to login");
       }
     });
   } else {
-    console.log("failure");
     res.status(404);
   }
-  //if user is found
-  //set cookie for user (login in the user)
+});
+
+// logging out and deleting cookies from session
+app.post("/logout", (req, res) => {
+  res.clearCookie("email");
+  res.redirect("/login");
 });
 
 //MARKING THE ITEM AS COMPLETED
@@ -145,11 +154,9 @@ app.post("/:table/:id/unarchive", (req, res) => {
 app.get("/:table/:id", (req, res) => {
   const itemId = res.req.params.id;
   const status = req.route.methods.get;
-  // console.log('header', req.url);
   if (status === true) {
     resultQueries.getAllThings()
       .then((result) => {
-        // console.log(result);
         let itemTable = 'null';
 
         if (req.url.includes('books')) {
@@ -273,7 +280,6 @@ app.post("/:table/:id/:name/update", (req, res) => {
     resultQueries.deleteMisc(listItem);
   }
 
-  // console.log('resultQ', req.headers);
   //extract name
   if (req.body.Category === 'Books') {
     resultQueries.recatergorizeIntoBooks(name, req.body.contextEdit);

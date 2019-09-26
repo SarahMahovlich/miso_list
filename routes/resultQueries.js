@@ -10,46 +10,46 @@ const pool = new Pool({
 });
 
 // look at how to chain promises!
-const getAllThings = () => {
+const getAllThings = (id) => {
   let returnObj = {};
   let queryString = `
   SELECT *
   FROM products
-  WHERE is_active = true;
+  WHERE is_active = true AND user_id = $1;
   `;
-  return pool.query(queryString)
+  return pool.query(queryString, [id])
     .then((data) => {
       returnObj['products'] = data.rows;
       let queryString = `
       SELECT *
       FROM books
-      WHERE is_active = true;
+      WHERE is_active = true AND user_id = $1;
       `;
-      return pool.query(queryString)
+      return pool.query(queryString, [id])
         .then((data) => {
           returnObj['books'] = data.rows;
           let queryString = `
           SELECT *
           FROM movies_and_series
-          WHERE is_active = true;
+          WHERE is_active = true AND user_id = $1;
           `;
-          return pool.query(queryString)
+          return pool.query(queryString, [id])
             .then((data) => {
               returnObj['movies_and_series'] = data.rows;
               let queryString = `
               SELECT *
               FROM restaurants
-              WHERE is_active = true;
+              WHERE is_active = true AND user_id = $1;
               `;
-              return pool.query(queryString)
+              return pool.query(queryString, [id])
                 .then((data) => {
                   returnObj['restaurants'] = data.rows;
                   let queryString = `
                   SELECT *
                   FROM misc
-                  WHERE is_active = true;
+                  WHERE is_active = true AND user_id = $1;
                   `;
-                  return pool.query(queryString)
+                  return pool.query(queryString, [id])
                     .then((data) => {
                       returnObj['misc'] = data.rows;
                       return returnObj;
@@ -58,16 +58,6 @@ const getAllThings = () => {
             });
         });
     });
-};
-
-const getUser = (email) => {
-  let queryString = `
-  SELECT *
-  FROM users
-  WHERE email = $1;
-  `;
-  return pool.query(queryString, [email])
-    .then(res => res.rows[0]);
 };
 
 const getArchivedThings = () => {
@@ -75,41 +65,41 @@ const getArchivedThings = () => {
   let queryString = `
   SELECT *
   FROM products
-  WHERE is_active = false;
+  WHERE is_active = false AND user_id = $1;
   `;
-  return pool.query(queryString)
+  return pool.query(queryString, [id])
     .then((data) => {
       returnObj['products'] = data.rows;
       let queryString = `
       SELECT *
       FROM books
-      WHERE is_active = false;
+      WHERE is_active = false AND user_id = $1;
       `;
-      return pool.query(queryString)
+      return pool.query(queryString, [id])
         .then((data) => {
           returnObj['books'] = data.rows;
           let queryString = `
           SELECT *
           FROM movies_and_series
-          WHERE is_active = false;
+          WHERE is_active = false AND user_id = $1;
           `;
-          return pool.query(queryString)
+          return pool.query(queryString, [id])
             .then((data) => {
               returnObj['movies_and_series'] = data.rows;
               let queryString = `
               SELECT *
               FROM restaurants
-              WHERE is_active = false;
+              WHERE is_active = false AND user_id = $1;
               `;
-              return pool.query(queryString)
+              return pool.query(queryString, [id])
                 .then((data) => {
                   returnObj['restaurants'] = data.rows;
                   let queryString = `
                   SELECT *
                   FROM misc
-                  WHERE is_active = false;
+                  WHERE is_active = false AND user_id = $1;
                   `;
-                  return pool.query(queryString)
+                  return pool.query(queryString, [id])
                     .then((data) => {
                       returnObj['misc'] = data.rows;
                       return returnObj;
@@ -120,62 +110,62 @@ const getArchivedThings = () => {
     });
 };
 
-const addToWatch = (body, query) => {
+const addToWatch = (body, query, id) => {
   return pool.query(`
-  INSERT INTO movies_and_series (name, context, link)
-    VALUES ($1, $2, $3)
+  INSERT INTO movies_and_series (name, context, link, user_id)
+    VALUES ($1, $2, $3, $4)
     RETURNING *;
-  `, [query, body.items[0]['snippet'], body.items[0]['link']])
+  `, [query, body.items[0]['snippet'], body.items[0]['link'], id])
     .then(res => res.rows[0]);
 };
 
 
-const addToRead = (body, query) => {
+const addToRead = (body, query, id) => {
   if (body.spelling) {
     query = body.spelling.correctedQuery;
   }
   return pool.query(`
-  INSERT INTO books (name, context, link)
-  VALUES ($1, $2, $3)
+  INSERT INTO books (name, context, link, user_id)
+  VALUES ($1, $2, $3, $4)
   RETURNING *;
-  `, [query, body.items[0]['snippet'], body.items[0]['link']])
+  `, [query, body.items[0]['snippet'], body.items[0]['link'], id])
     .then(res => res.rows[0]);
 };
 
 
 
-const addToEat = (body, query) => {
+const addToEat = (body, query, id) => {
   if (body.spelling) {
     query = body.spelling.correctedQuery;
   }
   return pool.query(`
-  INSERT INTO restaurants (name, context, link)
-  VALUES ($1, $2, $3)
+  INSERT INTO restaurants (name, context, link, user_id)
+  VALUES ($1, $2, $3, $4)
   RETURNING *;
-  `, [query, body.items[0]['snippet'], body.items[0]['link']])
+  `, [query, body.items[0]['snippet'], body.items[0]['link'], id])
     .then(res => res.rows[0]);
 };
 
 
 
-const addToBuy = (body, query) => {
+const addToBuy = (body, query, id) => {
   if (body.spelling) {
     query = body.spelling.correctedQuery;
   }
   return pool.query(`
-  INSERT INTO products (name, context, link)
-  VALUES ($1, $2, $3)
+  INSERT INTO products (name, context, link, user_id)
+  VALUES ($1, $2, $3, $4)
   RETURNING *;
-  `, [query, body.items[0]['snippet'], body.items[0]['link']])
+  `, [query, body.items[0]['snippet'], body.items[0]['link'], id])
     .then(res => res.rows[0]);
 };
 
-const addToMisc = (query) => {
+const addToMisc = (query, id) => {
   return pool.query(`
-  INSERT INTO misc (name, context)
-  VALUES ($1, $2)
+  INSERT INTO misc (name, context, user_id)
+  VALUES ($1, $2, $3)
   RETURNING *;
-  `, [query, ''])
+  `, [query, '', id])
     .then(res => res.rows[0]);
 };
 
@@ -333,12 +323,12 @@ const recatergorizeIntoMisc = (name, context) => {
     .then(res => res.rows[0]);
 };
 
-const newUserDB = (username, name, password) => {
+const newUserDB = (username, email, password) => {
   return pool.query(`
   INSERT INTO users (name, email, password)
   VALUES ($1, $2, $3)
   RETURNING *;
-  `, [username, name, password])
+  `, [username, email, password])
     .then(res => res.rows[0]);
 };
 
@@ -349,6 +339,16 @@ const PasswordEmail = (email) => {
   `, [email])
     .then(res => res.rows[0])
     .catch(err => console.error('Error executing query',err.stack));
+};
+
+const getUser = (id) => {
+  let queryString = `
+  SELECT *
+  FROM users
+  WHERE id = $1;
+  `;
+  return pool.query(queryString, [id])
+    .then(res => res.rows[0]);
 };
 
 module.exports = {

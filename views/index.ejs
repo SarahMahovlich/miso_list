@@ -50,15 +50,12 @@
             <i class="fas fa-check-square fa-2x navi"></i>
           </a>
         </div>
-        <% if (!users) { %>
-          <a href="/login"> <button class="header-options btn btn-info"> login </button></a>
-          <a href="/register"> <button class="header-options btn btn-info"> register </button></a>
-       <% } else { %>
-        <a><%= users.email %></a>
-        <form stlye = "position: absolute; right: 9px" method="POST" action="/logout">
-          <button class="btn btn-danger" type="submit">Logout</button>
-        </form>
-      <% } %>
+          <div class="rightContainer">
+            <a><%= user.email %></a>
+            <form stlye = "position: absolute; right: 9px" method="POST" action="/logout">
+              <button id="linkBtnNav" class="btn btn-outline-dark" type="submit">Logout</button>
+            </form>
+          </div>
     </nav>
     <header id="header">
       <div class="centerHeader">

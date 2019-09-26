@@ -6,7 +6,7 @@ nav {
   position: fixed;
   padding: 1em;
   width: 100%;
-  font-family: 'Pacifico', serif;
+  /* font-family: 'Pacifico', serif; */
   z-index: 3;
 }
 
@@ -87,4 +87,15 @@ nav {
 .logout:hover {
   color: #244751;
   cursor: pointer;
+}
+
+#linkBtnNav {
+  color: #244751;
+  border-color: #244751;
+  border-width: 2px;
+}
+
+#linkBtnNav:hover {
+  color: #8DB0D4;
+  background: #244751;
 }

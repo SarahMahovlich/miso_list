@@ -1,8 +1,11 @@
 .toDoList {
-  background-color: #f7f0db;
-  border: 5px solid #D4B08D;
+  background-color: f8dc88;
+  border-top: 3px solid #244751;
+  margin-left: 30px;
+  margin-right: 30px;
   padding: 10px;
   overflow: auto;
+
 }
 
 .itemHeader {
@@ -43,6 +46,7 @@
 .itemTitleHeader {
   font-size: 24px;
   color:  #244751;
+  padding-left: 60px;
 
 }
 
@@ -54,3 +58,12 @@
   margin: -100px 0 0; /* negative fixed header height */
 }
 
+.listTitle {
+  font-family: 'Pacifico', serif;
+  color:  #244751;
+  padding-left: 60px;
+}
+
+.itemContext {
+  padding-left: 60px;
+}

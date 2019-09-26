@@ -1,7 +1,8 @@
 nav {
   background-color: #8DB0D4;
+  /* background: linear-gradient(to bottom, rgb(153, 179, 204) 0%, rgb(66, 139, 212) 100%); */
   color: white;
-  height: 90px;
+  height: 100px;
   position: fixed;
   padding: 1em;
   width: 100%;
@@ -54,6 +55,7 @@ nav {
   animation-name: move-down;
   animation-duration: 1s;
   animation-iteration-count: infinite;
+  color: #244751;
 }
 
 .iconLinks {

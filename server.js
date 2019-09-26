@@ -92,14 +92,14 @@ app.get("/login", (req, res) => {
 
 //MARKING THE ITEM AS COMPLETED
 app.post("/:table/:id/complete", (req, res) => {
-const itemTable = res.req.params.table;
-const itemId = res.req.params.id;
-const status = req.route.methods.post;
+  const itemTable = res.req.params.table;
+  const itemId = res.req.params.id;
+  const status = req.route.methods.post;
   if (status === true) {
     resultQueries.markCompleteItem(itemTable, itemId)
-    .then((result) => {
-      res.redirect('/');
-    });
+      .then((result) => {
+        res.redirect('/');
+      });
   }
 });
 
@@ -116,38 +116,111 @@ app.post("/:table/:id/unarchive", (req, res) => {
   });
 
 //RENDERING SELECTED ITEM PAGE
-app.get("/:list_item", (req, res) => {
-  // eslint-disable-next-line camelcase
-  const templateVars = { list_item: req.params.list_item};
-  res.render("showItem", templateVars);
+app.get("/:table/:id", (req, res) => {
+  const itemId = res.req.params.id;
+  const status = req.route.methods.get;
+  console.log('header', req.url);
+  if (status === true) {
+    resultQueries.getAllThings()
+      .then((result) => {
+        console.log(result);
+        let itemTable = 'null';
+
+        if (req.url.includes('books')) {
+          itemTable = 'books';
+        }
+        if (req.url.includes('movies')) {
+          itemTable = 'movies_and_series';
+        }
+        if (req.url.includes('products')) {
+          itemTable = 'products';
+        }
+        if (req.url.includes('misc')) {
+          itemTable = 'misc';
+        }
+        if (req.url.includes('restaurants')) {
+          itemTable = 'restaurants';
+        }
+        console.log(result[itemTable]);
+        const table = result[itemTable];
+        let arrayIndex = 0;
+        for (let i = 0; i < table.length; i++) {
+          if (table[i]['id'] == itemId) {
+            arrayIndex = i;
+            break;
+          }
+        }
+        console.log(table[0]['name']);
+        const templateVars = { list_item: req.params.list_item, itemId, name: table[arrayIndex]['name'], context: table[arrayIndex]['context']};
+        res.render("showItem", templateVars);
+      });
+  }
+
 });
 
-//EDITING THE URL
-app.post("/:list_item", (req, res) => {
+//EDITING THE NAME
+app.post("/:table/:id", (req, res) => {
   let listItem = req.headers.referer;
   listItem = listItem.replace('http://localhost:8080/', '');
+  listItem = listItem.replace('books/', '');
+  listItem = listItem.replace('movies/', '');
+  listItem = listItem.replace('products/', '');
+  listItem = listItem.replace('misc/', '');
+  listItem = listItem.replace('restaurants/', '');
   listItem = decodeURI(listItem);
+
   const string = req.body.nameEdit;
-  resultQueries.editBooks(string, listItem);
-  resultQueries.editProducts(string, listItem);
-  resultQueries.editMovies(string, listItem);
-  resultQueries.editRestaurants(string, listItem);
-  resultQueries.editMisc(string, listItem);
+
+  if (req.headers.referer.includes('books')) {
+    resultQueries.editBooks(string, listItem);
+  }
+  if (req.headers.referer.includes('movies')) {
+    resultQueries.editMovies(string, listItem);
+  }
+  if (req.headers.referer.includes('products')) {
+    resultQueries.editProducts(string, listItem);
+  }
+  if (req.headers.referer.includes('misc')) {
+    resultQueries.editMisc(string, listItem);
+  }
+  if (req.headers.referer.includes('restaurants')) {
+    resultQueries.editRestaurants(string, listItem);
+  }
+
+
+
   res.redirect('/');
 });
 
 //DELETING THE URL
-app.post("/:list_item/delete", (req, res) => {
+app.post("/:table/:id/delete", (req, res) => {
   let listItem = req.headers.referer;
   listItem = listItem.replace('http://localhost:8080/', '');
   listItem = listItem.replace('/delete', '');
+  listItem = listItem.replace('books/', '');
+  listItem = listItem.replace('movies/', '');
+  listItem = listItem.replace('products/', '');
+  listItem = listItem.replace('misc/', '');
+  listItem = listItem.replace('restaurants/', '');
   listItem = decodeURI(listItem);
 
-  resultQueries.deleteBooks(listItem);
-  resultQueries.deleteProducts(listItem);
-  resultQueries.deleteMovies(listItem);
-  resultQueries.deleteRestaurants(listItem);
-  resultQueries.deleteMisc(listItem);
+
+  if (req.headers.referer.includes('books')) {
+    resultQueries.deleteBooks(listItem);
+  }
+  if (req.headers.referer.includes('movies')) {
+    resultQueries.deleteMovies(listItem);
+  }
+  if (req.headers.referer.includes('products')) {
+    resultQueries.deleteProducts(listItem);
+  }
+  if (req.headers.referer.includes('misc')) {
+    resultQueries.deleteMisc(listItem);
+  }
+  if (req.headers.referer.includes('restaurants')) {
+    resultQueries.deleteRestaurants(listItem);
+  }
+
   res.redirect('/');
 });
 
@@ -157,7 +230,6 @@ app.post("/:list_item/update", (req, res) => {
   let listItem = req.headers.referer;
   listItem = listItem.replace('http://localhost:8080/', '');
   listItem = decodeURI(listItem);
-  console.log(listItem);
 
   if (req.body.Category) {
     resultQueries.deleteBooks(listItem);

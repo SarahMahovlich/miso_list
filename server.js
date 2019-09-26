@@ -105,15 +105,31 @@ app.post("/:table/:id/complete", (req, res) => {
 
 //RENDERING SELECTED ITEM PAGE
 app.get("/:table/:id", (req, res) => {
-  const itemTable = res.req.params.table;
   const itemId = res.req.params.id;
   const status = req.route.methods.get;
-
-
-
+  console.log('header', req.url);
   if (status === true) {
     resultQueries.getAllThings()
       .then((result) => {
+        console.log(result);
+        let itemTable = 'null';
+
+        if (req.url.includes('books')) {
+          itemTable = 'books';
+        }
+        if (req.url.includes('movies')) {
+          itemTable = 'movies_and_series';
+        }
+        if (req.url.includes('products')) {
+          itemTable = 'products';
+        }
+        if (req.url.includes('misc')) {
+          itemTable = 'misc';
+        }
+        if (req.url.includes('restaurants')) {
+          itemTable = 'restaurants';
+        }
+        console.log(result[itemTable]);
         const table = result[itemTable];
         let arrayIndex = 0;
         for (let i = 0; i < table.length; i++) {
@@ -123,7 +139,7 @@ app.get("/:table/:id", (req, res) => {
           }
         }
         console.log(table[0]['name']);
-        const templateVars = { list_item: req.params.list_item, itemId, itemTable, name: table[arrayIndex]['name'], context: table[arrayIndex]['context']};
+        const templateVars = { list_item: req.params.list_item, itemId, name: table[arrayIndex]['name'], context: table[arrayIndex]['context']};
         res.render("showItem", templateVars);
       });
   }
@@ -131,16 +147,36 @@ app.get("/:table/:id", (req, res) => {
 });
 
 //EDITING THE URL
-app.post("/:list_item", (req, res) => {
+app.post("/:table/:id", (req, res) => {
   let listItem = req.headers.referer;
   listItem = listItem.replace('http://localhost:8080/', '');
+  listItem = listItem.replace('books/', '');
+  listItem = listItem.replace('movies/', '');
+  listItem = listItem.replace('products/', '');
+  listItem = listItem.replace('misc/', '');
+  listItem = listItem.replace('restaurants/', '');
   listItem = decodeURI(listItem);
+  console.log(listItem);
   const string = req.body.nameEdit;
-  resultQueries.editBooks(string, listItem);
-  resultQueries.editProducts(string, listItem);
-  resultQueries.editMovies(string, listItem);
-  resultQueries.editRestaurants(string, listItem);
-  resultQueries.editMisc(string, listItem);
+  console.log(string);
+  if (req.headers.referer.includes('books')) {
+    resultQueries.editBooks(string, listItem);
+  }
+  if (req.headers.referer.includes('movies')) {
+    resultQueries.editMovies(string, listItem);
+  }
+  if (req.headers.referer.includes('products')) {
+    resultQueries.editProducts(string, listItem);
+  }
+  if (req.headers.referer.includes('misc')) {
+    resultQueries.editMisc(string, listItem);
+  }
+  if (req.headers.referer.includes('restaurants')) {
+    resultQueries.editRestaurants(string, listItem);
+  }
+
+
+
   res.redirect('/');
 });
 

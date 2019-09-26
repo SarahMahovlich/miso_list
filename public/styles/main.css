@@ -1,8 +1,6 @@
-.listTitle {
-  background-color: #D4B08D;
-  padding-left: 15px;
+main {
+  background-color: #f7f0db;
+  color: #244751;
+  position: inherit;
 }
 
-main {
-  background-color:  #f7f0db;
-}

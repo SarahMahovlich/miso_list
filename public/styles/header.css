@@ -3,6 +3,7 @@
   width: 100%;
   padding-top: 120px;
   padding-bottom: 10px;
+  z-index: 2;
 }
 
 .centerHeader {
@@ -14,4 +15,6 @@
 
 #headerTitle {
   font-family: 'Pacifico', serif;
+  color: #244751;
 }
+

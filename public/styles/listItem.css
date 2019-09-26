@@ -91,3 +91,37 @@
 .itemContext {
   padding-left: 60px;
 }
+
+/* Boostrap Button Customization */
+#completeBtn {
+  border-color: rgb(190, 216, 157);
+  color: rgb(190, 216, 157);
+  border-width: 2px;
+}
+
+#completeBtn:hover {
+  background: rgb(190, 216, 157);
+  color: #f7f0db;
+}
+
+#linkBtn {
+  color: #244751;
+  border-color: #244751;
+  border-width: 2px;
+}
+
+#linkBtn:hover {
+  color: #f7f0db;
+  background: #244751;
+}
+
+#archiveBtn {
+  color: rgb(246, 172, 140);
+  border-color: rgb(246, 172, 140);
+  border-width: 2px;
+}
+
+#archiveBtn:hover {
+  color: #f7f0db;
+  background: rgb(246, 172, 140);
+}

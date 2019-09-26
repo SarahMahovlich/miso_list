@@ -166,9 +166,9 @@
                 <a href='/<%= archive['name']%>' class="leftItem itemTitleHeader"><h4><%= archive['name'] %></h4></a><br>
                 <div class="rightContainer">
                   <a href="<%= archive['link'] %>" class="rightItem"><button class="btn btn-outline-dark">goodreads</button></a>
-                  <!-- <form class="form-delete" action="/:list_item/delete" method="POST"> -->
+                  <form class="form-delete" action="/books/<%= archive['id'] %>/unarchive" method="POST">
                     <button type="submit" name='unarchive' class="btn btn-danger rightItem">Unarchive</button>
-                  <!-- </form> -->
+                  </form>
                 </div>
               </div>
               <p><%= archive['context'] %></p>
@@ -194,9 +194,9 @@
               <a href='/<%= archive['name']%>' class="leftItem itemTitleHeader"><h4><%= archive['name'] %></h4></a><br>
               <div class="rightContainer">
                   <a href="<%= archive['link'] %>" class="rightItem"><button class="btn btn-outline-dark">Zomato</button></a>
-                  <!-- <form class="form-delete" action="/:list_item/delete" method="POST"> -->
+                  <form class="form-delete" action="/restaurants/<%= archive['id'] %>/unarchive" method="POST">
                     <button type="submit" name='unarchive' class="btn btn-danger rightItem">Unarchive</button>
-                  <!-- </form> -->
+                  </form>
                 </div>
             </div>
             <p><%= archive['context'] %></p>
@@ -208,9 +208,9 @@
               <a href='/<%= archive['name']%>' class="leftItem itemTitleHeader"><h4><%= archive['name'] %></h4></a><br>
               <div class="rightContainer">
                   <a href="<%= archive['link'] %>" class="rightItem"><button class="btn btn-outline-dark">Amazon</button></a>
-                  <!-- <form class="form-delete" action="/:list_item/delete" method="POST"> -->
+                  <form class="form-delete" action="/products/<%= archive['id'] %>/unarchive" method="POST">
                     <button type="submit" name='unarchive' class="btn btn-danger rightItem">Unarchive</button>
-                  <!-- </form> -->
+                  </form>
                 </div>
             </div>
             <p><%= archive['context'] %></p>
@@ -221,9 +221,9 @@
             <div class="itemHeader">
               <a href='/<%= archive['name']%>' class="leftItem itemTitleHeader"><h4><%= archive['name'] %></h4></a><br>
               <div class="rightContainer">
-                  <!-- <form class="form-delete" action="/:list_item/delete" method="POST"> -->
+                  <form class="form-delete" action="/misc/<%= archive['id'] %>/unarchive" method="POST">
                     <button type="submit" name='unarchive' class="btn btn-danger rightItem">Unarchive</button>
-                  <!-- </form> -->
+                  </form>
                 </div>
             </div>
             <p><%= archive['context'] %></p>

@@ -173,7 +173,7 @@ const editBooks = (formInput, listItem) => {
   return pool.query(`
   UPDATE books
   SET name = $1
-  WHERE name = $2 AND is_active = true;
+  WHERE id = $2 AND is_active = true;
   `, [formInput, listItem])
     .then(res => res.rows[0]);
 };
@@ -182,7 +182,7 @@ const editProducts = (formInput, listItem) => {
   return pool.query(`
   UPDATE products
   SET name = $1
-  WHERE name = $2 AND is_active = true;
+  WHERE id = $2 AND is_active = true;
   `, [formInput, listItem])
     .then(res => res.rows[0]);
 };
@@ -191,7 +191,7 @@ const editMovies = (formInput, listItem) => {
   return pool.query(`
   UPDATE movies_and_series
   SET name = $1
-  WHERE name = $2 AND is_active = true;
+  WHERE id = $2 AND is_active = true;
   `, [formInput, listItem])
     .then(res => res.rows[0]);
 };
@@ -200,7 +200,7 @@ const editRestaurants = (formInput, listItem) => {
   return pool.query(`
   UPDATE restaurants
   SET name = $1
-  WHERE name = $2 AND is_active = true;
+  WHERE id = $2 AND is_active = true;
   `, [formInput, listItem])
     .then(res => res.rows[0]);
 };
@@ -209,7 +209,7 @@ const editMisc = (formInput, listItem) => {
   return pool.query(`
   UPDATE misc
   SET name = $1
-  WHERE name = $2 AND is_active = true;
+  WHERE id = $2 AND is_active = true;
   `, [formInput, listItem])
     .then(res => res.rows[0]);
 };
@@ -218,7 +218,7 @@ const deleteBooks = (listItem) => {
   return pool.query(`
   DELETE
   FROM books
-  WHERE name = $1 AND is_active = true;
+  WHERE id = $1 AND is_active = true;
   `, [listItem])
     .then(res => res.rows[0]);
 };
@@ -227,7 +227,7 @@ const deleteProducts = (listItem) => {
   return pool.query(`
   DELETE
   FROM products
-  WHERE name = $1 AND is_active = true;
+  WHERE id = $1 AND is_active = true;
   `, [listItem])
     .then(res => res.rows[0]);
 };
@@ -236,7 +236,7 @@ const deleteMovies = (listItem) => {
   return pool.query(`
   DELETE
   FROM movies_and_series
-  WHERE name = $1 AND is_active = true;
+  WHERE id = $1 AND is_active = true;
   `, [listItem])
     .then(res => res.rows[0]);
 };
@@ -245,7 +245,7 @@ const deleteRestaurants = (listItem) => {
   return pool.query(`
   DELETE
   FROM restaurants
-  WHERE name = $1 AND is_active = true;
+  WHERE id = $1 AND is_active = true;
   `, [listItem])
     .then(res => res.rows[0]);
 };
@@ -254,11 +254,12 @@ const deleteMisc = (listItem) => {
   return pool.query(`
   DELETE
   FROM misc
-  WHERE name = $1 AND is_active = true;
+  WHERE id = $1 AND is_active = true;
   `, [listItem])
     .then(res => res.rows[0]);
 };
 
+//Archive and Unarchive
 const markCompleteItem = (table, id) => {
   return pool.query(`
   UPDATE ${table}
@@ -268,29 +269,14 @@ const markCompleteItem = (table, id) => {
     .then(res => res.rows[0]);
 };
 
-// const markCompleteMovies = () => {
-//   return pool.query(`
-//   UPDATE movies_and_series
-//   SET is_active = false;
-//   `)
-//     .then(res => res.rows[0]);
-// };
-
-// const markCompleteRestaurants = () => {
-//   return pool.query(`
-//   UPDATE restaurants
-//   SET is_active = false;
-//   `)
-//     .then(res => res.rows[0]);
-// };
-
-// const markCompleteProducts = () => {
-//   return pool.query(`
-//   UPDATE products
-//   SET is_active = false;
-//   `)
-//     .then(res => res.rows[0]);
-// };
+const markUnCompleteItem = (table, id) => {
+  return pool.query(`
+  UPDATE ${table}
+  SET is_active = true
+  WHERE id = $1;
+  `, [id])
+    .then(res => res.rows[0]);
+};
 
 const recatergorizeIntoMovies = (name, context) => {
   return pool.query(`
@@ -300,7 +286,6 @@ const recatergorizeIntoMovies = (name, context) => {
   `, [name, context])
     .then(res => res.rows[0]);
 };
-
 
 const recatergorizeIntoBooks = (name, context) => {
   return pool.query(`
@@ -381,4 +366,6 @@ module.exports = {
   recatergorizeIntoRestaurants,
   markCompleteItem,
   newUserDB,
-  PasswordEmail };
+  PasswordEmail,
+  markUnCompleteItem
+};

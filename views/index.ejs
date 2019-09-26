@@ -70,7 +70,7 @@
 
           <div class="toDoList">
             <div class="itemHeader">
-                <a href='/<%= book['name'] %>' class="leftItem itemTitleHeader"><h4><%= book['name'] %></h4></a><br>
+                <a name='book['name']' href='/books/<%= book['id'] %>' class="leftItem itemTitleHeader"><h4><%= book['name'] %></h4></a><br>
                 <a href="<%= book['link'] %>" class="rightItem"><button class="btn btn-outline-dark">goodreads</button></a>
                 <form class="completedbtn" action="/books/<%= book['id'] %>/complete" method="POST">
                   <button type="submit" class="btn btn-outline-success">Complete</button>
@@ -88,9 +88,9 @@
         <% for (let movie of movies) { %>
           <div class="toDoList">
             <div class="itemHeader">
-              <a href='/<%= movie['name']%>' class="leftItem itemTitleHeader"><h4><%= movie['name'] %></h4></a><br>
+              <a href='/movies/<%= movie['id']%>' class="leftItem itemTitleHeader"><h4><%= movie['name'] %></h4></a><br>
               <a href="<%= movie['link'] %>" class="rightItem"><button class="btn btn-outline-dark">IMDB</button></a>
-              <form class="completedbtn" action="/complete" method="POST">
+              <form class="completedbtn" action="/movies_and_series/<%= movie['id'] %>/complete" method="POST">
                 <button class="btn btn-outline-success">Complete</button>
               </form>
             </div>
@@ -106,9 +106,9 @@
         <% for (let restaurant of restaurants) { %>
           <div class="toDoList">
             <div class="itemHeader">
-              <a href='/<%= restaurant['name']%>' class="leftItem itemTitleHeader"><h4><%= restaurant['name'] %></h4></a><br>
+              <a href='/restaurants/<%= restaurant['id']%>' class="leftItem itemTitleHeader"><h4><%= restaurant['name'] %></h4></a><br>
               <a href="<%= restaurant['link'] %>" class="rightItem"><button class="btn btn-outline-dark">Zomato</button></a>
-              <form class="completedbtn" action="/complete" method="POST">
+              <form class="completedbtn" action="/restaurants/<%= restaurant['id'] %>/complete" method="POST">
                 <button class="btn btn-outline-success">Complete</button>
               </form>
             </div>
@@ -126,9 +126,9 @@
           <% for (let product of products) { %>
             <div class="toDoList">
               <div class="itemHeader">
-                <a href='/<%= product['name']%>' class="leftItem itemTitleHeader"><h4><%= product['name'] %></h4></a><br>
+                <a href='/products/<%= product['id']%>' class="leftItem itemTitleHeader"><h4><%= product['name'] %></h4></a><br>
                 <a href="<%= product['link'] %>" class="rightItem"><button class="btn btn-outline-dark">Amazon</button></a>
-                <form class="completedbtn" action="/complete" method="POST">
+                <form class="completedbtn" action="/products/<%= product['id'] %>/complete" method="POST">
                   <button class="btn btn-outline-success">Complete</button>
                 </form>
               </div>
@@ -144,8 +144,8 @@
           <% for (let mis of misc) { %>
             <div class="toDoList">
               <div class="itemHeader">
-                <a href='/<%= mis['name']%>' class="leftItem itemTitleHeader"><h4><%= mis['name'] %></h4></a><br>
-                <form class="completedbtn" action="/complete" method="POST">
+                  <a href='/misc/<%= mis['id']%>' class="leftItem itemTitleHeader"><h4><%= mis['name'] %></h4></a><br>
+                <form class="completedbtn" action="/misc/<%= mis['id'] %>/complete" method="POST">
                   <button class="btn btn-outline-success">Complete</button>
                 </form>
               </div>
@@ -169,9 +169,9 @@
                 <a href='/<%= archive['name']%>' class="leftItem itemTitleHeader"><h4><%= archive['name'] %></h4></a><br>
                 <div class="rightContainer">
                   <a href="<%= archive['link'] %>" class="rightItem"><button class="btn btn-outline-dark">goodreads</button></a>
-                  <!-- <form class="form-delete" action="/:list_item/delete" method="POST"> -->
+                  <form class="form-delete" action="/books/<%= archive['id'] %>/unarchive" method="POST">
                     <button type="submit" name='unarchive' class="btn btn-danger rightItem">Unarchive</button>
-                  <!-- </form> -->
+                  </form>
                 </div>
               </div>
               <p><%= archive['context'] %></p>
@@ -197,9 +197,9 @@
               <a href='/<%= archive['name']%>' class="leftItem itemTitleHeader"><h4><%= archive['name'] %></h4></a><br>
               <div class="rightContainer">
                   <a href="<%= archive['link'] %>" class="rightItem"><button class="btn btn-outline-dark">Zomato</button></a>
-                  <!-- <form class="form-delete" action="/:list_item/delete" method="POST"> -->
+                  <form class="form-delete" action="/restaurants/<%= archive['id'] %>/unarchive" method="POST">
                     <button type="submit" name='unarchive' class="btn btn-danger rightItem">Unarchive</button>
-                  <!-- </form> -->
+                  </form>
                 </div>
             </div>
             <p><%= archive['context'] %></p>
@@ -211,9 +211,9 @@
               <a href='/<%= archive['name']%>' class="leftItem itemTitleHeader"><h4><%= archive['name'] %></h4></a><br>
               <div class="rightContainer">
                   <a href="<%= archive['link'] %>" class="rightItem"><button class="btn btn-outline-dark">Amazon</button></a>
-                  <!-- <form class="form-delete" action="/:list_item/delete" method="POST"> -->
+                  <form class="form-delete" action="/products/<%= archive['id'] %>/unarchive" method="POST">
                     <button type="submit" name='unarchive' class="btn btn-danger rightItem">Unarchive</button>
-                  <!-- </form> -->
+                  </form>
                 </div>
             </div>
             <p><%= archive['context'] %></p>
@@ -224,9 +224,9 @@
             <div class="itemHeader">
               <a href='/<%= archive['name']%>' class="leftItem itemTitleHeader"><h4><%= archive['name'] %></h4></a><br>
               <div class="rightContainer">
-                  <!-- <form class="form-delete" action="/:list_item/delete" method="POST"> -->
+                  <form class="form-delete" action="/misc/<%= archive['id'] %>/unarchive" method="POST">
                     <button type="submit" name='unarchive' class="btn btn-danger rightItem">Unarchive</button>
-                  <!-- </form> -->
+                  </form>
                 </div>
             </div>
             <p><%= archive['context'] %></p>

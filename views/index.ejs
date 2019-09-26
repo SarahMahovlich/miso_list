@@ -72,11 +72,7 @@
             <div class="itemHeader">
                 <a href='/<%= book['name'] %>' class="leftItem itemTitleHeader"><h4><%= book['name'] %></h4></a><br>
                 <a href="<%= book['link'] %>" class="rightItem"><button class="btn btn-outline-dark">goodreads</button></a>
-<<<<<<< HEAD
-                <form class="completedbtn" action="/books/<%= book.id %>/complete" method="POST">
-=======
                 <form class="completedbtn" action="/books/<%= book['id'] %>/complete" method="POST">
->>>>>>> 34162435611da8e09062323e4b3afd5f70ffdcbe
                   <button type="submit" class="btn btn-outline-success">Complete</button>
                 </form>
             </div>

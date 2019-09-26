@@ -338,6 +338,24 @@ const recatergorizeIntoMisc = (name, context) => {
     .then(res => res.rows[0]);
 };
 
+const newUserDB = (username, name, password) => {
+  return pool.query(`
+  INSERT INTO users (name, email, password)
+  VALUES ($1, $2, $3)
+  RETURNING *;
+  `, [username, name, password])
+    .then(res => res.rows[0]);
+};
+
+const PasswordEmail = (email) => {
+  return pool.query(`
+  SELECT email FROM users
+  WHERE email = $1;
+  `, [email])
+    .then(res => res.rows[0])
+    .catch(err => console.error('Error executing query',err.stack));
+};
+
 module.exports = {
   getAllThings,
   getArchivedThings,
@@ -361,4 +379,6 @@ module.exports = {
   recatergorizeIntoProducts,
   recatergorizeIntoMisc,
   recatergorizeIntoRestaurants,
-  markCompleteItem };
+  markCompleteItem,
+  newUserDB,
+  PasswordEmail };

@@ -15,6 +15,8 @@ const dbParams = require('./lib/db.js');
 const db = new Pool(dbParams);
 const { searchEngine } = require('./lib/searchEngine');
 const resultQueries = require('./routes/resultQueries.js');
+const cookieParser = require('cookie-parser');
+app.use(cookieParser());
 db.connect();
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
@@ -49,6 +51,7 @@ app.use("/api/widgets", widgetsRoutes(db));
 
 //RENDERING ROOT PAGE
 app.get("/", (req, res) => {
+  console.log(req.headers);
   resultQueries.getAllThings()
     .then((result) => {
       const templatevars = {results: result};
@@ -80,8 +83,12 @@ app.get("/register", (req, res) => {
   res.render("register");
 });
 
-//POSTING INFORMATION FROM REGISTRATION PAGE
+//POSTING INFORMATION FROM REGISTRATION PAGE // REGISTERING NEW USER
 app.post("/register", (req, res) => {
+  let newUsername = req.body.username;
+  let newEmail = req.body.email;
+  let newPassword = req.body.password;
+  resultQueries.newUserDB(newUsername, newEmail, newPassword);
   res.redirect("/");
 });
 
@@ -90,20 +97,36 @@ app.get("/login", (req, res) => {
   res.render("login");
 });
 
+//LOGGING INTO THE USER ACCOUNT
+app.post("/login", (req, res) => {
+  const email = req.body.email; // RENDERS EMAIL
+  if (email) {
+    resultQueries.PasswordEmail(email).then(result => {
+      if (email === result.email) {
+        res.redirect('/');
+      } else {
+        res.send("FAIL");
+      }
+    });
+    // req.cookies.email = email;
+  } else {
+    console.log("failure");
+    res.status(404);
+  }
+  //if user is found
+  //set cookie for user (login in the user)
+});
+
 //MARKING THE ITEM AS COMPLETED
 app.post("/:table/:id/complete", (req, res) => {
-<<<<<<< HEAD
+  const itemTable = res.req.params.table;
+  const itemId = res.req.params.id;
   const status = req.route.methods.post;
-=======
-const itemTable = res.req.params.table;
-const itemId = res.req.params.id;
-const status = req.route.methods.post;
->>>>>>> 34162435611da8e09062323e4b3afd5f70ffdcbe
   if (status === true) {
     resultQueries.markCompleteItem(itemTable, itemId)
-    .then((result) => {
-      res.redirect('/');
-    });
+      .then((result) => {
+        res.redirect('/');
+      });
   }
 });
 

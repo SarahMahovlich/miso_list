@@ -250,9 +250,6 @@ app.post("/:table/:id/delete", (req, res) => {
 });
 
 
-// UPDATING THE URL
-app.post("/:list_item/update", (req, res) => {
-
 // UPDATING THE CATEGORY IMPLEMENTING
 app.post("/:table/:id/:name/update", (req, res) => {
   //extracts name from the url

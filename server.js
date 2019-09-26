@@ -151,7 +151,7 @@ app.get("/:table/:id", (req, res) => {
           }
         }
         console.log(table[0]['name']);
-        const templateVars = { list_item: req.params.list_item, itemId, name: table[arrayIndex]['name'], context: table[arrayIndex]['context']};
+        const templateVars = { list_item: req.params.list_item, itemId, name: table[arrayIndex]['name'], context: table[arrayIndex]['context'], id: table[arrayIndex]['id']};
         res.render("showItem", templateVars);
       });
   }
@@ -235,8 +235,8 @@ app.post("/:table/:id/update", (req, res) => {
   listItem = listItem.replace('misc/', '');
   listItem = listItem.replace('restaurants/', '');
   listItem = decodeURI(listItem);
-  console.log('resultQ', req.headers);
-
+  // console.log('resultQ', req.headers);
+  console.log('cate', req.body.Category);
   //extract name
   if (req.body.Category === 'Books') {
     resultQueries.recatergorizeIntoBooks(listItem, req.body.contextEdit);
@@ -244,7 +244,8 @@ app.post("/:table/:id/update", (req, res) => {
   if (req.body.Category === 'Products') {
     resultQueries.recatergorizeIntoProducts(listItem, req.body.contextEdit);
   }
-  if (req.body.Category === 'Movies and series') {
+  if (req.body.Category === 'Movies & TV series') {
+    console.log('recat into movies');
     resultQueries.recatergorizeIntoMovies(listItem, req.body.contextEdit);
   }
   if (req.body.Category === 'Restaurants') {

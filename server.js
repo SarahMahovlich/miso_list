@@ -51,16 +51,26 @@ app.use("/api/widgets", widgetsRoutes(db));
 
 //RENDERING ROOT PAGE
 app.get("/", (req, res) => {
-  console.log(req.headers);
-  resultQueries.getAllThings()
-    .then((result) => {
-      const templatevars = {results: result};
-      resultQueries.getArchivedThings()
-        .then((archive) => {
-          templatevars.archives = archive;
-          res.render("index", templatevars);
-        });
-    });
+  const email = req.cookies.email;
+  console.log(email);
+  if (email) {
+    resultQueries.getAllThings()
+      .then((result) => {
+        const templatevars = {results: result};
+        resultQueries.getArchivedThings()
+          .then((archive) => {
+            templatevars.archives = archive;
+            const userCookie = req.cookies.email;
+            resultQueries.getUser(userCookie)
+              .then((users) => {
+                templatevars.users = users;
+                res.render("index", templatevars);
+              });
+          });
+      });
+  } else {
+    res.redirect("/login");
+  }
 });
 
 //POSTING INFORMATION FROM FORM
@@ -85,10 +95,12 @@ app.get("/register", (req, res) => {
 
 //POSTING INFORMATION FROM REGISTRATION PAGE // REGISTERING NEW USER
 app.post("/register", (req, res) => {
+  const email = req.body.email;
   let newUsername = req.body.username;
   let newEmail = req.body.email;
   let newPassword = req.body.password;
   resultQueries.newUserDB(newUsername, newEmail, newPassword);
+  res.cookie("email", email);
   res.redirect("/");
 });
 
@@ -103,18 +115,22 @@ app.post("/login", (req, res) => {
   if (email) {
     resultQueries.PasswordEmail(email).then(result => {
       if (email === result.email) {
+        res.cookie("email", email);
         res.redirect('/');
       } else {
         res.send("FAIL");
+        console.log("Failed to login");
       }
     });
-    // req.cookies.email = email;
   } else {
-    console.log("failure");
     res.status(404);
   }
-  //if user is found
-  //set cookie for user (login in the user)
+});
+
+// logging out and deleting cookies from session
+app.post("/logout", (req, res) => {
+  res.clearCookie("email");
+  res.redirect("/login");
 });
 
 //MARKING THE ITEM AS COMPLETED
@@ -146,11 +162,9 @@ app.post("/:table/:id/unarchive", (req, res) => {
 app.get("/:table/:id", (req, res) => {
   const itemId = res.req.params.id;
   const status = req.route.methods.get;
-  // console.log('header', req.url);
   if (status === true) {
     resultQueries.getAllThings()
       .then((result) => {
-        // console.log(result);
         let itemTable = 'null';
 
         if (req.url.includes('books')) {
@@ -211,9 +225,6 @@ app.post("/:table/:id", (req, res) => {
   if (req.headers.referer.includes('restaurants')) {
     resultQueries.editRestaurants(string, listItem);
   }
-
-
-
   res.redirect('/');
 });
 
@@ -228,7 +239,6 @@ app.post("/:table/:id/delete", (req, res) => {
   listItem = listItem.replace('misc/', '');
   listItem = listItem.replace('restaurants/', '');
   listItem = decodeURI(listItem);// listitem is the id
-
 
   if (req.headers.referer.includes('books')) {
     resultQueries.deleteBooks(listItem);
@@ -248,7 +258,6 @@ app.post("/:table/:id/delete", (req, res) => {
 
   res.redirect('/');
 });
-
 
 // UPDATING THE CATEGORY IMPLEMENTING
 app.post("/:table/:id/:name/update", (req, res) => {
@@ -279,7 +288,6 @@ app.post("/:table/:id/:name/update", (req, res) => {
     resultQueries.deleteMisc(listItem);
   }
 
-  // console.log('resultQ', req.headers);
   //extract name
   if (req.body.Category === 'Books') {
     resultQueries.recatergorizeIntoBooks(name, req.body.contextEdit);

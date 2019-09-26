@@ -119,11 +119,11 @@ app.post("/:table/:id/unarchive", (req, res) => {
 app.get("/:table/:id", (req, res) => {
   const itemId = res.req.params.id;
   const status = req.route.methods.get;
-  console.log('header', req.url);
+  // console.log('header', req.url);
   if (status === true) {
     resultQueries.getAllThings()
       .then((result) => {
-        console.log(result);
+        // console.log(result);
         let itemTable = 'null';
 
         if (req.url.includes('books')) {
@@ -141,7 +141,6 @@ app.get("/:table/:id", (req, res) => {
         if (req.url.includes('restaurants')) {
           itemTable = 'restaurants';
         }
-        console.log(result[itemTable]);
         const table = result[itemTable];
         let arrayIndex = 0;
         for (let i = 0; i < table.length; i++) {
@@ -150,8 +149,7 @@ app.get("/:table/:id", (req, res) => {
             break;
           }
         }
-        console.log(table[0]['name']);
-        const templateVars = { list_item: req.params.list_item, itemId, name: table[arrayIndex]['name'], context: table[arrayIndex]['context']};
+        const templateVars = {itemId, name: table[arrayIndex]['name'], context: table[arrayIndex]['context'], id: table[arrayIndex]['id']};
         res.render("showItem", templateVars);
       });
   }
@@ -225,7 +223,16 @@ app.post("/:table/:id/delete", (req, res) => {
 });
 
 // UPDATING THE CATEGORY IMPLEMENTING
-app.post("/:table/:id/update", (req, res) => {
+app.post("/:table/:id/:name/update", (req, res) => {
+  //extracts name from the url
+  let name = req.url;
+  name = name.replace('http://localhost:8080/', '');
+  name = name.replace('/update', '');
+  name = name.replace(':table/', '');
+  name = name.split('/');
+  name = name[2];
+  name = decodeURI(name);
+  //extracts item id from the url
   let listItem = req.headers.referer;
   listItem = listItem.replace('http://localhost:8080/', '');
   listItem = listItem.replace('/update', '');
@@ -235,25 +242,25 @@ app.post("/:table/:id/update", (req, res) => {
   listItem = listItem.replace('misc/', '');
   listItem = listItem.replace('restaurants/', '');
   listItem = decodeURI(listItem);
-  console.log('resultQ', req.headers);
 
+  // console.log('resultQ', req.headers);
   //extract name
   if (req.body.Category === 'Books') {
-    resultQueries.recatergorizeIntoBooks(listItem, req.body.contextEdit);
+    resultQueries.recatergorizeIntoBooks(name, req.body.contextEdit);
   }
   if (req.body.Category === 'Products') {
-    resultQueries.recatergorizeIntoProducts(listItem, req.body.contextEdit);
+    resultQueries.recatergorizeIntoProducts(name, req.body.contextEdit);
   }
-  if (req.body.Category === 'Movies and series') {
-    resultQueries.recatergorizeIntoMovies(listItem, req.body.contextEdit);
+  if (req.body.Category === 'Movies & TV series') {
+    resultQueries.recatergorizeIntoMovies(name, req.body.contextEdit);
   }
   if (req.body.Category === 'Restaurants') {
-    resultQueries.recatergorizeIntoRestaurants(listItem, req.body.contextEdit);
+    resultQueries.recatergorizeIntoRestaurants(name, req.body.contextEdit);
   }
   if (req.body.Category === 'Misc') {
-    resultQueries.recatergorizeIntoMisc(listItem, req.body.contextEdit);
+    resultQueries.recatergorizeIntoMisc(name, req.body.contextEdit);
   }
-
+  //delete old entry in the db
   if (req.headers.referer.includes('books')) {
     resultQueries.deleteBooks(listItem);
   }

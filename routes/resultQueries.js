@@ -60,7 +60,7 @@ const getAllThings = (id) => {
     });
 };
 
-const getArchivedThings = () => {
+const getArchivedThings = (id) => {
   let returnObj = {};
   let queryString = `
   SELECT *
@@ -119,7 +119,6 @@ const addToWatch = (body, query, id) => {
     .then(res => res.rows[0]);
 };
 
-
 const addToRead = (body, query, id) => {
   if (body.spelling) {
     query = body.spelling.correctedQuery;
@@ -132,8 +131,6 @@ const addToRead = (body, query, id) => {
     .then(res => res.rows[0]);
 };
 
-
-
 const addToEat = (body, query, id) => {
   if (body.spelling) {
     query = body.spelling.correctedQuery;
@@ -145,8 +142,6 @@ const addToEat = (body, query, id) => {
   `, [query, body.items[0]['snippet'], body.items[0]['link'], id])
     .then(res => res.rows[0]);
 };
-
-
 
 const addToBuy = (body, query, id) => {
   if (body.spelling) {
@@ -323,6 +318,7 @@ const recatergorizeIntoMisc = (name, context) => {
     .then(res => res.rows[0]);
 };
 
+//User queries
 const newUserDB = (username, email, password) => {
   return pool.query(`
   INSERT INTO users (name, email, password)
@@ -332,13 +328,12 @@ const newUserDB = (username, email, password) => {
     .then(res => res.rows[0]);
 };
 
-const PasswordEmail = (email) => {
+const checkEmail = (email) => {
   return pool.query(`
-  SELECT email FROM users
+  SELECT * FROM users
   WHERE email = $1;
   `, [email])
-    .then(res => res.rows[0])
-    .catch(err => console.error('Error executing query',err.stack));
+    .then(res => res.rows[0]);
 };
 
 const getUser = (id) => {
@@ -376,7 +371,7 @@ module.exports = {
   recatergorizeIntoRestaurants,
   markCompleteItem,
   newUserDB,
-  PasswordEmail,
+  checkEmail,
   markUnCompleteItem,
   getUser
 };

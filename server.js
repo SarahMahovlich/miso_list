@@ -25,6 +25,10 @@ app.use((req, res, next) => {
       req.user = user;
       res.locals.user = user;
       next();
+    })
+    .catch((err) => {
+      res.clearCookie('user_id');
+      next();
     });
   } else {
     next();
@@ -63,7 +67,6 @@ app.use("/api/widgets", widgetsRoutes(db));
 
 //RENDERING ROOT PAGE
 app.get("/", (req, res) => {
-  console.log(req.user);
   if (req.user) {
     resultQueries.getAllThings(req.user.id)
       .then((result) => {
@@ -73,6 +76,8 @@ app.get("/", (req, res) => {
             templatevars.archives = archive;
             res.render("index", templatevars);
           });
+      }).catch((err) => {
+        console.log(err)
       });
   } else {
     res.redirect("/login");
@@ -84,7 +89,7 @@ app.post("/", (req, res) => {
   const string = req.body.searchEngine;
   // const templatevars = {results: searchEngine(string)};
   //find the category using a helper function googlesearch API
-  searchEngine(string, id, (success) => {
+  searchEngine(string, req.user.id, (success) => {
     if (success) {
       resultQueries.getAllThings(req.user.id)
         .then((result) => {
@@ -118,16 +123,20 @@ app.get("/login", (req, res) => {
 
 //LOGGING INTO THE USER ACCOUNT
 app.post("/login", (req, res) => {
-  const email = req.body.email; // RENDERS EMAIL
+  const email = req.body.email;
   if (email) {
-    resultQueries.PasswordEmail(email).then(result => {
+    resultQueries.checkEmail(email)
+    .then((result) => {
       if (email === result.email) {
-        res.cookie("email", email);
+        console.log(result);
+        res.cookie("user_id", result.id);
         res.redirect('/');
       } else {
         res.send("FAIL");
         console.log("Failed to login");
       }
+    }).catch((err) => {
+      console.log(err)
     });
   } else {
     res.status(404);

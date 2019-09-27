@@ -23,15 +23,6 @@ The solution? Miso_list! A smart, auto-categorizing todo list app. The user simp
   - Note: nodemon is used, so you should not have to restart your server after any changes
 8. Visit `http://localhost:8080/`
 
-
-### Installing
-
-Install all dependencies listed below and on package.json with the following command.
-
-```
-npm install
-```
-
 ## Dependencies
 
 - Node 10.x or above

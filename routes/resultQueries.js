@@ -110,16 +110,19 @@ const getArchivedThings = (id) => {
     });
 };
 
-const addToWatch = (body, query, id) => {
+const addToWatch = (body, snippet, link, query, id) => {
+  if (body.spelling) {
+    query = body.spelling.correctedQuery;
+  }
   return pool.query(`
   INSERT INTO movies_and_series (name, context, link, user_id)
     VALUES ($1, $2, $3, $4)
     RETURNING *;
-  `, [query, body.items[0]['snippet'], body.items[0]['link'], id])
+  `, [query, snippet, link, id])
     .then(res => res.rows[0]);
 };
 
-const addToRead = (body, query, id) => {
+const addToRead = (body, snippet, link, query, id) => {
   if (body.spelling) {
     query = body.spelling.correctedQuery;
   }
@@ -127,11 +130,11 @@ const addToRead = (body, query, id) => {
   INSERT INTO books (name, context, link, user_id)
   VALUES ($1, $2, $3, $4)
   RETURNING *;
-  `, [query, body.items[0]['snippet'], body.items[0]['link'], id])
+  `, [query, snippet, link, id])
     .then(res => res.rows[0]);
 };
 
-const addToEat = (body, query, id) => {
+const addToEat = (body, snippet, link, query, id) => {
   if (body.spelling) {
     query = body.spelling.correctedQuery;
   }
@@ -139,11 +142,11 @@ const addToEat = (body, query, id) => {
   INSERT INTO restaurants (name, context, link, user_id)
   VALUES ($1, $2, $3, $4)
   RETURNING *;
-  `, [query, body.items[0]['snippet'], body.items[0]['link'], id])
+  `, [query, snippet, link, id])
     .then(res => res.rows[0]);
 };
 
-const addToBuy = (body, query, id) => {
+const addToBuy = (body, snippet, link, query, id) => {
   if (body.spelling) {
     query = body.spelling.correctedQuery;
   }
@@ -151,11 +154,11 @@ const addToBuy = (body, query, id) => {
   INSERT INTO products (name, context, link, user_id)
   VALUES ($1, $2, $3, $4)
   RETURNING *;
-  `, [query, body.items[0]['snippet'], body.items[0]['link'], id])
+  `, [query, snippet, link, id])
     .then(res => res.rows[0]);
 };
 
-const addToMisc = (query, id) => {
+const addToMisc = (body, snippet, link, query, id) => {
   return pool.query(`
   INSERT INTO misc (name, context, user_id)
   VALUES ($1, $2, $3)

@@ -51,8 +51,8 @@
           </a>
         </div>
           <div class="rightContainer">
-            <a><%= user.email %></a>
-            <form stlye = "position: absolute; right: 9px" method="POST" action="/logout">
+            <a class="rightItem username"><strong><%= user.email %></strong></a>
+            <form class="rightItem" method="POST" action="/logout">
               <button id="linkBtnNav" class="btn btn-outline-dark" type="submit">Logout</button>
             </form>
           </div>
@@ -79,7 +79,7 @@
         <% for (let book of books) { %>
           <div class="toDoList">
             <div class="itemHeader">
-                <a name='book['name']' href='/books/<%= book['id'] %>' class="leftItem itemTitleHeader"><h4><%= book['name'] %></h4></a><br>
+                <a href='/books/<%= book['id'] %>' class="leftItem itemTitleHeader"><h4><%= book['name'] %></h4></a><br>
                 <a href="<%= book['link'] %>" class="rightItem" target="_blank"><button id="linkBtn" class="btn btn-outline-dark">goodreads</button></a>
                 <form class="completedbtn" action="/books/<%= book['id'] %>/complete" method="POST">
                   <button type="submit" id="completeBtn" class="btn btn-outline-success">Completed</button>

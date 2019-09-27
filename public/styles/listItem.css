@@ -1,4 +1,4 @@
-.bookSection {
+/* .bookSection {
   display: none;
 }
 
@@ -20,7 +20,7 @@
 
 .archiveSection {
   display: none;
-}
+} */
 
 .toDoList {
   background-color: f8dc88;
@@ -48,6 +48,7 @@
 
 .leftItem {
   align-self: flex-start;
+  /* padding-left: 15px; */
 }
 
 /* Items on right of Nav bar */

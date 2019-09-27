@@ -164,48 +164,48 @@ const addToMisc = (query, id) => {
     .then(res => res.rows[0]);
 };
 
-const editBooks = (formInput, listItem) => {
+const editBooks = (formInput, listItem, id) => {
   return pool.query(`
   UPDATE books
   SET name = $1
-  WHERE id = $2 AND is_active = true;
-  `, [formInput, listItem])
+  WHERE id = $2 AND is_active = true AND user_id = $3;
+  `, [formInput, listItem, id])
     .then(res => res.rows[0]);
 };
 
-const editProducts = (formInput, listItem) => {
+const editProducts = (formInput, listItem, id) => {
   return pool.query(`
   UPDATE products
   SET name = $1
-  WHERE id = $2 AND is_active = true;
-  `, [formInput, listItem])
+  WHERE id = $2 AND is_active = true AND user_id = $3;
+  `, [formInput, listItem, id])
     .then(res => res.rows[0]);
 };
 
-const editMovies = (formInput, listItem) => {
+const editMovies = (formInput, listItem, id) => {
   return pool.query(`
   UPDATE movies_and_series
   SET name = $1
-  WHERE id = $2 AND is_active = true;
-  `, [formInput, listItem])
+  WHERE id = $2 AND is_active = true AND user_id = $3;
+  `, [formInput, listItem, id])
     .then(res => res.rows[0]);
 };
 
-const editRestaurants = (formInput, listItem) => {
+const editRestaurants = (formInput, listItem, id) => {
   return pool.query(`
   UPDATE restaurants
   SET name = $1
-  WHERE id = $2 AND is_active = true;
-  `, [formInput, listItem])
+  WHERE id = $2 AND is_active = true AND user_id = $3;
+  `, [formInput, listItem, id])
     .then(res => res.rows[0]);
 };
 
-const editMisc = (formInput, listItem) => {
+const editMisc = (formInput, listItem, id) => {
   return pool.query(`
   UPDATE misc
   SET name = $1
-  WHERE id = $2 AND is_active = true;
-  `, [formInput, listItem])
+  WHERE id = $2 AND is_active = true AND user_id = $3;
+  `, [formInput, listItem, id])
     .then(res => res.rows[0]);
 };
 
@@ -273,48 +273,48 @@ const markUnCompleteItem = (table, id) => {
     .then(res => res.rows[0]);
 };
 
-const recatergorizeIntoMovies = (name, context) => {
+const recatergorizeIntoMovies = (name, context, id) => {
   return pool.query(`
-  INSERT INTO movies_and_series (name, context)
-    VALUES ($1, $2)
+  INSERT INTO movies_and_series (name, context, user_id)
+    VALUES ($1, $2, $3)
     RETURNING *;
-  `, [name, context])
+  `, [name, context, id])
     .then(res => res.rows[0]);
 };
 
-const recatergorizeIntoBooks = (name, context) => {
+const recatergorizeIntoBooks = (name, context, id) => {
   return pool.query(`
-  INSERT INTO books (name, context)
-    VALUES ($1, $2)
+  INSERT INTO books (name, context, user_id)
+    VALUES ($1, $2, $3)
     RETURNING *;
-  `, [name, context])
+  `, [name, context, id])
     .then(res => res.rows[0]);
 };
 
-const recatergorizeIntoProducts = (name, context) => {
+const recatergorizeIntoProducts = (name, context, id) => {
   return pool.query(`
-  INSERT INTO products (name, context)
-    VALUES ($1, $2)
+  INSERT INTO products (name, context, user_id)
+    VALUES ($1, $2, $3)
     RETURNING *;
-  `, [name, context])
+  `, [name, context, id])
     .then(res => res.rows[0]);
 };
 
-const recatergorizeIntoRestaurants = (name, context) => {
+const recatergorizeIntoRestaurants = (name, context, id) => {
   return pool.query(`
-  INSERT INTO restaurants (name, context)
-    VALUES ($1, $2)
+  INSERT INTO restaurants (name, context, user_id)
+    VALUES ($1, $2, $3)
     RETURNING *;
-  `, [name, context])
+  `, [name, context, id])
     .then(res => res.rows[0]);
 };
 
-const recatergorizeIntoMisc = (name, context) => {
+const recatergorizeIntoMisc = (name, context, id) => {
   return pool.query(`
-  INSERT INTO misc (name, context)
-    VALUES ($1, $2)
+  INSERT INTO misc (name, context, user_id)
+    VALUES ($1, $2, $3)
     RETURNING *;
-  `, [name, context])
+  `, [name, context, id])
     .then(res => res.rows[0]);
 };
 

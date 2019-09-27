@@ -5,3 +5,31 @@
 .registerForm {
   padding-top: 120px;
 }
+
+#loginTitle {
+  color: #244751;
+}
+
+#registerTitle {
+  color: #244751;
+}
+
+#loginBtn {
+  color: #244751;
+  border-color: #244751;
+  border-width: 2px;
+}
+
+#registerBtn {
+  color: #244751;
+  border-color: #244751;
+  border-width: 2px;
+}
+
+#loginBtn:hover {
+  color: white;
+}
+
+#registerBtn:hover {
+  color: white;
+}

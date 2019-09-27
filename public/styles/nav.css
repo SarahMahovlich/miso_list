@@ -32,7 +32,7 @@ nav {
 .rightContainer {
   display: flex;
   flex-direction: row;
-  align-content: center;
+  align-items: center;
   margin-left: auto;
 }
 
@@ -76,6 +76,7 @@ nav {
   padding-top: 10px;
   padding-left: 20px;
   color: white;
+  font-family: 'Pacifico', serif;
 }
 
 /* Individual items right of Nav bar */
@@ -98,4 +99,8 @@ nav {
 #linkBtnNav:hover {
   color: #8DB0D4;
   background: #244751;
+}
+
+.username {
+  font-family: 'Roboto', serif;
 }

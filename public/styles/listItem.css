@@ -134,3 +134,10 @@
   color: #f7f0db;
   background: rgb(246, 172, 140);
 }
+
+.itemName:hover {
+  color: #4BC5A0;
+}
+.itemContext:hover {
+  color: #4B79C5;
+}

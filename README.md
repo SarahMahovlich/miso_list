@@ -6,7 +6,7 @@ The solution? Miso_list! A smart, auto-categorizing todo list app. The user simp
 
 ## Final Product
 
-!["Landing Page"](https://github.com/SarahMahovlich/miso_list/tree/master/public/images/miso_list_landing.png?raw=true)
+!["Landing Page"](https://github.com/SarahMahovlich/miso_list/blob/master/public/images/miso_list_landing.png?raw=true)
 
 ## Getting Started
 

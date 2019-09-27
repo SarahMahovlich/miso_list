@@ -196,7 +196,7 @@
           <% for (let archive of archivedBooks) { %>
             <div class="toDoList">
               <div class="itemHeader">
-                <a href='/<%= archive['name']%>' class="leftItem itemTitleHeader"><h4><%= archive['name'] %></h4></a><br>
+                <a href='/<%= archive['name']%>' class="leftItem itemTitleHeader"><h4 class='itemName'><%= archive['name'] %></h4></a><br>
                 <div class="rightContainer">
                   <a href="<%= archive['link'] %>" class="rightItem" target="_blank"><button id="linkBtn" class="btn btn-outline-dark">goodreads</button></a>
                   <form class="form-delete" action="/books/<%= archive['id'] %>/unarchive" method="POST">

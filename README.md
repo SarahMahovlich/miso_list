@@ -4,6 +4,10 @@ When you are recommended something it's not always easy to jot it down for later
 
 The solution? Miso_list! A smart, auto-categorizing todo list app. The user simply has to add the name of the thing, and it gets put into the correct list.
 
+## Final Product
+
+!["Landing Page"](https://github.com/SarahMahovlich/miso_list/tree/master/public/images/miso_list_landing.png?raw=true)
+
 ## Getting Started
 
 1. Create the `.env` by using `.env.example` as a reference: `cp .env.example .env`

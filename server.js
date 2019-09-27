@@ -13,11 +13,27 @@ const morgan     = require('morgan');
 const { Pool } = require('pg');
 const dbParams = require('./lib/db.js');
 const db = new Pool(dbParams);
+db.connect();
 const { searchEngine } = require('./lib/searchEngine');
 const resultQueries = require('./routes/resultQueries.js');
 const cookieParser = require('cookie-parser');
 app.use(cookieParser());
-db.connect();
+app.use((req, res, next) => {
+  if(req.cookies.user_id) {
+  resultQueries.getUser(req.cookies.user_id)
+    .then((user) => {
+      req.user = user;
+      res.locals.user = user;
+      next();
+    })
+    .catch((err) => {
+      res.clearCookie('user_id');
+      next();
+    });
+  } else {
+    next();
+  }
+});
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -51,22 +67,17 @@ app.use("/api/widgets", widgetsRoutes(db));
 
 //RENDERING ROOT PAGE
 app.get("/", (req, res) => {
-  const email = req.cookies.email;
-  console.log(email);
-  if (email) {
-    resultQueries.getAllThings()
+  if (req.user) {
+    resultQueries.getAllThings(req.user.id)
       .then((result) => {
         const templatevars = {results: result};
-        resultQueries.getArchivedThings()
+        resultQueries.getArchivedThings(req.user.id)
           .then((archive) => {
             templatevars.archives = archive;
-            const userCookie = req.cookies.email;
-            resultQueries.getUser(userCookie)
-              .then((users) => {
-                templatevars.users = users;
-                res.render("index", templatevars);
-              });
+            res.render("index", templatevars);
           });
+      }).catch((err) => {
+        console.log(err)
       });
   } else {
     res.redirect("/login");
@@ -78,9 +89,9 @@ app.post("/", (req, res) => {
   const string = req.body.searchEngine;
   // const templatevars = {results: searchEngine(string)};
   //find the category using a helper function googlesearch API
-  searchEngine(string, (success)=>{
+  searchEngine(string, req.user.id, (success) => {
     if (success) {
-      resultQueries.getAllThings()
+      resultQueries.getAllThings(req.user.id)
         .then((result) => {
           res.redirect('/');
         });
@@ -95,13 +106,14 @@ app.get("/register", (req, res) => {
 
 //POSTING INFORMATION FROM REGISTRATION PAGE // REGISTERING NEW USER
 app.post("/register", (req, res) => {
-  const email = req.body.email;
   let newUsername = req.body.username;
   let newEmail = req.body.email;
   let newPassword = req.body.password;
-  resultQueries.newUserDB(newUsername, newEmail, newPassword);
-  res.cookie("email", email);
-  res.redirect("/");
+  resultQueries.newUserDB(newUsername, newEmail, newPassword)
+    .then((user) => {
+      res.cookie("user_id", user.id);
+      res.redirect("/");
+    });
 });
 
 //RENDERING LOGIN PAGE
@@ -111,16 +123,20 @@ app.get("/login", (req, res) => {
 
 //LOGGING INTO THE USER ACCOUNT
 app.post("/login", (req, res) => {
-  const email = req.body.email; // RENDERS EMAIL
+  const email = req.body.email;
   if (email) {
-    resultQueries.PasswordEmail(email).then(result => {
+    resultQueries.checkEmail(email)
+    .then((result) => {
       if (email === result.email) {
-        res.cookie("email", email);
+        console.log(result);
+        res.cookie("user_id", result.id);
         res.redirect('/');
       } else {
         res.send("FAIL");
         console.log("Failed to login");
       }
+    }).catch((err) => {
+      console.log(err)
     });
   } else {
     res.status(404);
@@ -129,7 +145,7 @@ app.post("/login", (req, res) => {
 
 // logging out and deleting cookies from session
 app.post("/logout", (req, res) => {
-  res.clearCookie("email");
+  res.clearCookie("user_id");
   res.redirect("/login");
 });
 

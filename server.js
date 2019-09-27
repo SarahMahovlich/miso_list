@@ -179,7 +179,7 @@ app.get("/:table/:id", (req, res) => {
   const itemId = res.req.params.id;
   const status = req.route.methods.get;
   if (status === true) {
-    resultQueries.getAllThings()
+    resultQueries.getAllThings(req.user.id)
       .then((result) => {
         let itemTable = 'null';
 
@@ -227,19 +227,19 @@ app.post("/:table/:id", (req, res) => {
   const string = req.body.nameEdit;
 
   if (req.headers.referer.includes('books')) {
-    resultQueries.editBooks(string, listItem);
+    resultQueries.editBooks(string, listItem, req.user.id);
   }
   if (req.headers.referer.includes('movies')) {
-    resultQueries.editMovies(string, listItem);
+    resultQueries.editMovies(string, listItem, req.user.id);
   }
   if (req.headers.referer.includes('products')) {
-    resultQueries.editProducts(string, listItem);
+    resultQueries.editProducts(string, listItem, req.user.id);
   }
   if (req.headers.referer.includes('misc')) {
-    resultQueries.editMisc(string, listItem);
+    resultQueries.editMisc(string, listItem, req.user.id);
   }
   if (req.headers.referer.includes('restaurants')) {
-    resultQueries.editRestaurants(string, listItem);
+    resultQueries.editRestaurants(string, listItem, req.user.id);
   }
   res.redirect('/');
 });
@@ -306,19 +306,19 @@ app.post("/:table/:id/:name/update", (req, res) => {
 
   //extract name
   if (req.body.Category === 'Books') {
-    resultQueries.recatergorizeIntoBooks(name, req.body.contextEdit);
+    resultQueries.recatergorizeIntoBooks(name, req.body.contextEdit, req.user.id);
   }
   if (req.body.Category === 'Products') {
-    resultQueries.recatergorizeIntoProducts(name, req.body.contextEdit);
+    resultQueries.recatergorizeIntoProducts(name, req.body.contextEdit, req.user.id);
   }
   if (req.body.Category === 'Movies & TV series') {
-    resultQueries.recatergorizeIntoMovies(name, req.body.contextEdit);
+    resultQueries.recatergorizeIntoMovies(name, req.body.contextEdit, req.user.id);
   }
   if (req.body.Category === 'Restaurants') {
-    resultQueries.recatergorizeIntoRestaurants(name, req.body.contextEdit);
+    resultQueries.recatergorizeIntoRestaurants(name, req.body.contextEdit, req.user.id);
   }
   if (req.body.Category === 'Misc') {
-    resultQueries.recatergorizeIntoMisc(name, req.body.contextEdit);
+    resultQueries.recatergorizeIntoMisc(name, req.body.contextEdit, req.user.id);
   }
   //delete old entry in the db
   if (req.headers.referer.includes('books')) {

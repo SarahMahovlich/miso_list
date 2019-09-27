@@ -18,18 +18,19 @@ const { searchEngine } = require('./lib/searchEngine');
 const resultQueries = require('./routes/resultQueries.js');
 const cookieParser = require('cookie-parser');
 app.use(cookieParser());
+
 app.use((req, res, next) => {
-  if(req.cookies.user_id) {
-  resultQueries.getUser(req.cookies.user_id)
-    .then((user) => {
-      req.user = user;
-      res.locals.user = user;
-      next();
-    })
-    .catch((err) => {
-      res.clearCookie('user_id');
-      next();
-    });
+  if (req.cookies.user_id) {
+    resultQueries.getUser(req.cookies.user_id)
+      .then((user) => {
+        req.user = user;
+        res.locals.user = user;
+        next();
+      })
+      .catch((err) => {
+        res.clearCookie('user_id');
+        next();
+      });
   } else {
     next();
   }
@@ -126,18 +127,18 @@ app.post("/login", (req, res) => {
   const email = req.body.email;
   if (email) {
     resultQueries.checkEmail(email)
-    .then((result) => {
-      if (email === result.email) {
-        console.log(result);
-        res.cookie("user_id", result.id);
-        res.redirect('/');
-      } else {
-        res.send("FAIL");
-        console.log("Failed to login");
-      }
-    }).catch((err) => {
-      console.log(err)
-    });
+      .then((result) => {
+        if (email === result.email) {
+          console.log(result);
+          res.cookie("user_id", result.id);
+          res.redirect('/');
+        } else {
+          res.send("FAIL");
+          console.log("Failed to login");
+        }
+      }).catch((err) => {
+        console.log(err)
+      });
   } else {
     res.status(404);
   }

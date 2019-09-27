@@ -158,7 +158,7 @@ const addToBuy = (body, snippet, link, query, id) => {
     .then(res => res.rows[0]);
 };
 
-const addToMisc = (body, snippet, link, query, id) => {
+const addToMisc = (query, id) => {
   return pool.query(`
   INSERT INTO misc (name, context, user_id)
   VALUES ($1, $2, $3)

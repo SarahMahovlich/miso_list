@@ -134,3 +134,46 @@
   color: #f7f0db;
   background: rgb(246, 172, 140);
 }
+
+
+.bookSection:hover .itemContext {
+  color: #4B79C5;
+}
+.bookSection:hover .itemName {
+  color: #4BC5A0;
+}
+
+.movieSection:hover .itemContext {
+  color: #4B79C5;
+}
+.movieSection:hover .itemName {
+  color: #4BC5A0;
+}
+
+.restSection:hover .itemContext {
+  color: #4B79C5;
+}
+.restSection:hover .itemName {
+  color: #4BC5A0;
+}
+
+.prodSection:hover .itemContext {
+  color: #4B79C5;
+}
+.prodSection:hover .itemName {
+  color: #4BC5A0;
+}
+
+.miscSection:hover .itemContext {
+  color: #4B79C5;
+}
+.miscSection:hover .itemName {
+  color: #4BC5A0;
+}
+
+.archiveSection:hover .itemContext {
+  color: #4B79C5;
+}
+.archiveSection:hover .itemName {
+  color: #4BC5A0;
+}

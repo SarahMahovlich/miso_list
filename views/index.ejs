@@ -79,7 +79,7 @@
         <% for (let book of books) { %>
           <div class="toDoList">
             <div class="itemHeader">
-                <a href='/books/<%= book['id'] %>' class="leftItem itemTitleHeader"><h4><%= book['name'] %></h4></a><br>
+                <a href='/books/<%= book['id'] %>' class="leftItem itemTitleHeader"><h4 class='itemName'><%= book['name'] %></h4></a><br>
                 <a href="<%= book['link'] %>" class="rightItem" target="_blank"><button id="linkBtn" class="btn btn-outline-dark">goodreads</button></a>
                 <form class="completedbtn" action="/books/<%= book['id'] %>/complete" method="POST">
                   <button type="submit" id="completeBtn" class="btn btn-outline-success">Completed</button>
@@ -101,7 +101,7 @@
         <% for (let movie of movies) { %>
           <div class="toDoList">
             <div class="itemHeader">
-              <a href='/movies/<%= movie['id']%>' class="leftItem itemTitleHeader"><h4><%= movie['name'] %></h4></a><br>
+              <a href='/movies/<%= movie['id']%>' class="leftItem itemTitleHeader"><h4 class='itemName'><%= movie['name'] %></h4></a><br>
               <a href="<%= movie['link'] %>" class="rightItem" target="_blank"><button id="linkBtn" class="btn btn-outline-dark">IMDB</button></a>
               <form class="completedbtn" action="/movies_and_series/<%= movie['id'] %>/complete" method="POST">
                 <button type="submit" id="completeBtn" class="btn btn-outline-success">Completed</button>
@@ -123,7 +123,7 @@
         <% for (let restaurant of restaurants) { %>
           <div class="toDoList">
             <div class="itemHeader">
-              <a href='/restaurants/<%= restaurant['id']%>' class="leftItem itemTitleHeader"><h4><%= restaurant['name'] %></h4></a><br>
+              <a href='/restaurants/<%= restaurant['id']%>' class="leftItem itemTitleHeader"><h4 class='itemName'><%= restaurant['name'] %></h4></a><br>
               <a href="<%= restaurant['link'] %>" class="rightItem" target="_blank"><button id="linkBtn" class="btn btn-outline-dark">Zomato</button></a>
               <form class="completedbtn" action="/restaurants/<%= restaurant['id'] %>/complete" method="POST">
                 <button type="submit" id="completeBtn" class="btn btn-outline-success">Completed</button>
@@ -145,7 +145,7 @@
           <% for (let product of products) { %>
             <div class="toDoList">
               <div class="itemHeader">
-                <a href='/products/<%= product['id']%>' class="leftItem itemTitleHeader"><h4><%= product['name'] %></h4></a><br>
+                <a href='/products/<%= product['id']%>' class="leftItem itemTitleHeader"><h4 class='itemName'><%= product['name'] %></h4></a><br>
                 <a href="<%= product['link'] %>" class="rightItem" target="_blank"><button id="linkBtn" class="btn btn-outline-dark">Amazon</button></a>
                 <form class="completedbtn" action="/products/<%= product['id'] %>/complete" method="POST">
                   <button type="submit" id="completeBtn" class="btn btn-outline-success">Completed</button>
@@ -167,7 +167,7 @@
         <% for (let mis of misc) { %>
           <div class="toDoList">
             <div class="itemHeader">
-              <a href='/misc/<%= mis['id']%>' class="leftItem itemTitleHeader"><h4><%= mis['name'] %></h4></a><br>
+              <a href='/misc/<%= mis['id']%>' class="leftItem itemTitleHeader"><h4 class='itemName'><%= mis['name'] %></h4></a><br>
               <div class="rightContainer">
                 <form class="completedbtn" action="/misc/<%= mis['id'] %>/complete" method="POST">
                   <button type="submit" id="completeBtn" class="btn btn-outline-success">Completed</button>
@@ -196,7 +196,7 @@
           <% for (let archive of archivedBooks) { %>
             <div class="toDoList">
               <div class="itemHeader">
-                <a href='/<%= archive['name']%>' class="leftItem itemTitleHeader"><h4><%= archive['name'] %></h4></a><br>
+                <a href='/<%= archive['name']%>' class="leftItem itemTitleHeader"><h4 class='itemName'><%= archive['name'] %></h4></a><br>
                 <div class="rightContainer">
                   <a href="<%= archive['link'] %>" class="rightItem" target="_blank"><button id="linkBtn" class="btn btn-outline-dark">goodreads</button></a>
                   <form class="form-delete" action="/books/<%= archive['id'] %>/unarchive" method="POST">

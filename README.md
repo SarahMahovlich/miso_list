@@ -10,6 +10,10 @@ The solution? Miso_list! A smart, auto-categorizing todo list app. The user simp
 
 ## Getting Started
 
+0. Creating the Database
+  - Enter Postgres with `psql` and type in the following commands
+  - `CREATE ROLE labber WITH LOGIN password 'labber';`
+  - `CREATE DATABASE midterm OWNER labber;`
 1. Create the `.env` by using `.env.example` as a reference: `cp .env.example .env`
 2. Update the .env file with your correct local information 
   - username: `labber` 
